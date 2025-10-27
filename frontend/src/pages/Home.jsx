@@ -17,22 +17,13 @@ export default function Home() {
     <>
     <HeaderPrincipal />
       <div className="fondo">
-      <h1>Bienvenido a la KAHOOT de Matemáticas</h1>
-      <p>Explora nuestras funcionalidades y disfruta de la experiencia.</p>
+      <h1>Bienvenido a Retos Matemáticos</h1>
+      <p>La página aún está en construcción</p>
       <ul>
-        <span>hola</span>
-        <li>hola</li>
-        <li>hola</li>
-        <li>hola</li>
-        <li>hola</li>
+        <li>Dominó de fracciones</li>
+        <li>Sudoku</li>
+        <li>Pentominó</li>
       </ul>
-      <ol>
-        <p>hola</p>
-        <li>hola</li>
-        <li>hola</li>
-        <li>hola</li>
-        <li>hola</li>
-      </ol>
     </div>
     </>
   )
