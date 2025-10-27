@@ -1,0 +1,53 @@
+.fondo-header-principal {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    /*QUIERO SEPARAR HORIZONTALMENTE LOS ELEMENTOS*/
+    gap: 20px;
+    background-color: #2e0455ff;
+    height: 5vh;
+    padding: 0 20px;
+}
+
+.fondo-header-secundario {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    /*QUIERO SEPARAR HORIZONTALMENTE LOS ELEMENTOS*/
+    gap: 20px;
+    background-color: #2e0455ff;
+    height: 5vh;
+    padding: 0 20px;
+}
+
+.texto-pagina-inicial {
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: 'Comic Sans MS', cursive;
+}
+
+.boton-header {
+    /* QUIERO CENTRAR EL TEXTO VERTICALMENTE */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /*NO QUIERO QUE SEAN BLOCK LOS BOTONES*/
+    display: inline-block;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 0 20px;
+    height: 36px;
+    line-height: 20px;
+    font-size: 16px;
+    color: white;
+    background-color: #2e0455ff;
+    border: 1px solid white;
+}
+
+.texto-boton {
+    cursor: pointer;
+    text-decoration: underline;
+    color: white;
+}

@@ -1,0 +1,10 @@
+.fondo {
+  height: 5vh;
+}
+
+.boton-principal {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: white;
+  background-color: green;
+}
