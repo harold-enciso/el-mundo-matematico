@@ -26,4 +26,4 @@ app.add_middleware(
 #Funcion sincrona o normal
 @app.get("/")
 def mensaje():
-    return {"mensaje": "BIENVENIDOS A KAHUUUUUT!"}
+    return {"mensaje": "Esperamos que disfruten su estadía"}

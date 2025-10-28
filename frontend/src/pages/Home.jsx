@@ -1,12 +1,24 @@
 import "./Home.css";
 import { Link } from "react-router-dom";
-import { use, useEffect,useState } from "react";
+import { useEffect,useState } from "react";
 import HeaderPrincipal from "../components/HeaderPrincipal";
 //PAGINA INICIAL
 export default function Home() {
   //Aquí van los estados
   //que es lo de arriba?? Los estados son variables que permiten almacenar y gestionar datos dentro de un componente funcional en React.
-
+  const API_BASE_URL = "https://retos-matematicos-api.onrender.com";
+  const [mensajeBienvenida,setMensajeBienvenida] = useState([]);
+  //Debo usar un UseEffect no una funcion cuando es asi
+  useEffect(() => {
+    fetch(`${API_BASE_URL}/`)
+    .then(res => {
+      return res.json();
+    })
+    .then(data => {
+      setMensajeBienvenida(data.mensaje);
+    })
+  },[])
+  
 
   
   
@@ -18,7 +30,7 @@ export default function Home() {
     <HeaderPrincipal />
       <div className="fondo">
       <h1>Bienvenido a Retos Matemáticos</h1>
-      <p>La página aún está en construcción</p>
+      <p>La página aún está en construcción. {mensajeBienvenida}</p>
       <div className="contenedor-tarjetas">
         <Link to="/juegos/sudoku" className="tarjeta azul">
           <h1>SUDOKU</h1>
