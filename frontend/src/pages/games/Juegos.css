@@ -1,0 +1,25 @@
+.fondo-juegos {
+  /*QUIERO CENTRARLO*/
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 50px);/*ESTO ERA LA SOLUCION*/
+  margin-top: 50px;
+  width: 100vw;
+  background-color: #6206b8ff;
+}
+
+.area-juego {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 40em;
+  min-width: 10em;
+  border-radius: 20px;
+  background-color: #ffffffff;
+  color: #000000ff;
+  border: 2px solid black;
+}

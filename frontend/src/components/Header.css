@@ -1,23 +1,66 @@
 .fondo-header-principal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
     display: flex;
     justify-content: flex-end;
     align-items: center;
     /*QUIERO SEPARAR HORIZONTALMENTE LOS ELEMENTOS*/
     gap: 20px;
     background-color: #2e0455ff;
-    height: 5vh;
+    height: 50px;
     padding: 0 20px;
 }
 
 .fondo-header-secundario {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
     display: flex;
     justify-content: flex-start;
     align-items: center;
     /*QUIERO SEPARAR HORIZONTALMENTE LOS ELEMENTOS*/
     gap: 20px;
     background-color: #2e0455ff;
-    height: 5vh;
+    height: 50px;
     padding: 0 20px;
+}
+.link {
+    display: flex;
+    /*LE ASIGNO UN PESO*/
+    align-items: center;
+}
+.bloque-izquierdo {
+    display: flex;
+    /*LE ASIGNO UN PESO*/
+    width: 33.33%;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+}
+
+.bloque-central {
+    display: flex;
+    /*LE ASIGNO UN PESO DE 1/3 ERA ASI DE SIMPLE*/
+    width: 33.33%;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.3em;/*1 em ES IGUAL A 16 PX Y ES LA FUENTE POR DEFECTO EN SPAN Y P*/
+    font-style: italic;
+}
+
+.bloque-derecho {
+    display: flex;
+    /*LE ASIGNO UN PESO*/
+    width: 33.33%;
+    justify-content: flex-end;
+    align-items: center;
+    font-size: 1.5em;
+    font-weight: bold;
 }
 
 .texto-pagina-inicial {

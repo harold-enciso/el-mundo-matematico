@@ -19,11 +19,21 @@ export default function Home() {
       <div className="fondo">
       <h1>Bienvenido a Retos Matemáticos</h1>
       <p>La página aún está en construcción</p>
-      <ul>
-        <li>Dominó de fracciones</li>
-        <li>Sudoku</li>
-        <li>Pentominó</li>
-      </ul>
+      <div className="contenedor-tarjetas">
+        <Link to="/juegos/sudoku" className="tarjeta azul">
+          <h1>SUDOKU</h1>
+          <img src="/sudoku.png" width="46%"></img>
+        </Link>
+        <Link to="/juegos/domino-fracciones" className="tarjeta roja">
+          <h1>DOMINÓ DE FRACCIONES</h1>
+          <img src="/domino-fracciones.png" width="46%"></img>
+        </Link>
+        <Link to="/juegos/pentomino" className="tarjeta verde">
+            <h1>PENTOMINÓ</h1>
+            <img src="/pentomino.png" width="46%"></img>
+        </Link>
+      </div>
+
     </div>
     </>
   )

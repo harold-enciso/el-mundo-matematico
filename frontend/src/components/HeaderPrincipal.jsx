@@ -4,13 +4,24 @@ export default function HeaderPrincipal() {
     return (
         <>
             <header className="fondo-header-principal">
-                <Link to="/register">
-                    <button className="boton-header">Registrarse</button>
-                </Link>
+                <div className="bloque-izquierdo">
+                    <Link to="/" className="link">
+                        <img src="/maestro.png" width="30px"/>
+                        <span className="texto-pagina-inicial">
+                            RETOS MATEMÁTICOS
+                            </span>
+                    </Link>
+                </div>
                 
-                <Link to="/login">
-                    <span className="texto-boton">Iniciar Sesión</span>
-                </Link>
+
+                <span className="bloque-central">
+                    ¡Una forma fácil de retarte y aprender!
+                    </span>
+                
+                <span className="bloque-derecho">
+                    ¡EMPIEZA AHORA!
+                    </span>
+
                 
             </header>
         </>
