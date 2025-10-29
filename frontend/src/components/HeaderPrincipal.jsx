@@ -18,7 +18,7 @@ export default function HeaderPrincipal() {
                     </span>
                 
                 <span className="bloque-derecho">
-                    ¡EMPIEZA AHORA!
+                    ¡HOLA NICO!
                     </span>
 
             </header>
