@@ -8,7 +8,7 @@ export default function Pentomino(){
         <HeaderPrincipal />
         <div className="fondo-juegos">
             <div className="area-juego">
-                <h1>PENTOMINO</h1>
+                <h1>PENTOMINÓ</h1>
             </div>
         </div>
         </>
