@@ -6,11 +6,10 @@ import HeaderPrincipal from "../components/HeaderPrincipal";
 export default function Home() {
   //Aquí van los estados
   //que es lo de arriba?? Los estados son variables que permiten almacenar y gestionar datos dentro de un componente funcional en React.
-  const API_BASE_URL = "https://api.elmundomatematico.com";
   const [mensajeBienvenida,setMensajeBienvenida] = useState([]);
   //Debo usar un UseEffect no una funcion cuando es asi
   useEffect(() => {
-    fetch(`${API_BASE_URL}/`)
+    fetch(`${import.meta.env.VITE_API_URL}/`)
     .then(res => {
       return res.json();
     })
