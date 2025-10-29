@@ -17,6 +17,7 @@ dist-ssr
 
 # Editor directories and files
 .vscode/*
+.vscode
 !.vscode/extensions.json
 backend/env/
 .idea
@@ -26,3 +27,11 @@ backend/env/
 *.njsproj
 *.sln
 *.sw?
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+env/
+.venv/
