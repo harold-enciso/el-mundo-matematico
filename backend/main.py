@@ -9,6 +9,7 @@ origins = [
     # 🚨 IMPORTANTE: Reemplaza esta URL con la URL final de tu Static Service en Render
     "https://el-mundo-matematico.onrender.com",
     "https://el-mundo-matematico-api.onrender.com",
+    "https://api.elmundomatematico.com",
     "https://elmundomatematico.com",
     "https://www.elmundomatematico.com",
     
