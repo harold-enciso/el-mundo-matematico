@@ -7,7 +7,8 @@ app = FastAPI()
 # y las URLs que usas para probar localmente.
 origins = [
     # 🚨 IMPORTANTE: Reemplaza esta URL con la URL final de tu Static Service en Render
-    "https://retos-matematicos.onrender.com", 
+    "https://el-mundo-matematico.onrender.com",
+    "https://elmundomatematico.com",
     
     # URLs de desarrollo local (para que funcione mientras pruebas en tu PC)
     "http://localhost:5173", 
