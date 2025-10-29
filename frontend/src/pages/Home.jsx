@@ -29,20 +29,20 @@ export default function Home() {
     <>
     <HeaderPrincipal />
       <div className="fondo">
-      <h1>Bienvenido a Retos Matemáticos</h1>
+      <h1>Bienvenido a El mundo Matemático</h1>
       <p>La página aún está en construcción. {mensajeBienvenida}</p>
       <div className="contenedor-tarjetas">
         <Link to="/juegos/sudoku" className="tarjeta azul">
           <h1>SUDOKU</h1>
-          <img src="/sudoku.png" width="46%"></img>
+          <img src="/sudoku.png" width="46%" alt="Sudoku"></img>
         </Link>
         <Link to="/juegos/domino-fracciones" className="tarjeta roja">
           <h1>DOMINÓ DE FRACCIONES</h1>
-          <img src="/domino-fracciones.png" width="46%"></img>
+          <img src="/domino-fracciones.png" width="46%" alt="Domino Fracciones"></img>
         </Link>
         <Link to="/juegos/pentomino" className="tarjeta verde">
             <h1>PENTOMINÓ</h1>
-            <img src="/pentomino.png" width="46%"></img>
+            <img src="/pentomino.png" width="46%" alt="Pentomino"></img>
         </Link>
       </div>
 

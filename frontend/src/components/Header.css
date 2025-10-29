@@ -76,8 +76,6 @@
     align-items: center;
     justify-content: center;
     /*NO QUIERO QUE SEAN BLOCK LOS BOTONES*/
-    display: inline-block;
-    border: none;
     border-radius: 5px;
     cursor: pointer;
     padding: 0 20px;
