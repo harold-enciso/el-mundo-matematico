@@ -19,7 +19,6 @@ dist-ssr
 .vscode/*
 .vscode
 !.vscode/extensions.json
-backend/env/
 .idea
 .DS_Store
 *.suo
@@ -29,7 +28,8 @@ backend/env/
 *.sw?
 
 # Python
-__pycache__/
+__pycache__
+env
 *.pyc
 *.pyo
 *.pyd
