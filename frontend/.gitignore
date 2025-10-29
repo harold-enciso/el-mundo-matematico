@@ -17,6 +17,7 @@ env/
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
+backend/env
 .idea
 .DS_Store
 *.suo
