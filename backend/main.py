@@ -29,9 +29,9 @@ origins = [
 session = boto3.session.Session()
 s3 = session.client(
     service_name="s3",
-    endpoint_url=os.getenv("B2_ENDPOINT_URL"),
-    aws_access_key_id=os.getenv("B2_KEY_ID"),
-    aws_secret_access_key=os.getenv("B2_APPLICATION_KEY")
+    endpoint_url=os.getenv("WASABI_ENDPOINT_URL"),
+    aws_access_key_id=os.getenv("WASABI_KEY_ID"),
+    aws_secret_access_key=os.getenv("WASABI_SECRET_KEY")
 )
 
 # ⚠️ PASO 2: AÑADIR EL MIDDLEWARE CORS
@@ -47,7 +47,7 @@ app.add_middleware(
 @app.get("/pdf/{file_name}")
 def mostrar_pdf(file_name: str):
     #Genera una URL temporal para acceder a un PDF privado
-    bucket_name = os.getenv("B2_BUCKET_NAME")
+    bucket_name = os.getenv("WASABI_BUCKET_NAME")
     url = s3.generate_presigned_url(
         "get_object",
         Params={"Bucket": bucket_name,"Key": file_name},

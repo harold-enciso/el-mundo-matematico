@@ -8,7 +8,7 @@ export default function Sudoku(){
     const [pdfUrl, setPdfUrl] = useState("");
     //Declaro un useEffect al iniciar la pagina
     useEffect(() => {
-        fetch(`${apiUrl}/pdf/Numeros-Racionales.pdf`)
+        fetch(`${apiUrl}/pdf/Sudoku.pdf`)
         .then(res => res.json())
         .then(data => setPdfUrl(data.url))
     },[]);
@@ -16,17 +16,18 @@ export default function Sudoku(){
         <>
         <HeaderPrincipal />
         <div className="fondo-juegos">
+            <div className="area-puntaje">
+                <h1>Puntaje</h1>
+            </div>
             <div className="area-juego">
                 <h1>SUDOKU</h1>
-                <div>
-                    {pdfUrl &&(
-                        <embed
+                {pdfUrl &&(
+                        <iframe
                             src={pdfUrl}
                             title="PDF"
                             className="pdf-frame"
-                        ></embed>
+                        ></iframe>
                     )}
-                </div>
             </div>
         </div>
         </>
