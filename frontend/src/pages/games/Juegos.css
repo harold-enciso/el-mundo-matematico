@@ -1,11 +1,12 @@
 .fondo-juegos {
   /*QUIERO CENTRARLO*/
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
   min-height: calc(100vh - 50px);/*ESTO ERA LA SOLUCION*/
   margin-top: 50px;
+  gap: 4em;
   width: 100vw;
   background-color: #6206b8ff;
 }
@@ -16,10 +17,31 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  height: 40em;
-  min-width: 10em;
+  height: 50em;
+  width: 80em;
   border-radius: 20px;
   background-color: #ffffffff;
   color: #000000ff;
   border: 2px solid black;
 }
+
+.area-puntaje {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 50em;
+  width: 24em;
+  border-radius: 20px;
+  background-color: #ffffffff;
+  color: #000000ff;
+  border: 2px solid black;
+}
+
+
+.pdf-frame {
+  width: 40em;
+  height: 20em;
+}
+
