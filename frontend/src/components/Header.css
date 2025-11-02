@@ -33,41 +33,50 @@
     display: flex;
     /*LE ASIGNO UN PESO*/
     align-items: center;
-}
-.bloque-izquierdo {
-    display: flex;
-    /*LE ASIGNO UN PESO*/
-    width: 33.33%;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 10px;
+    gap: 1em;
 }
 
-.bloque-central {
+.bloque {
     display: flex;
-    /*LE ASIGNO UN PESO DE 1/3 ERA ASI DE SIMPLE*/
+    flex-direction: row;
     width: 33.33%;
-    justify-content: center;
     align-items: center;
-    font-size: 1.3em;/*1 em ES IGUAL A 16 PX Y ES LA FUENTE POR DEFECTO EN SPAN Y P*/
+    gap: 1em;
+}
+
+.bloque.izquierdo {
+    justify-content: flex-start;
+}
+
+.bloque.central {
+    justify-content: center;
+    font-size: 1em;/*1 em ES IGUAL A 16 PX Y ES LA FUENTE POR DEFECTO EN SPAN Y P*/
     font-style: italic;
 }
 
-.bloque-derecho {
-    display: flex;
-    /*LE ASIGNO UN PESO*/
-    width: 33.33%;
+.bloque.derecho {
     justify-content: flex-end;
-    align-items: center;
-    font-size: 1.5em;
+    font-size: 1em;
     font-weight: bold;
+}
+
+.texto-logo {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    
 }
 
 .texto-pagina-inicial {
     color: white;
-    font-size: 20px;
+    font-size: 1.2em;
     font-weight: bold;
     font-family: 'Comic Sans MS', cursive;
+    line-height: 1.1;
+}
+
+.salto-linea {
+    display: none;
 }
 
 .boton-header {
@@ -81,9 +90,11 @@
     padding: 0 20px;
     height: 36px;
     line-height: 20px;
-    font-size: 16px;
+    font-size: 1em;
     color: white;
-    background-color: #2e0455ff;
+    font-weight: bold;
+    font-style: normal;
+    background-color: #6d07ccff;
     border: 1px solid white;
 }
 
@@ -91,4 +102,29 @@
     cursor: pointer;
     text-decoration: underline;
     color: white;
+}
+
+.menu {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .bloque.central {
+        display: none;
+    }
+    .bloque.izquierdo {
+        width: 35%;
+        gap: 0.5em;
+    }
+    .bloque.derecho {
+        width: 65%;
+        gap: 0.5em;
+    }
+    .menu {
+        display: flex;
+    }
+
+    .salto-linea {
+        display: block
+    }
 }

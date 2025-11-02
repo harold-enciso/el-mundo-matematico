@@ -1,25 +1,41 @@
 import { Link } from "react-router-dom";
+import { Menu } from "lucide-react";
 import "./Header.css";
 export default function HeaderPrincipal() {
     return (
             <header className="fondo-header-principal">
-                <div className="bloque-izquierdo">
+                <div className="bloque izquierdo">
                     <Link to="/" className="link">
                         <img src="/maestro.png" width="30px" alt="Maestro"/>
-                        <span className="texto-pagina-inicial">
-                            EL MUNDO MATEMÁTICO
+                        <div>
+                            <span className="texto-pagina-inicial">
+                                EL MUNDO
                             </span>
+                            <span>{" "}</span>
+                            <br className="salto-linea"/>
+                            <span className="texto-pagina-inicial">
+                                MATEMÁTICO
+                            </span>
+                        </div>
                     </Link>
                 </div>
                 
 
-                <span className="bloque-central">
-                    ¡Una forma fácil de retarte y aprender!
-                    </span>
+                <div className="bloque central">
+                    <span className="boton-header">Recursos</span>
+                    <span className="">Juegos</span>
+                    </div>
                 
-                <span className="bloque-derecho">
-                    ¡HOLA NICO!
-                    </span>
+                <div className="bloque derecho">
+                    <Link to="/login" className="link">
+                    <span className="texto-boton">Inicia Sesión</span>
+                    </Link>
+                    <Link to="/register" className="link">
+                    <span className="boton-header">Regístrate</span>
+                    </Link>
+                    <Menu size={24} className="menu"/>
+                    
+                    </div>
 
             </header>
     );

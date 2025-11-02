@@ -1,0 +1,105 @@
+.fondo-login {
+  /*QUIERO CENTRARLO*/
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: calc(100vh - 50px);/*ESTO ERA LA SOLUCION*/
+  margin-top: 50px;
+  width: 100vw;
+  background-color: #6206b8ff;
+}
+
+.recuadro-login{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  width: 30em;
+  color: #000000ff;
+  background-color: #ffffffff;
+  border-radius: 20px;
+  border: 2px solid black;
+  gap: 0.8em;
+  padding-bottom:2em;
+  transition: width 0.5s ease;
+}
+.recuadro-login h1,
+.recuadro-login h2{
+  margin-top: 0.5em;
+  margin-bottom: 0px;
+}
+.recuadro-login input {
+  background-color: #ffffffff;
+  color: #000000ff;
+  height: 3em;
+  width: 18em;
+  border: 3px solid black;
+  border-radius: 10px;
+}
+
+.recuadro-login input:focus {
+  border-color: #6d07cc;
+  outline: none;
+  box-shadow: 0 0 10px #6d07cc;
+}
+
+
+.boton-login {
+    /* QUIERO CENTRAR EL TEXTO VERTICALMENTE */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /*NO QUIERO QUE SEAN BLOCK LOS BOTONES*/
+    border-radius: 20px;
+    cursor: pointer;
+    padding: 0 20px;
+    height: 2.5em;
+    width:60%;
+    line-height: 20px;
+    font-size: 1em;
+    color: white;
+    font-weight: bold;
+    font-style: normal;
+    background-color: #6d07ccff;
+    border: 1px solid white;
+}
+.boton-login:hover{
+  outline: none;
+  border-color: #6d07ccff;
+  box-shadow: 0 0 10px #6d07ccff;
+}
+
+.link-login{
+  color: #6d07ccff;
+  font-weight: bold;
+}
+
+
+.error-oculto {
+  opacity: 0;
+  color: #ff0000ff;
+  transform: translateY(-10px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.error-visible {
+  opacity: 1;
+  color: #ff0000ff;
+  transform: translateY(0);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+
+@media (max-width: 1024px) {
+  .recuadro-login{
+    width: 27.5em;
+  }
+}
+
+@media (max-width: 768px) {
+  .recuadro-login{
+    width: 25em;
+  }
+}
