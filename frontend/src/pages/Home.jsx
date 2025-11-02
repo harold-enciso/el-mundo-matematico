@@ -40,7 +40,11 @@ export default function Home() {
           <img src="/sudoku.png" className="imagen" alt="Sudoku"></img>
         </Link>
         <Link to="/juegos/domino-fracciones" className="tarjeta roja">
-          <h1>DOMINÓ DE FRACCIONES</h1>
+          <div className="ajuste-linea">
+            <h1>DOMINÓ DE</h1>
+            <br className="salto-linea"/>
+            <h1>FRACCIONES</h1>
+          </div>
           <img src="/domino-fracciones.png" className="imagen" alt="Domino Fracciones"></img>
         </Link>
         <Link to="/juegos/pentomino" className="tarjeta verde">

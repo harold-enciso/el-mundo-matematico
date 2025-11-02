@@ -26,6 +26,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  box-sizing: border-box;
   text-align: center;
   height: 40em;
   min-width: 10em;
@@ -33,6 +34,11 @@
   background-color: #ffffffff;
   color: #000000ff;
   border: 2px solid black;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(2em,2.5vw,4em);
 }
 
 .tarjeta.verde{
@@ -67,6 +73,15 @@
   width: 46%; 
 }
 
+.salto-linea {
+    display: none;
+}
+
+.ajuste-linea {
+  display: flex;
+  flex-direction: column;
+}
+
 
 @media (max-width: 768px) {
 
@@ -85,10 +100,42 @@
     flex-direction: row;
     height: 12em;
     gap: 20px;
+    padding: 1em;
+  }
+
+  
+  
+  .tarjeta.verde{
+    width: 100%;
+  }
+  .tarjeta.amarilla{
+    width: 100%;
+  }
+  .tarjeta.azul{
+    width: 100%;
+  }
+  .tarjeta.roja{
+    width: 100%;
+  }
+
+  .imagen {
+    width: auto;
+    height: 80%; 
+  }
+
+}
+
+@media (max-width: 384px) {
+  .tarjeta {
+    flex-direction: column;
+    height: auto;
+    gap: 0.5em;
+    padding: 1em 0;
   }
 
   .tarjeta h1 {
-    font-size: 2.5em;
+    font-size: 2em;
+    margin: 0;
   }
 
   .tarjeta.verde{
@@ -104,9 +151,9 @@
     width: 100%;
   }
 
-.imagen {
-  width: auto;
-  height: 80%; 
-}
+  .imagen {
+    width: 40%;
+    height: auto;
+  }
 
 }

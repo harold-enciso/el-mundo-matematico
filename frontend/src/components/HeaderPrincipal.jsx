@@ -33,9 +33,12 @@ export default function HeaderPrincipal() {
                     <Link to="/register" className="link">
                     <span className="boton-header">Regístrate</span>
                     </Link>
-                    <Menu size={24} className="menu"/>
-                    
+                                       
                     </div>
+                <div className="bloque menu">
+                    <Menu size={24}/>
+                </div>
+                
 
             </header>
     );
