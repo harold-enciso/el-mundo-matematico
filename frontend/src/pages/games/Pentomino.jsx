@@ -16,18 +16,27 @@ export default function Pentomino(){
         <>
         <HeaderPrincipal />
         <div className="fondo-juegos">
-            <div className="area-puntaje">
-                <h1>Puntaje</h1>
-            </div>
+            
             <div className="area-juego">
                 <h1>PENTOMINO</h1>
-                {pdfUrl &&(
-                        <iframe
-                            src={pdfUrl}
-                            title="PDF"
-                            className="pdf-frame"
-                        ></iframe>
+                {pdfUrl && (
+                    <object
+                        data={pdfUrl}
+                        type="application/pdf"
+                        width="80%"
+                        height="90%"
+                    >
+                        <p>
+                        Tu navegador no puede mostrar el PDF.{" "}
+                        <a href={pdfUrl} target="_blank" rel="noopener noreferrer">
+                            Descargar PDF
+                        </a>
+                        </p>
+                    </object>
                     )}
+            </div>
+            <div className="area-puntaje">
+                <h1>Puntaje</h1>
             </div>
         </div>
         </>

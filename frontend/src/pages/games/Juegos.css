@@ -18,7 +18,7 @@
   align-items: center;
   text-align: center;
   height: 50em;
-  width: 80em;
+  width: 70%;
   border-radius: 20px;
   background-color: #ffffffff;
   color: #000000ff;
@@ -32,7 +32,7 @@
   align-items: center;
   text-align: center;
   height: 50em;
-  width: 24em;
+  width: 20%;
   border-radius: 20px;
   background-color: #ffffffff;
   color: #000000ff;
@@ -40,8 +40,10 @@
 }
 
 
-.pdf-frame {
-  width: 60em;
-  height: 40em;
-}
 
+@media (max-width: 1600px) {
+  .fondo-juegos{
+    flex-direction: column;
+    padding: 1em 0;
+  }
+}
