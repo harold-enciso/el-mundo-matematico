@@ -1,9 +1,15 @@
 import boto3.session
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
+from fastapi.responses import StreamingResponse
 from fastapi.middleware.cors import CORSMiddleware
 import boto3
 import os
+import io
+import requests
 from dotenv import load_dotenv
+from starlette.responses import Response
+from starlette.background import BackgroundTask
+
 
 load_dotenv()
 
@@ -46,18 +52,53 @@ app.add_middleware(
 )
 
 #FUNCION PARA MOSTRAR PDF
+
 @app.get("/pdf/{file_name}")
-def mostrar_pdf(file_name: str):
-    #Genera una URL temporal para acceder a un PDF privado
-    bucket_name = os.getenv("WASABI_BUCKET_NAME")
-    url = s3.generate_presigned_url(
-        "get_object",
-        Params={"Bucket": bucket_name,"Key": file_name},
-        ExpiresIn=3600,
-    )
-    return {"url":url}
+async def pdf_proxy(file_name: str):
+    """
+    Endpoint Proxy: Obtiene un archivo PDF de Wasabi mediante URL pre-firmada
+    y lo sirve al navegador.
+    """
+    if not s3:
+        raise HTTPException(status_code=503, detail="El servicio S3 no está configurado.")
+    
+    try:
+        presigned_url = s3.generate_presigned_url(
+            "get_object",
+            Params={"Bucket": os.getenv("WASABI_BUCKET_NAME"), "Key": file_name},
+            ExpiresIn=3600  # 1 hora
+        )
 
+        r = requests.get(presigned_url)
+        r.raise_for_status() 
+        pdf_content = r.content
+        return Response(
+            content=pdf_content,
+            media_type="application/pdf",
+            headers={
+                "Content-Disposition": f'inline; filename="{file_name}"',
+                "Access-Control-Allow-Origin": "*",
+                "Content-Length": str(len(pdf_content)) 
+            }
+        )
 
+    except requests.exceptions.HTTPError as e:
+
+        if r.status_code == 404:
+            raise HTTPException(
+                status_code=404, 
+                detail=f"Archivo '{file_name}' no encontrado en Wasabi (Error 404)."
+            )
+        
+        raise HTTPException(
+            status_code=500, 
+            detail=f"Error al acceder a Wasabi: {e}"
+        )
+        
+    except Exception as e:
+        print(f"Error interno: {e}")
+        raise HTTPException(status_code=500, detail="Error de configuración interna del servidor.")
+    
 #Funcion sincrona o normal
 @app.get("/")
 def mensaje():
