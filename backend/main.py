@@ -24,7 +24,8 @@ origins = [
     "https://www.elmundomatematico.com",
     
     # URLs de desarrollo local
-    "http://localhost:5173", 
+    "http://localhost:5173",
+    "http://localhost:8000",
     "http://127.0.0.1:5173", 
 ]
 #Agregaremos IP local del front (si existe, entonces no debo agregar nada a Render)

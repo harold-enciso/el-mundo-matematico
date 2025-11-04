@@ -4,8 +4,8 @@ import HeaderPrincipal from "../../components/HeaderPrincipal";
 export default function Sudoku(){
     const apiUrl = import.meta.env.VITE_API_URL;
     //Cuando se necesite la url completa se usara: const fullUrl = `${apiUrl}/juegos/sudoku`;
-    const pdfUrl = `${apiUrl}/pdf/Sudoku.pdf`;
     const pdfFileName = 'Sudoku.pdf';
+    const pdfUrl = `${apiUrl}/pdf/${pdfFileName}`;
     return(
         <>
         <HeaderPrincipal />
@@ -15,7 +15,7 @@ export default function Sudoku(){
                 <h1>SUDOKU</h1>
                 
                 <iframe
-                    src={`/pdfjs/web/viewer.html?file=${encodeURIComponent(`${apiUrl}/pdf/${pdfFileName}`)}`}
+                    src={`/pdfjs/web/viewer.html?file=${encodeURIComponent(pdfUrl)}`}
                     width="100%"
                     height="900px" 
                     title="PDF Sudoku"

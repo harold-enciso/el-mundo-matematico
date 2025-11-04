@@ -1,17 +1,11 @@
 import "./Juegos.css";
 
 import HeaderPrincipal from "../../components/HeaderPrincipal";
-import { useEffect, useState } from "react";
 export default function DominoFracciones(){
     const apiUrl = import.meta.env.VITE_API_URL;
-    //Cuando se necesite la url completa se usara: const fullUrl = `${apiUrl}/juegos/sudoku`;
-    const [pdfUrl, setPdfUrl] = useState("");
-    //Declaro un useEffect al iniciar la pagina
-    useEffect(() => {
-        fetch(`${apiUrl}/pdf/Domino-fracciones.pdf`)
-        .then(res => res.json())
-        .then(data => setPdfUrl(data.url))
-    },[]);
+    const pdfFileName = 'Domino-fracciones.pdf';
+    const pdfUrl = `${apiUrl}/pdf/${pdfFileName}`;
+    
     return(
         <>
         <HeaderPrincipal />
@@ -19,21 +13,12 @@ export default function DominoFracciones(){
             
             <div className="area-juego">
                 <h1>DOMINÓ FRACCIONES</h1>
-                {pdfUrl && (
-                    <object
-                        data={pdfUrl}
-                        type="application/pdf"
-                        width="80%"
-                        height="90%"
-                    >
-                        <p>
-                        Tu navegador no puede mostrar el PDF.{" "}
-                        <a href={pdfUrl} target="_blank" rel="noopener noreferrer">
-                            Descargar PDF
-                        </a>
-                        </p>
-                    </object>
-                    )}
+                <iframe
+                    src={`/pdfjs/web/viewer.html?file=${encodeURIComponent(pdfUrl)}`}
+                    width="100%"
+                    height="900px" 
+                    title="PDF Sudoku"
+                />
             </div>
             <div className="area-puntaje">
                 <h1>Puntaje</h1>
