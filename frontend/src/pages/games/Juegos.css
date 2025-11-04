@@ -24,7 +24,16 @@
   color: #000000ff;
   border: 2px solid black;
 }
-
+.area-pdf{
+  position: relative;/*Necesario para superponer un loading*/
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  height: 40em;
+}
 .area-puntaje {
   display: flex;
   flex-direction: column;
@@ -38,7 +47,35 @@
   color: #000000ff;
   border: 2px solid black;
 }
+.fondo-carga{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #242428ff; 
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  color: white;
+}
+.fondo-carga p {
+    margin-left: 15px;
+}
+.simbolo-carga {
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  border-top: 4px solid white;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: rotar 1s linear infinite;/*Aqui llamo a una animacion definida abajo*/
+}
 
+@keyframes rotar {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
 
 
 @media (max-width: 1600px) {

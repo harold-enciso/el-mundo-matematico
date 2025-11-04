@@ -17128,6 +17128,7 @@ const PDFViewerApplication = {
     this._contentDispositionFilename ??= contentDispositionFilename;
     this._contentLength ??= contentLength;
     console.log(`PDF ${pdfDocument.fingerprints[0]} [${info.PDFFormatVersion} ` + `${(metadata?.get("pdf:producer") || info.Producer || "-").trim()} / ` + `${(metadata?.get("xmp:creatortool") || info.Creator || "-").trim()}` + `] (PDF.js: ${version || "?"} [${build || "?"}])`);
+    window.parent.postMessage('PDF_READY', '*');
     const pdfTitle = this._docTitle;
     if (pdfTitle) {
       this.setTitle(`${pdfTitle} - ${this._contentDispositionFilename || this._title}`);
