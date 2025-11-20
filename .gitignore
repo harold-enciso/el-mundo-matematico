@@ -38,4 +38,4 @@ env
 *.pyo
 *.pyd
 env/
-.venv/
+venv/

@@ -1,7 +1,6 @@
 {
   "scripts": {
   "frontend:dev": "cd frontend && npm run dev",
-  "frontend:build": "cd frontend && npm run build",
-  "backend:start": "python backend/main.py"
+  "frontend:build": "cd frontend && npm run build"
 }
 }
