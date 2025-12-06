@@ -2,36 +2,25 @@ CREATE TABLE users (
     id BIGSERIAL PRIMARY KEY,
     email VARCHAR(255) UNIQUE NOT NULL,
     password_hash TEXT NOT NULL,
+
     verified BOOLEAN DEFAULT FALSE,
     username VARCHAR(50) UNIQUE,
+
     verification_code VARCHAR(10),
     verification_expires TIMESTAMP,
+
+    recovery_code VARCHAR(10),
+    recovery_expires TIMESTAMP,
+
+    role VARCHAR(20) DEFAULT 'user',
+
+    first_name VARCHAR(100),
+    last_name VARCHAR(100),
+    birth_date DATE,
+    country VARCHAR(100),
+
+    last_login TIMESTAMP,
+
     created_at TIMESTAMP DEFAULT NOW(),
     updated_at TIMESTAMP DEFAULT NOW()
 );
-
-ALTER TABLE users ADD COLUMN role VARCHAR DEFAULT 'user';
-ALTER TABLE users ADD COLUMN recovery_code VARCHAR(10);
-ALTER TABLE users ADD COLUMN recovery_expires TIMESTAMP;
-ALTER TABLE users ADD COLUMN first_name VARCHAR;
-ALTER TABLE users ADD COLUMN last_name VARCHAR;
-ALTER TABLE users ADD COLUMN birth_date DATE;
-ALTER TABLE users ADD COLUMN country VARCHAR;
-ALTER TABLE users ADD COLUMN last_login TIMESTAMP;
-
-
-
-ALTER TABLE users 
-    ALTER COLUMN username TYPE VARCHAR(50);
-
-ALTER TABLE users 
-    ALTER COLUMN role TYPE VARCHAR(20);
-
-ALTER TABLE users 
-    ALTER COLUMN first_name TYPE VARCHAR(100);
-
-ALTER TABLE users 
-    ALTER COLUMN last_name TYPE VARCHAR(100);
-
-ALTER TABLE users 
-    ALTER COLUMN country TYPE VARCHAR(100);

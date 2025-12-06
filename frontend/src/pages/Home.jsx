@@ -31,7 +31,7 @@ export default function Home() {
     <HeaderPrincipal />
       <div className="fondo">
         <h1>Bienvenido al mundo Matemático</h1>
-        <p>La página aún está en construcción. {mensajeBienvenida}</p>
+        <p>La página aún está en construcción. Gracias por acceder, pronto todo estará {mensajeBienvenida}</p>
       <div className="contenedor-tarjetas">
         <Link to="/juegos/sudoku" className="tarjeta azul">
           <h1>SUDOKU</h1>
