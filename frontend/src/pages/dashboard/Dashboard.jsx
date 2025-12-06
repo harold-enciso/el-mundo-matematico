@@ -79,11 +79,11 @@ export default function Dashboard(){
                 <h1>DASHBOARD PRIVADO</h1>
                 
                 <div className="area-pdf">
-                    <p>Tu horrendo correo es {correo}</p>
-                    {usuario  && <p>Tu horrendo usuario es {usuario}</p>}
-                    {verificado && <p>Que rico estas verificado</p>}
-                    {!verificado && <p>Que asco no estas verificado</p>}
-                    <p>No se pa que quieres esta basura pero toma ahi ta tu id: {id}</p>
+                    <p>Tu correo es {correo}</p>
+                    {usuario  && <p>Tu usuario es {usuario}</p>}
+                    {verificado && <p>Que bien estas verificado</p>}
+                    {!verificado && <p>Que mal no estas verificado</p>}
+                    <p>Tu id: {id}</p>
                 </div>
                 
 

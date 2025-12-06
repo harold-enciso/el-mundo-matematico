@@ -118,7 +118,7 @@ export default function Profile(){
 
             </div>
             <div className="area-graficos">
-                <h1>Datos ¿no? editables</h1>
+                <h1>Datos editables</h1>
                 <h2>Correo electrónico</h2>
                 <input
                 type="text"
