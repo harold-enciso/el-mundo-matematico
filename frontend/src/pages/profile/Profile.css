@@ -1,0 +1,35 @@
+.boton-profile {
+    /* QUIERO CENTRAR EL TEXTO VERTICALMENTE */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /*NO QUIERO QUE SEAN BLOCK LOS BOTONES*/
+    border-radius: 20px;
+    cursor: pointer;
+    padding: 0 20px;
+    margin-top: 20px;
+    height: 2.5em;
+    width:20%;
+    line-height: 20px;
+    font-size: 1em;
+    color: white;
+    font-weight: bold;
+    font-style: normal;
+    background-color: #6d07ccff;
+    border: 1px solid white;
+}
+.boton-profile:hover{
+  outline: none;
+  border-color: #6d07ccff;
+  box-shadow: 0 0 10px #6d07ccff;
+}
+
+
+.campos-input {
+  background-color: #ffffffff;
+  color: #000000ff;
+  height: 3em;
+  width: 18em;
+  border: 3px solid black;
+  border-radius: 10px;
+}

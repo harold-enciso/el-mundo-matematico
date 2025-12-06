@@ -3,13 +3,11 @@ import { Link } from "react-router-dom";
 import { useEffect,useState } from "react";
 import HeaderPrincipal from "../components/HeaderPrincipal";
 //PAGINA INICIAL
-// 📢 AÑADE UN LOG PARA VER LA URL COMPLETA EN PRODUCCIÓN
   const apiUrl = import.meta.env.VITE_API_URL;
   const fullUrl = `${apiUrl}/`;
   console.log('API URL COMPLETA EN PRODUCCIÓN:', fullUrl); // <-- ¡Importante!
 export default function Home() {
   //Aquí van los estados
-  //que es lo de arriba?? Los estados son variables que permiten almacenar y gestionar datos dentro de un componente funcional en React.
   const [mensajeBienvenida,setMensajeBienvenida] = useState([]);
   //Debo usar un UseEffect no una funcion cuando es asi
   useEffect(() => {
@@ -18,7 +16,7 @@ export default function Home() {
       return res.json();
     })
     .then(data => {
-      setMensajeBienvenida(data.mensaje);
+      setMensajeBienvenida(data.status);
     })
   },[])
   
@@ -33,7 +31,7 @@ export default function Home() {
     <HeaderPrincipal />
       <div className="fondo">
         <h1>Bienvenido al mundo Matemático</h1>
-        <p>La página aún está en construcción. {mensajeBienvenida}</p>
+        <p>La página aún está en construcción. Gracias por acceder, pronto todo estará {mensajeBienvenida}</p>
       <div className="contenedor-tarjetas">
         <Link to="/juegos/sudoku" className="tarjeta azul">
           <h1>SUDOKU</h1>

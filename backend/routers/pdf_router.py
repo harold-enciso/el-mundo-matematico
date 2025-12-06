@@ -5,7 +5,7 @@ from requests import exceptions as request_exceptions
 from services.s3_service import get_presigned_url
 
 #Creamos un APIRouter para las rutas PDF
-router = APIRouter(tags=["PDF"])
+router = APIRouter(prefix="/pdf",tags=["PDF"])
 
 @router.get("/{file_name}")
 async def pdf_proxy(file_name: str):

@@ -1,7 +1,11 @@
-from fastapi import FastAPI
+from fastapi import FastAPI,Request
 from fastapi.middleware.cors import CORSMiddleware
 from settings import CORS_Origins
-from routers import pdf_router
+from routers import pdf_router,auth_router
+from fastapi.responses import JSONResponse
+
+from fastapi.exceptions import RequestValidationError
+
 
 app = FastAPI(
     title="El Mundo Matematico API",
@@ -18,14 +22,24 @@ app.add_middleware(
     allow_headers=["*"],           # Permite todas las cabeceras
 )
 
+#Manejador de errores 422
+@app.exception_handler(RequestValidationError)
+async def validation_exception_handler(request: Request, exc:RequestValidationError):
+    return JSONResponse(
+        status_code=422,
+        content={"detail": "Formato de email incorrecto, revisa e ingrésalo nuevamente"}
+    )
+
 #Montamos todos los Routers con sus prefijos y tags
 app.include_router(
     pdf_router.router,
-    prefix="/pdf",
-    tags=["Mostrar PDFs"]
     )
+
+app.include_router(
+    auth_router.router,
+)
     
 #Funcion de prueba
 @app.get("/")
-def mensaje():
-    return {"mensaje": "Esperamos que disfruten su estadia"}
+def ping():
+    return {"status": "ok"}
