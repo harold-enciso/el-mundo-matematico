@@ -3,32 +3,44 @@
     display: inline-block;
 }
 
-.icon-menu {
+.icon {
     display: flex;
     padding: 2px;
     justify-content: flex-end;
-    background: none;
+    border-radius: 25px;
+    background: none;     /* fondo normal */
+    border: none;         /* sin borde que cambie tamaño */
+    cursor: pointer;
 }
 
-.icon-menu:hover {
-    background-color: #6206b8ff;
-    outline: none;
-    border-color: #6206b8ff;
+.icon.perfil {
+    padding: 0;
 }
 
-.icon-menu:active {
+.icon.menu {
+    border-radius: 10px;
+}
+
+.icon:hover {
+    background: none;     /* fondo normal */
+    border: none;         /* sin borde que cambie tamaño */
+    cursor: pointer;
+}
+
+.icon:active {
     transform: scale(0.90);
 }
 
-.icon-menu:focus {
-    outline: none;
-    border-color: white;
+.icon:focus {
+    outline: 3px solid rgb(255, 255, 255);  /* borde/foco que quieres */
+    outline-offset: 0;              /* pegado al icono, sin espacio extra */
+    background: none;               /* nada de fondo extra */
+    box-shadow: none;               /* nada de sombra */
 }
-
 
 .dropdown-menu {
     position: absolute;
-    top:145%;
+    top:140%;
     background-color: white;
     border: 1px solid black;
     border-radius: 6px;
@@ -37,6 +49,8 @@
     display: flex;
     flex-direction: column;
     z-index: 999999;
+    padding-top: 10px;
+    padding-bottom: 10px;
     animation: fadeIn 0.25s ease-out;
 }
 
@@ -61,7 +75,10 @@
     border-radius: 6px;
 }
 
+
+
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(-5px); }
   to   { opacity: 1; transform: translateY(0); }
 }
+

@@ -1,0 +1,77 @@
+
+
+.sidebar-item {
+    padding: 16px 16px;
+    text-align: left;
+    display: block;
+    background-color: #6206b8ff;
+    color: #ffffff;
+    border: 2px solid transparent;
+    border-left: 10px solid transparent;
+    border-radius: 0;
+    transition: background-color 0.1s, padding-left 0.1s;
+    cursor: pointer;
+    width: 100%;
+}
+.sidebar-item p {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+.sidebar-item:disabled {
+    cursor: default;
+}
+
+.sidebar-item:not(:disabled):hover {
+    background: #ffffff1c;
+    border: 2px solid transparent;
+    border-left: 10px solid transparent;
+}
+.sidebar-item:not(:disabled):focus {
+    background: #ffffff00;
+    border: 2px solid transparent;
+    border-left: 10px solid transparent;
+    border-bottom: 2px solid transparent;
+    outline: none;
+}
+.sidebar-item:not(:disabled):active {
+    background: #ffffff17;
+    padding-left: 25px;
+    border: 2px solid transparent;
+    border-left: 10px solid transparent;
+    border-bottom: 2px solid transparent;
+    outline: none;
+    box-shadow: none;
+}
+
+
+.sidebar-item.active {
+    background: #ffffff17;
+    font-weight: 900;
+    border: 2px solid transparent;
+    border-left: 10px solid #2e0455ff;
+    border-bottom: 2px solid #2e0455ff;
+    outline: none;
+    box-shadow: none;
+}
+
+.sidebar-item.active:hover {
+    background: #ffffff17;
+    font-weight: 900;
+    border: 2px solid transparent;
+    border-left: 10px solid #2e0455ff;
+    border-bottom: 2px solid #2e0455ff;
+    outline: none;
+    box-shadow: none;
+}
+
+.sidebar-item.active:focus {
+    background: #ffffff0e;
+    font-weight: 900;
+    border: 2px solid transparent;
+    border-left: 10px solid #2e0455ff;
+    border-bottom: 2px solid #2e0455ff;
+    outline: none;
+}

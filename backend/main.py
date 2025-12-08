@@ -1,7 +1,7 @@
 from fastapi import FastAPI,Request
 from fastapi.middleware.cors import CORSMiddleware
 from settings import CORS_Origins
-from routers import pdf_router,auth_router
+from routers import pdf_router,auth_router,noti_router
 from fastapi.responses import JSONResponse
 
 from fastapi.exceptions import RequestValidationError
@@ -9,7 +9,7 @@ from fastapi.exceptions import RequestValidationError
 
 app = FastAPI(
     title="El Mundo Matematico API",
-    description="Muestra de PDFs educativos de matemática",
+    description="Contenido educativo de matemática",
     version="1.0.0"
 )
 
@@ -30,13 +30,17 @@ async def validation_exception_handler(request: Request, exc:RequestValidationEr
         content={"detail": "Formato de email incorrecto, revisa e ingrésalo nuevamente"}
     )
 
-#Montamos todos los Routers con sus prefijos y tags
+#Montamos todos los Routers
 app.include_router(
     pdf_router.router,
     )
 
 app.include_router(
     auth_router.router,
+)
+
+app.include_router(
+    noti_router.router,
 )
     
 #Funcion de prueba

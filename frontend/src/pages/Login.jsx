@@ -1,15 +1,17 @@
-import HeaderPrincipal from "../components/HeaderPrincipal";
 import "./Login.css";
 import {Link} from "react-router-dom";
-import { useState } from "react";
+import { useContext,useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { UserContext } from "../context/UserContext";
+
 export default function Login() {
     const navigate = useNavigate();
-
+    const {setUser} = useContext(UserContext);
     const [correo,setCorreo] = useState("");
     const [correoTocado,setCorreoTocado] = useState(false);
     const [contrasena,setContrasena] = useState("");
     const [contrasenaTocada,setContrasenaTocada] = useState(false);
+    const [procesando,setProcesando] = useState(false);
     const apiUrl = import.meta.env.VITE_API_URL;
     const loginUrl = `${apiUrl}/auth/login`
     //POST
@@ -18,6 +20,7 @@ export default function Login() {
             alert("Completa todos los campos");
             return;
         }
+        setProcesando(true);
         fetch(loginUrl, {
             method: "POST",
             headers: {
@@ -29,30 +32,53 @@ export default function Login() {
             })
         })
         .then(res => {
-            return res.json().catch(() => ({})).then(data =>{
-                if (!res.ok){
-                    throw data;
-                }
-                return data;
+            //Capa de validacion del res como JSON
+            return res.json()
+                .catch(() => ({}))
+                .then(data =>{
+                    if (!res.ok){
+                        throw data;
+                    }
+                    return data;
             })
         })
         .then(data => {
             //Aquí va el flujo correcto
+            setProcesando(false);
             console.log("Login exitoso");
             //Guardamos el token de la data
-            localStorage.setItem("token",data.access_token)
+            localStorage.setItem("token",data.token)
+            //Guardamos la data en el user global
+            setUser({
+                token: data.token,
+                id: data.id,
+                email: data.email,
+                username: data.username,
+                role: data.role,
+                first_name: data.first_name,
+                last_name: data.last_name,
+                birth_date: data.birth_date,
+                country: data.country,
+                verified: data.verified
+            });
             alert("Login exitoso");
             //Limpiamos los campos
             setCorreo("");
             setCorreoTocado(false);
             setContrasena("");
             setContrasenaTocada(false);
-            //Redirigimos al dashboard del usuario
+            //Redirigimos al dashboard del admin o usuario
+            if (data.role === "admin") {
+                navigate("/admin/dashboard")
+                return;
+            }
             navigate("/dashboard");
         })
         .catch(err =>{
+            setProcesando(false);
             console.log(err.detail)
             alert(err?.detail || "Error al iniciar sesión");
+            
             setCorreo("");
             setCorreoTocado(false);
             setContrasena("");
@@ -62,7 +88,6 @@ export default function Login() {
     
     return (
         <>
-        <HeaderPrincipal/>
         <div className="fondo-login">
             <div className="recuadro-login">
                 <h1>Iniciar Sesión</h1>
@@ -86,8 +111,8 @@ export default function Login() {
                 />
                 <span className={contrasenaTocada && contrasena.length===0 ? "error-visible":"error-oculto"}>
                     Ingrese su contraseña</span>
-                <button className="boton-login" onClick={handleLogin}>
-                    Inicia Sesión
+                <button className="boton-login" onClick={handleLogin} disabled={procesando}>
+                    {procesando ? "Procesando..." : "Inicia Sesión"}
                 </button>
                 <span>¿No tienes cuenta?
                 {" "}

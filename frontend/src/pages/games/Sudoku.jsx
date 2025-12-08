@@ -1,6 +1,5 @@
 import "./Juegos.css";
 
-import HeaderPrincipal from "../../components/HeaderPrincipal";
 import { useState, useEffect } from "react";
 export default function Sudoku(){
     const [cargando,setCargando] = useState(true);
@@ -23,7 +22,6 @@ export default function Sudoku(){
 
     return(
         <>
-        <HeaderPrincipal />
         <div className="fondo-juegos">
             
             <div className="area-juego">

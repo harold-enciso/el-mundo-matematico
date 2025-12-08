@@ -36,8 +36,19 @@ def login_user_service(data: LoginUser, db: Session):
         raise HTTPException(status_code=401,detail="Contraseña incorrecta")
     #Creamos el token
     token = create_access_token({"sub":user.email})
-
-    return {"access_token":token,"token_type": "bearer"}
+    #Devolvemos todos los datos necesarios para poblar el user de UserContext
+    return {
+        "token":token,
+        "id":user.id,
+        "email":user.email,
+        "username":user.username,
+        "role":user.role,
+        "first_name":user.first_name,
+        "last_name":user.last_name,
+        "birth_date":user.birth_date,
+        "country":user.country,
+        "verified":user.verified
+        }
 
 
 def update_user_service(db: Session, user: User, data:dict):

@@ -1,15 +1,13 @@
 import "./Home.css";
-import { Link } from "react-router-dom";
+import logo from "/elmundomatematico.png";
 import { useEffect,useState } from "react";
-import HeaderPrincipal from "../components/HeaderPrincipal";
 //PAGINA INICIAL
   const apiUrl = import.meta.env.VITE_API_URL;
   const fullUrl = `${apiUrl}/`;
   console.log('API URL COMPLETA EN PRODUCCIÓN:', fullUrl); // <-- ¡Importante!
 export default function Home() {
-  //Aquí van los estados
   const [mensajeBienvenida,setMensajeBienvenida] = useState([]);
-  //Debo usar un UseEffect no una funcion cuando es asi
+  
   useEffect(() => {
     fetch(fullUrl)
     .then(res => {
@@ -19,37 +17,13 @@ export default function Home() {
       setMensajeBienvenida(data.status);
     })
   },[])
-  
 
-  
-  
-  
-  
-  //Aquí va el código de la página principal
   return (
     <>
-    <HeaderPrincipal />
       <div className="fondo">
-        <h1>Bienvenido al mundo Matemático</h1>
+        <h1>Bienvenido a El Mundo Matemático</h1>
         <p>La página aún está en construcción. Gracias por acceder, pronto todo estará {mensajeBienvenida}</p>
-      <div className="contenedor-tarjetas">
-        <Link to="/juegos/sudoku" className="tarjeta azul">
-          <h1>SUDOKU</h1>
-          <img src="/sudoku.png" className="imagen" alt="Sudoku"></img>
-        </Link>
-        <Link to="/juegos/domino-fracciones" className="tarjeta roja">
-          <div className="ajuste-linea">
-            <h1>DOMINÓ DE</h1>
-            <br className="salto-linea"/>
-            <h1>FRACCIONES</h1>
-          </div>
-          <img src="/domino-fracciones.png" className="imagen" alt="Domino Fracciones"></img>
-        </Link>
-        <Link to="/juegos/pentomino" className="tarjeta verde">
-            <h1>PENTOMINÓ</h1>
-            <img src="/pentomino.png" className="imagen" alt="Pentomino"></img>
-        </Link>
-      </div>
+        <img src={logo} width="730px" alt="logo"/>
 
     </div>
     </>

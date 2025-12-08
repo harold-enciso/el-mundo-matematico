@@ -1,0 +1,39 @@
+.fondo-sidebar-admin {
+    position: fixed;
+    top:50px;
+    left: 0;
+    width: 250px;
+    box-sizing: border-box;
+    z-index: 120;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    
+    background-color: #6206b8ff;
+    height: calc(100% - 50px);
+    padding: 0;
+}
+
+
+.sidebar-text {
+    padding: 20px 16px;
+    text-align: left;
+    display: block;
+    background-color: #6206b8ff;
+    color: #ffffff;
+    font-weight: 900;
+    font-size: xx-large;
+    border: 2px solid transparent;
+    border-left: 10px solid transparent;
+    border-radius: 0;
+    width: 100%;
+}
+
+.sidebar-linea {
+    width: 100%;
+    border: none;
+    background-color: #2e0455ff;
+    height: 2px;
+    margin: 0%;
+}

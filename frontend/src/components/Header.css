@@ -2,35 +2,20 @@
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
+    width: 100vw;
     box-sizing: border-box;
-    z-index: 100;
+    z-index: 200;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
+    flex-direction: row;
     /*QUIERO SEPARAR HORIZONTALMENTE LOS ELEMENTOS*/
-    gap: 20px;
+    gap: 0;
     background-color: #2e0455ff;
     height: 50px;
-    padding: 0 20px;
+    padding: 0 10px;
 }
 
-.fondo-header-secundario {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    box-sizing: border-box;
-    z-index: 100;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    /*QUIERO SEPARAR HORIZONTALMENTE LOS ELEMENTOS*/
-    gap: 20px;
-    background-color: #2e0455ff;
-    height: 50px;
-    padding: 0 20px;
-}
 .link {
     display: flex;
     /*LE ASIGNO UN PESO*/
@@ -44,19 +29,24 @@
     width: 33.33%;
     align-items: center;
     gap: 1em;
+    padding: 0;
+    transition: width 0.3s;
 }
 
 .bloque.izquierdo {
+    width: 40%;
     justify-content: flex-start;
 }
 
 .bloque.central {
+    width: 40%;
     justify-content: center;
     font-size: 1em;/*1 em ES IGUAL A 16 PX Y ES LA FUENTE POR DEFECTO EN SPAN Y P*/
     font-style: italic;
 }
 
 .bloque.derecho {
+    width: 20%;
     justify-content: flex-end;
     font-size: 1em;
     font-weight: bold;
@@ -107,31 +97,40 @@
     color: white;
 }
 
-
-.bloque.menu {
-    display: none;
-    justify-content: flex-end;
+.icon{
+    fill: red;
 }
 
 
-@media (max-width: 768px) {
+
+@media (max-width: 1024px) {
     .bloque.central {
         display: none;
     }
+
     .bloque.izquierdo {
-        width: 40%;
-        gap: 0.5em;
+        width: 80%;
     }
     .bloque.derecho {
+        width: 25%;
+    }
+
+
+    .salto-linea {
+        display: block
+    }
+}
+
+@media (max-width: 360px) {
+    .bloque.central,
+    .bloque.derecho {
         display: none;
-
     }
 
-
-    .bloque.menu {
-        display: flex;
-        width: 60%;
+    .bloque.izquierdo {
+        width: 100%;
     }
+
 
     .salto-linea {
         display: block

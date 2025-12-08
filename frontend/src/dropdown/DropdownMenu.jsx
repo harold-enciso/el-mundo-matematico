@@ -22,11 +22,14 @@ export default function DropdownMenu(){
 
     return(
         <div className="dropdown" ref={menuRef}>
-            <button className="icon-menu" onClick={() => setOpen(!open)}>
+            <button className="icon menu" onClick={() => setOpen(!open)}>
                 <Menu size={24}/>
             </button>
             {open &&(
-                <div className="dropdown-menu right">
+                <div className="dropdown-menu left">
+                    <Link to="/juegos" onClick={()=>setOpen(false)}>
+                    JUEGOS
+                    </Link>
                     <Link to="/juegos/sudoku" onClick={()=>setOpen(false)}>
                     Sudoku
                     </Link>
@@ -34,7 +37,7 @@ export default function DropdownMenu(){
                     Dominó de fracciones
                     </Link>
                     <Link to="/juegos/pentomino" onClick={()=>setOpen(false)}>
-                    Pentomi
+                    Pentominó
                     </Link>
                     
                 </div>

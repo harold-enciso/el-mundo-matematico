@@ -1,7 +1,6 @@
 import "./Juegos.css";
 import { useState, useEffect } from "react";
 
-import HeaderPrincipal from "../../components/HeaderPrincipal";
 export default function Pentomino(){
     const [cargando,setCargando] = useState(true);
     const apiUrl = import.meta.env.VITE_API_URL;
@@ -20,7 +19,6 @@ export default function Pentomino(){
         }, []);
     return(
         <>
-        <HeaderPrincipal />
         <div className="fondo-juegos">
             
             <div className="area-juego">

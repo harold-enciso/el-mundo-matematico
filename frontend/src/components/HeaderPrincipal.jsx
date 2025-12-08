@@ -1,55 +1,26 @@
 import { Link } from "react-router-dom";
 import { Menu } from "lucide-react";
+import perfil from "../assets/perfil.svg";
+import logo from "/elmundomatematico.png";
 import "./Header.css";
 import DropdownMenu from "../dropdown/DropdownMenu";
-import { useNavigate } from "react-router-dom";
+import DropdownPerfil from "../dropdown/DropdownPerfil";
+import DropdownNotificaciones from "../dropdown/DropdownNotificaciones";
 import { useState, useEffect } from "react";
-export default function HeaderPrincipal() {
-    const navigate = useNavigate();
-    const apiUrl = import.meta.env.VITE_API_URL;
-    const meUrl = `${apiUrl}/auth/me`;
-    const [usuario,setUsuario] = useState(null);
-    const [cargando,setCargando] = useState(true);
-    //LogOut
-        const logout = () => {
-            localStorage.removeItem("token");
-            navigate("/login");
-        };
-    //Validamos el token
-    useEffect(() => {
-        const token = localStorage.getItem("token");
-        if (!token) {
-            setUsuario(null);
-            setCargando(false);
-            return;
-        }
 
-        fetch(meUrl,{
-            method: "GET",
-            headers: {
-                "Authorization": `Bearer ${token}`
-            }
-        })
-        .then(res => {
-            if (!res.ok){
-                setUsuario(null);
-                setCargando(false);
-                return;
-            }
-            return res.json()
-        })
-        .then(user => {
-            if (user) {setUsuario(user.username || user.email.split('@')[0])};
-            setCargando(false);
-        });
-    },[]);
+import { useContext } from "react";
+import { UserContext } from "../context/UserContext";
+
+export default function HeaderPrincipal() {
+    //Cargamos el usuario validado en UserContext
+    const {user,cargando} = useContext(UserContext);
     if (cargando) return null;
     return (
             <header className="fondo-header-principal">
                 <div className="bloque izquierdo">
                     <DropdownMenu/>
                     <Link to="/" className="link">
-                        <img src="/elmundomatematico.png" width="30px" alt="Maestro"/>
+                        <img src={logo} width="30px" alt="logo"/>
                         <div>
                             <span className="texto-pagina-inicial">
                                 EL MUNDO
@@ -65,9 +36,9 @@ export default function HeaderPrincipal() {
                 
 
                 <div className="bloque central">
-                    {usuario ? (
+                    {user ? (
                         <>
-                        <p>Bienvenido, {usuario}</p>
+                        <p>Bienvenido, {user.username ? user.username : user.email.split("@")[0] }</p>
                         <Link to="/dashboard" className="link">
                         <span className="boton-header">Dashboard</span>
                         </Link>
@@ -80,15 +51,10 @@ export default function HeaderPrincipal() {
                 </div>
                 
                 <div className="bloque derecho">
-                    {usuario ? (
+                    {user ? (
                         <>
-                        <button className="button-header" onClick={logout}>
-                            Cerrar Sesión
-                        </button>
-                        <Link to="/profile" className="link">
-                            <span className="boton-header">Perfil</span>
-                        </Link>
-                        <DropdownMenu/>
+                        <DropdownNotificaciones/>
+                        <DropdownPerfil/>
                         </>
                         ) : (
                         <>
@@ -98,16 +64,13 @@ export default function HeaderPrincipal() {
                         <Link to="/register" className="link">
                             <span className="boton-header">Regístrate</span>
                         </Link>
-                        <DropdownMenu/>
                         </>
                     )}
                     
                     
                                        
                     </div>
-                <div className="bloque menu">
-                    
-                </div>
+
                 
 
             </header>
