@@ -24,3 +24,34 @@ CREATE TABLE users (
     created_at TIMESTAMP DEFAULT NOW(),
     updated_at TIMESTAMP DEFAULT NOW()
 );
+
+
+CREATE TABLE notifications (
+    id BIGSERIAL PRIMARY KEY,
+    
+    user_id BIGINT NOT NULL,
+    
+    title TEXT NOT NULL,
+    message TEXT NOT NULL,
+
+    link TEXT,
+    
+    image_url TEXT,
+    file_url TEXT,
+    file_name TEXT,
+    file_type TEXT,
+    file_size BIGINT,
+
+    is_read BOOLEAN DEFAULT FALSE,
+    read_at TIMESTAMP,
+
+    is_archived BOOLEAN DEFAULT FALSE,
+
+    created_at TIMESTAMP DEFAULT NOW()
+);
+
+
+
+GRANT SELECT, INSERT, UPDATE, DELETE ON TABLE tabla TO usuario;
+
+GRANT USAGE, SELECT, UPDATE ON SEQUENCE tabla_id_seq TO usuario;

@@ -19,8 +19,8 @@ def register_user(data: RegisterUser, db: Session = Depends(get_db)):
 
 @router.post("/login")
 def login_user(data: LoginUser, db: Session = Depends(get_db)):
-    token = login_user_service(data,db)
-    return token
+    user_data = login_user_service(data,db)
+    return user_data
 
 @router.get("/me", response_model=UserResponse)
 def me(current_user = Depends(get_current_user)):

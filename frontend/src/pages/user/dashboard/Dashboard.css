@@ -1,0 +1,59 @@
+.fondo-dashboard {
+  display: flex;
+  position: relative;
+  left: 250px;
+  height: calc(100vh - 50px);
+  width: calc(100vw - 250px);
+  margin-top: 50px;
+
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+  padding-top: 20px;
+  background-color: white;
+  color: black;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-color: #6206b8ff #ffffff;
+}
+
+.texto-dashboard {
+  font-size: x-large;
+}
+
+
+.boton-dashboard {
+    /* QUIERO CENTRAR EL TEXTO VERTICALMENTE */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /*NO QUIERO QUE SEAN BLOCK LOS BOTONES*/
+    border-radius: 20px;
+    cursor: pointer;
+    padding: 0 20px;
+    height: 2.5em;
+    width:60%;
+    line-height: 20px;
+    font-size: 1em;
+    color: white;
+    font-weight: bold;
+    font-style: normal;
+    background-color: #6d07ccff;
+    border: 1px solid white;
+}
+
+.campos-input {
+  background-color: #ffffffff;
+  color: #000000ff;
+  font-size: larger;
+  padding: 10px 10px;
+  width: 18em;
+  border: 3px solid black;
+  border-radius: 10px;
+}
+
+.campos-input:focus {
+  outline: none;
+  border-color: #6206b8ff;
+}

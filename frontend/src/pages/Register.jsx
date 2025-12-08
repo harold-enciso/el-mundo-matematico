@@ -1,4 +1,3 @@
-import HeaderPrincipal from "../components/HeaderPrincipal";
 import "./Login.css";
 import {Link} from "react-router-dom";
 import { useState } from "react";
@@ -8,6 +7,7 @@ export default function Register() {
     const [contrasenaTocada,setContrasenaTocada] = useState(false);
     const [correo,setCorreo] = useState("");
     const [correoTocado,setCorreoTocado] = useState(false);
+    const [procesando,setProcesando] = useState(false);
     const apiUrl = import.meta.env.VITE_API_URL;
     const registerUrl = `${apiUrl}/auth/register`
     //POST
@@ -16,6 +16,7 @@ export default function Register() {
             alert("Completa todos los campos");
             return;
         }
+        setProcesando(true);
         fetch(registerUrl, {
             method: "POST",
             headers: {
@@ -41,6 +42,7 @@ export default function Register() {
             setCorreoTocado(false);
             setContrasena("");
             setContrasenaTocada(false);
+            setProcesando(false);
         })
         .catch(err =>{
             console.log(err.detail)
@@ -49,12 +51,12 @@ export default function Register() {
             setCorreoTocado(false);
             setContrasena("");
             setContrasenaTocada(false);
+            setProcesando(false);
         })
     };
         
     return (
         <>
-        <HeaderPrincipal/>
         <div className="fondo-login">
             <div className="recuadro-login">
                 <h1>Registrarse</h1>
@@ -79,8 +81,8 @@ export default function Register() {
                 />
                 <span className={contrasenaTocada && contrasena.length===0 ? "error-visible":"error-oculto"}>
                     Ingrese su contraseña</span>
-                <button className="boton-login" onClick={handleRegister}>
-                    Regístrate
+                <button className="boton-login" onClick={handleRegister} disabled={procesando}>
+                    {procesando ? "Procesando..." : "Regístrate"}
                 </button>
                 <span>¿Ya tienes una cuenta?
                 {" "}

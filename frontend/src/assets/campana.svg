@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+
+<svg
+   version="1.0"
+   id="Layer_1"
+   width="800px"
+   height="800px"
+   viewBox="0 0 64 64"
+   enable-background="new 0 0 64 64"
+   xml:space="preserve"
+   sodipodi:docname="campana.svg"
+   inkscape:version="1.4.2 (f4327f4, 2025-05-13)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"><defs
+   id="defs2" /><sodipodi:namedview
+   id="namedview2"
+   pagecolor="#ffffff"
+   bordercolor="#000000"
+   borderopacity="0.25"
+   inkscape:showpageshadow="2"
+   inkscape:pageopacity="0.0"
+   inkscape:pagecheckerboard="0"
+   inkscape:deskcolor="#d1d1d1"
+   showguides="true"
+   inkscape:zoom="1.00875"
+   inkscape:cx="399.00867"
+   inkscape:cy="400"
+   inkscape:window-width="1920"
+   inkscape:window-height="1009"
+   inkscape:window-x="-8"
+   inkscape:window-y="-8"
+   inkscape:window-maximized="1"
+   inkscape:current-layer="Layer_1" />
+<circle
+   style="fill:#6d07cc;fill-opacity:1;stroke-width:0.0942433"
+   id="path3"
+   cx="31.96035"
+   cy="32.118958"
+   r="31.484509" /><g
+   id="g2"
+   transform="matrix(0.86913678,0,0,0.86913678,4.1887527,4.1842327)">
+	<path
+   fill="#231f20"
+   d="m 49.54222,40.77111 c -1.339056,0 -2.923703,-1.584647 -2.923703,-2.923703 V 23.22889 C 46.618517,15.168971 40.059919,8.6103735 32,8.6103735 c -8.059919,0 -14.618517,6.5585975 -14.618517,14.6185165 v 14.618517 c 0,1.31055 -1.613153,2.923703 -2.923703,2.923703 -1.616077,0 -2.923703,1.307626 -2.923703,2.923703 0,1.616077 1.307626,2.923704 2.923703,2.923704 h 35.08444 c 1.616077,0 2.923703,-1.307627 2.923703,-2.923704 0,-1.616077 -1.307626,-2.923703 -2.923703,-2.923703 z"
+   id="path1"
+   style="fill:#f9f9f9;fill-opacity:1;stroke-width:0.730926" />
+	<path
+   fill="#231f20"
+   d="m 32,55.389626 c 3.22923,0 5.847407,-2.618176 5.847407,-5.847406 H 26.152593 c 0,3.22923 2.618177,5.847406 5.847407,5.847406 z"
+   id="path2"
+   style="fill:#f9f9f9;fill-opacity:1;stroke-width:0.730926" />
+</g>
+</svg>
