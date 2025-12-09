@@ -22,7 +22,7 @@ export default function Suscripcion(){
     return(
         <>
             <h1>MI SUSCRIPCIÓN</h1>
-            <img src={construccion} width="600px"></img>
+            <img src={construccion} className="construccion"></img>
             <span className="texto-dashboard-admin">Página en construcción, ten paciencia.</span>
 
         </>

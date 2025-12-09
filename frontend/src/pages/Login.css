@@ -103,3 +103,15 @@
     width: 25em;
   }
 }
+
+@media (max-width: 480px) {
+  .recuadro-login{
+    width: 22.3em;
+  }
+}
+
+@media (max-width: 360px) {
+  .recuadro-login{
+    width: 20em;
+  }
+}

@@ -1,4 +1,4 @@
-.dropdown {
+.dropdown-button {
     position: relative;
     display: inline-block;
 }
@@ -40,7 +40,6 @@
 
 .dropdown-menu {
     position: absolute;
-    top:140%;
     background-color: white;
     border: 1px solid black;
     border-radius: 6px;
@@ -56,10 +55,12 @@
 
 .dropdown-menu.left {
     left: 0;
+    top:140%;
 }
 
 .dropdown-menu.right {
     right: 0;
+    top:112%;
 }
 
 .dropdown-menu a {
@@ -82,3 +83,13 @@
   to   { opacity: 1; transform: translateY(0); }
 }
 
+@media (max-width: 1024px) {
+    .dropdown-button.menu {
+        display: none;
+    }
+    
+}
+
+@media (max-width: 360px) {
+
+}

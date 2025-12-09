@@ -42,3 +42,38 @@
     background-color: #6d07ccff;
     border: 1px solid white;
 }
+
+.construccion {
+  width: 630px;
+}
+
+@media (max-width: 1024px) {
+    
+    .fondo-dashboard-admin {
+      left: 220px;
+      width: calc(100vw - 220px);
+    }
+    .construccion {
+      width: 80%;
+    }
+}
+
+@media (max-width: 768px) {
+    .fondo-dashboard-admin {
+      left: 190px;
+      width: calc(100vw - 190px);
+    }
+}
+
+@media (max-width: 480px) {
+    .fondo-dashboard-admin {
+      left: 70px;
+      width: calc(100vw - 70px);
+    }
+}
+@media (max-width: 360px) {
+    .fondo-dashboard-admin {
+      left: 70px;
+      width: calc(100vw - 70px);
+    }
+}

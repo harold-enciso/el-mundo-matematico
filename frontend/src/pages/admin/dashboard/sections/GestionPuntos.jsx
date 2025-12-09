@@ -25,7 +25,7 @@ export default function GestionPuntos(){
     return(
         <>
             <h1>GESTIÓN DE PUNTOS ADMIN</h1>
-            <img src={construccion} width="600px"></img>
+            <img src={construccion} className="construccion"></img>
             <span className="texto-dashboard-admin">Página en construcción, ten paciencia.</span>
 
         </>

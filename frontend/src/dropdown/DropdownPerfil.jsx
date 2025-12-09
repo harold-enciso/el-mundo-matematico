@@ -5,7 +5,9 @@ import { UserContext } from "../context/UserContext";
 import { useNavigate } from "react-router-dom";
 import perfil from "../assets/perfil.svg";
 import DropdownItem from "./DropdownItem";
+import { useToast } from "../context/useToast";
 export default function DropdownPerfil(){
+    const {showToast} = useToast();
     const [open,setOpen] = useState(false);
     const menuRef = useRef(null);
     const navigate = useNavigate();
@@ -34,7 +36,7 @@ export default function DropdownPerfil(){
     const logout = () => {
         setOpen(false);
         localStorage.removeItem("token");
-        
+        showToast("Sesión cerrada","info");
         navigate("/login");
         setUser(null);
     };
@@ -42,7 +44,7 @@ export default function DropdownPerfil(){
     if (cargando || !user) return null;
 
     return(
-        <div className="dropdown" ref={menuRef}>
+        <div className="dropdown-button perfil" ref={menuRef}>
             <button className="icon perfil" onClick={() => setOpen(!open)}>
                 <img src={perfil} width="40px" alt="perfil"/>
             </button>
@@ -59,6 +61,9 @@ export default function DropdownPerfil(){
                             ADMIN
                         </DropdownItem>
                     )}
+                    <DropdownItem to="/dashboard" onClick={()=>setOpen(false)}>
+                            DASHBOARD
+                    </DropdownItem>
                     <hr className="linea"/>
                     <DropdownItem onClick={logout} className="dropdown-item rojo">
                         Cerrar Sesión

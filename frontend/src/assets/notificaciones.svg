@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+
+<svg
+   width="800px"
+   height="800px"
+   viewBox="0 0 512 512"
+   version="1.1"
+   id="svg1"
+   sodipodi:docname="notificaciones.svg"
+   inkscape:version="1.4.2 (f4327f4, 2025-05-13)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1" />
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="1.00875"
+     inkscape:cx="400"
+     inkscape:cy="399.50434"
+     inkscape:window-width="1494"
+     inkscape:window-height="1032"
+     inkscape:window-x="369"
+     inkscape:window-y="9"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="drop" />
+  <title
+     id="title1">notifications-filled</title>
+  <g
+     id="Page-1"
+     stroke="none"
+     stroke-width="1"
+     fill="none"
+     fill-rule="evenodd">
+    <g
+       id="drop"
+       fill="#000000"
+       transform="translate(64.000000, 64.000000)">
+      <path
+         d="M405.333333,85.3333333 L405.333333,320 L341.292969,320 L341.333333,405.333333 L186.515625,320 L85.3333333,320 L85.3333333,85.3333333 L405.333333,85.3333333 Z M298.666667,-1.42108547e-14 L298.666667,42.6666667 L42.6666667,42.6666667 L42.6666667,213.333333 L-1.42108547e-14,213.333333 L-1.42108547e-14,-1.42108547e-14 L298.666667,-1.42108547e-14 Z"
+         id="Shape"
+         style="fill:#ffffff;fill-opacity:1" />
+    </g>
+  </g>
+</svg>
