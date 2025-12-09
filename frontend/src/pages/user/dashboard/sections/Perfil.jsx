@@ -70,14 +70,14 @@ export default function Perfil(){
                 country: data.country
             })
             setEditable(false);
-            showToast("Tus datos han sido cambiados correctamente","success")
+            showToast("Tus datos han sido cambiados correctamente","success");
             
             console.log(data);
             
         })
         .catch(err =>{
             console.log(err.detail);
-            showToast("Ocurrió un error, inténtalo de nuevo","error")
+            showToast("Ocurrió un error, inténtalo de nuevo","error");
             if (err.detail === "No se pudieron validar las credenciales"){
                 //Aqui debo meter el modal
                 navigate("/login");

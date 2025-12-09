@@ -53,7 +53,7 @@ export default function GestionNotificaciones(){
         .then(data => {
             //Aquí va el flujo correcto, data es lo que devuelve el back
             
-            showToast("Se envió la notificacion correctamente","success")
+            showToast("Se envió la notificacion correctamente","success");
             
             console.log("Notificación creada y enviada");
             console.log(data);

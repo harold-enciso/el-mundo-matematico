@@ -20,7 +20,7 @@ export default function Login() {
     //POST
     const handleLogin = () => {
         if (!correo || !contrasena) {
-            showToast("Completa todos los campos","warning")
+            showToast("Completa todos los campos","warning");
             
             return;
         }
