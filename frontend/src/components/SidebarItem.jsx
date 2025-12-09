@@ -1,6 +1,6 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import "./SidebarItem.css"
-export default function DropdownItem({children,to,onClick,disabled}) {
+export default function DropdownItem({to,onClick,disabled,source,text}) {
     const navigate = useNavigate();
     const location = useLocation();
     const isActive = to ? location.pathname === to : false;
@@ -16,7 +16,8 @@ export default function DropdownItem({children,to,onClick,disabled}) {
             disabled={disabled}
             className= {isActive ? "sidebar-item active" : "sidebar-item"}
         >
-            {children}
+            {source && <img src={source} className={isActive ? "sidebar-imagen active" : "sidebar-imagen"}></img>}
+            {text && <span className={isActive ? "sidebar-texto active" : "sidebar-texto"}>{text}</span>}
         </button>
     );
 }

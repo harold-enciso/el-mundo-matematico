@@ -16,7 +16,7 @@
 }
 
 
-.sidebar-text {
+.sidebar-titulo {
     padding: 20px 16px;
     text-align: left;
     display: block;
@@ -30,10 +30,47 @@
     width: 100%;
 }
 
+.sidebar-texto {
+    display: block;
+}
+
 .sidebar-linea {
     width: 100%;
     border: none;
     background-color: #2e0455ff;
     height: 2px;
     margin: 0%;
+}
+
+
+@media (max-width: 1024px) {
+    .fondo-sidebar-admin {
+        width: 220px;
+    }
+}
+
+@media (max-width: 768px) {
+    .fondo-sidebar-admin {
+        width: 190px;
+    }
+}
+
+@media (max-width: 480px) {
+    .fondo-sidebar-admin {
+        width: 70px;
+    }
+    .sidebar-texto {
+        display: none;
+    }
+    .sidebar-titulo {
+        display: none;
+    }
+}
+@media (max-width: 360px) {
+    .fondo-sidebar-admin {
+        width: 70px;
+    }
+    .sidebar-titulo {
+        display: none;
+    }
 }

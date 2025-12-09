@@ -21,7 +21,7 @@ export default function DropdownMenu(){
 
 
     return(
-        <div className="dropdown" ref={menuRef}>
+        <div className = "dropdown-button menu" ref={menuRef}>
             <button className="icon menu" onClick={() => setOpen(!open)}>
                 <Menu size={24}/>
             </button>

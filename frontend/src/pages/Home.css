@@ -82,9 +82,13 @@ h1 {
   flex-direction: column;
 }
 
-
+.imagen-home {
+  width: 730px;
+}
 @media (max-width: 768px) {
-
+  .imagen-home {
+    width: 95%;
+  }
   .fondo {
     padding: 10px;
   }

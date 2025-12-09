@@ -22,7 +22,7 @@ export default function Rankings(){
     return(
         <>
             <h1>RANKINGS</h1>
-            <img src={construccion} width="600px"></img>
+            <img src={construccion} className="construccion"></img>
             <span className="texto-dashboard-admin">Página en construcción, ten paciencia.</span>
 
         </>

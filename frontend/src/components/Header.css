@@ -120,14 +120,19 @@
         display: block
     }
 }
+@media (max-width: 480px) {
+    .texto-logo {
+        display: none;
+    }
+}
 
 @media (max-width: 360px) {
     .bloque.central,
-    .bloque.derecho {
+    .bloque.izquierdo {
         display: none;
     }
 
-    .bloque.izquierdo {
+    .bloque.derecho {
         width: 100%;
     }
 
@@ -135,4 +140,6 @@
     .salto-linea {
         display: block
     }
+
+    
 }

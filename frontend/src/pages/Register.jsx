@@ -1,8 +1,11 @@
 import "./Login.css";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import { useState } from "react";
+import { useToast } from "../context/useToast";
 
 export default function Register() {
+    const navigate = useNavigate();
+    const {showToast} = useToast();
     const [contrasena,setContrasena] = useState("");
     const [contrasenaTocada,setContrasenaTocada] = useState(false);
     const [correo,setCorreo] = useState("");
@@ -13,7 +16,7 @@ export default function Register() {
     //POST
     const handleRegister = () => {
         if (!correo || !contrasena) {
-            alert("Completa todos los campos");
+            showToast("Completa todos los campos","warning");
             return;
         }
         setProcesando(true);
@@ -37,16 +40,13 @@ export default function Register() {
         })
         .then(data => {
             console.log("Registro exitoso:", data);
-            alert("ERES UN GENIO, SE REGISTRÓ TU CORREO: " + data.email);
-            setCorreo("");
-            setCorreoTocado(false);
-            setContrasena("");
-            setContrasenaTocada(false);
-            setProcesando(false);
+            
+            showToast("Se registró tu correo, ahora inicia sesión","success");
+            navigate("/login");
         })
         .catch(err =>{
             console.log(err.detail)
-            alert(err.detail || "Error, email incorrecto o repetido");
+            showToast("Error, email incorrecto o repetido","error");
             setCorreo("");
             setCorreoTocado(false);
             setContrasena("");

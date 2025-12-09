@@ -3,8 +3,11 @@ import {Link} from "react-router-dom";
 import { useContext,useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
-
+import { useModal } from "../context/useModal";
+import { useToast } from "../context/useToast";
 export default function Login() {
+    const { showModal } = useModal();
+    const { showToast } = useToast();
     const navigate = useNavigate();
     const {setUser} = useContext(UserContext);
     const [correo,setCorreo] = useState("");
@@ -17,7 +20,8 @@ export default function Login() {
     //POST
     const handleLogin = () => {
         if (!correo || !contrasena) {
-            alert("Completa todos los campos");
+            showToast("Completa todos los campos","warning")
+            
             return;
         }
         setProcesando(true);
@@ -61,23 +65,22 @@ export default function Login() {
                 country: data.country,
                 verified: data.verified
             });
-            alert("Login exitoso");
-            //Limpiamos los campos
-            setCorreo("");
-            setCorreoTocado(false);
-            setContrasena("");
-            setContrasenaTocada(false);
-            //Redirigimos al dashboard del admin o usuario
+            
+            showToast("Login exitoso","success");
             if (data.role === "admin") {
                 navigate("/admin/dashboard")
                 return;
             }
             navigate("/dashboard");
+
+            
+
+            
         })
         .catch(err =>{
             setProcesando(false);
             console.log(err.detail)
-            alert(err?.detail || "Error al iniciar sesión");
+            showToast("Error al iniciar sesión","error");
             
             setCorreo("");
             setCorreoTocado(false);

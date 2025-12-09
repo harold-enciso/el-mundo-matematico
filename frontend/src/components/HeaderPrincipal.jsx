@@ -21,7 +21,7 @@ export default function HeaderPrincipal() {
                     <DropdownMenu/>
                     <Link to="/" className="link">
                         <img src={logo} width="30px" alt="logo"/>
-                        <div>
+                        <div className="texto-logo">
                             <span className="texto-pagina-inicial">
                                 EL MUNDO
                             </span>

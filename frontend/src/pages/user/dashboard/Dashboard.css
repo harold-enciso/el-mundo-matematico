@@ -57,3 +57,42 @@
   outline: none;
   border-color: #6206b8ff;
 }
+
+.construccion {
+  width: 630px;
+}
+
+.construccion {
+  width: 630px;
+}
+
+@media (max-width: 1024px) {
+    
+    .fondo-dashboard {
+      left: 220px;
+      width: calc(100vw - 220px);
+    }
+    .construccion {
+      width: 80%;
+    }
+}
+
+@media (max-width: 768px) {
+    .fondo-dashboard {
+      left: 190px;
+      width: calc(100vw - 190px);
+    }
+}
+
+@media (max-width: 480px) {
+    .fondo-dashboard {
+      left: 70px;
+      width: calc(100vw - 70px);
+    }
+}
+@media (max-width: 360px) {
+    .fondo-dashboard {
+      left: 70px;
+      width: calc(100vw - 70px);
+    }
+}

@@ -23,7 +23,7 @@ export default function Home() {
       <div className="fondo">
         <h1>Bienvenido a El Mundo Matemático</h1>
         <p>La página aún está en construcción. Gracias por acceder, pronto todo estará {mensajeBienvenida}</p>
-        <img src={logo} width="730px" alt="logo"/>
+        <img src={logo} className="imagen-home" alt="logo"/>
 
     </div>
     </>

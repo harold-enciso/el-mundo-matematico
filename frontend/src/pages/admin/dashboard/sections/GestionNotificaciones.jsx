@@ -3,9 +3,11 @@ import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../../../context/UserContext";
 import construccion from "../../../../assets/construccion.svg"
+import { useToast } from "../../../../context/useToast";
 
 
 export default function GestionNotificaciones(){
+    const {showToast}= useToast();
     const apiUrl = import.meta.env.VITE_API_URL;
     const notificationUrl = `${apiUrl}/noti/create`;
     const navigate = useNavigate();
@@ -51,8 +53,8 @@ export default function GestionNotificaciones(){
         .then(data => {
             //Aquí va el flujo correcto, data es lo que devuelve el back
             
+            showToast("Se envió la notificacion correctamente","success")
             
-            alert("Se envió la notificacion correctamente");
             console.log("Notificación creada y enviada");
             console.log(data);
             setNewNotification({});
