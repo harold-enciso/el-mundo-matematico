@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useToast } from "../context/useToast";
 import "./DragAndDropUpload.css"
-import PdfPreview from "./PDFpreview";
+import PdfPreview from "./PdfPreview";
 
 export default function DragAndDropUpload({ onFileSelect, file }) {
     const { showToast } = useToast();
