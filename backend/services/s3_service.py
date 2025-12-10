@@ -39,3 +39,16 @@ def get_presigned_url(file_name: str):
         return presigned_url
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error al generar URL pre-firmada: {e}")
+    
+def upload_file_to_s3(file_name: str, file_content: bytes):
+    client = get_s3_client()
+    try:
+        client.put_object(
+            Bucket= os.getenv("WASABI_BUCKET_NAME"),
+            Key= file_name,
+            Body= file_content
+        )
+        return True
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error al subir archivo a Wasabi: {e}")
+    

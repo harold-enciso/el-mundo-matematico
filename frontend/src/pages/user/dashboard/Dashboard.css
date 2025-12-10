@@ -8,9 +8,10 @@
 
   flex-direction: column;
   justify-content: flex-start;
+  text-align: center;
   align-items: center;
 
-  padding-top: 20px;
+  padding: 20px;
   background-color: white;
   color: black;
   overflow-y: auto;
@@ -22,26 +23,61 @@
   font-size: x-large;
 }
 
+.parrafo-dashboard {
+  text-align: justify;
+}
 
 .boton-dashboard {
-    /* QUIERO CENTRAR EL TEXTO VERTICALMENTE */
     display: flex;
     align-items: center;
     justify-content: center;
-    /*NO QUIERO QUE SEAN BLOCK LOS BOTONES*/
+    
     border-radius: 20px;
     cursor: pointer;
     padding: 0 20px;
-    height: 2.5em;
-    width:60%;
+    height: 2em;
+    width: 10em;
+    font-size: xx-large;
+    max-width: 90%;
     line-height: 20px;
-    font-size: 1em;
     color: white;
     font-weight: bold;
     font-style: normal;
     background-color: #6d07ccff;
     border: 1px solid white;
+    flex-shrink: 0;
+    margin-top: 40px;
 }
+
+.boton-dashboard:hover{
+  outline: none;
+  border-color: #6d07ccff;
+  box-shadow: 0 0 10px #6d07ccff;
+}
+.boton-dashboard:focus{
+  outline: none;
+  border-color: #6d07ccff;
+  box-shadow: 0 0 0 #6d07ccff;
+}
+
+.boton-dashboard.cancelar {
+  background-color: rgb(128, 41, 41);
+  border-color: rgb(128, 41, 41);
+  box-shadow: 0 0 0 rgb(128, 41, 41);
+}
+
+.boton-dashboard.cancelar:hover{
+  outline: none;
+  border-color: rgb(128, 41, 41);
+  box-shadow: 0 0 10px rgb(128, 41, 41);
+}
+.boton-dashboard.cancelar:focus{
+  outline: none;
+  border-color: rgb(128, 41, 41);
+  box-shadow: 0 0 0 rgb(128, 41, 41);
+}
+
+
 
 .campos-input {
   background-color: #ffffffff;
@@ -49,6 +85,7 @@
   font-size: larger;
   padding: 10px 10px;
   width: 18em;
+  max-width: 90%;
   border: 3px solid black;
   border-radius: 10px;
 }
@@ -62,9 +99,49 @@
   width: 630px;
 }
 
-.construccion {
-  width: 630px;
+.barra-notificaciones {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #f7f7f7;
+    padding: 8px 12px;
+    border-bottom: 1px solid #ddd;
+    position: sticky;
+    margin-top: -20px;
+    
+    width: calc(100% + 40px);
+    z-index: 500;
 }
+
+.barra-notificaciones-boton {
+    padding: 6px 14px;
+    background: #2e0455;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.2s;
+    height: 40px;
+    width: 200px;
+    max-width: 45%;
+}
+
+.barra-notificaciones-boton:hover {
+    opacity: 0.85;
+}
+
+.barra-notificaciones-boton.delete {
+    background: #d63031;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+
+
+
+
+
 
 @media (max-width: 1024px) {
     

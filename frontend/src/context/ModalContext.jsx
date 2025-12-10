@@ -11,6 +11,8 @@ export function ModalProvider({children}) {
         onConfirm: null
     });
     const [isVisible,setIsVisible] = useState(false);
+    
+    //Modal normal
     const showModal = ({ title, message, onConfirm = null, showCancel = true}) => {
         setModalData({
             isOpen: true,
@@ -21,6 +23,19 @@ export function ModalProvider({children}) {
         });
         setTimeout(() => setIsVisible(true), 10); // <- activar show
     };
+    //Modal de carga
+    const showLoading = (message = "Procesando...") => {
+    setModalData({
+            isOpen: true,
+            title: "",
+            message,
+            onConfirm: null,
+            showCancel: false,
+            isLoading: true
+        });
+        setTimeout(() => setIsVisible(true), 10);
+    };
+    const hideLoading = () => hideModal();
 
     
 
@@ -37,37 +52,51 @@ export function ModalProvider({children}) {
             setModalData(prev => ({...prev,isOpen: false}));
         },300)
     };
-
+    
     return (
-        <ModalContext.Provider value={{showModal, hideModal}}>
+        <ModalContext.Provider value={{showModal, hideModal, showLoading, hideLoading}}>
             {children}
             {modalData.isOpen && (
                 <div className= {isVisible ? "modal-overlay show" : "modal-overlay"}>
                     <div className= {isVisible ? "modal-content show" : "modal-content"}>
-                        <div className="modal-title">
-                            <h2>
-                                {modalData.title}
-                            </h2>
-                        </div>
-                        <div className="modal-message">
-                            <p>
-                                {modalData.message}
-                            </p>
-                        </div>
-                        <div className="modal-button-zone">
-                            {modalData.showCancel && (
-                                <button className="modal-button" onClick={hideModal}>
-                                    Cancelar
-                                </button>    
-                            )}
-                            
-                            <button  className="modal-button" onClick={() => {
-                                modalData.onConfirm && modalData.onConfirm();
-                                hideModal();
-                            }}>
-                                OK
-                            </button>
-                        </div>
+                        {modalData.isLoading ? (
+                            <>
+                                <div className="modal-title">
+                                    <h2>{modalData.title}</h2>
+                                </div>
+                                <div className="loading"></div>
+                                <p>{modalData.message}</p>
+                            </>
+                        ) : (
+                            <>
+                                {/* CONTENIDO NORMAL DEL MODAL */}
+                                <div className="modal-title">
+                                    <h2>{modalData.title}</h2>
+                                </div>
+
+                                <div className="modal-message">
+                                    <p>{modalData.message}</p>
+                                </div>
+
+                                <div className="modal-button-zone">
+                                    {modalData.showCancel && (
+                                        <button className="modal-button" onClick={hideModal}>
+                                            Cancelar
+                                        </button>
+                                    )}
+
+                                    <button
+                                        className="modal-button"
+                                        onClick={() => {
+                                            modalData.onConfirm && modalData.onConfirm();
+                                            hideModal();
+                                        }}
+                                    >
+                                        OK
+                                    </button>
+                                </div>
+                            </>
+                        )}
                         
                         
                     </div>

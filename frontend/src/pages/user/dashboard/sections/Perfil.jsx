@@ -1,11 +1,14 @@
 import "../Dashboard.css";
+import "./Perfil.css";
 import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../../../context/UserContext";
 import construccion from "../../../../assets/construccion.svg"
 import { useToast } from "../../../../context/useToast";
+import { useModal } from "../../../../context/useModal";
 
 export default function Perfil(){
+    const {showModal} = useModal();
     const {showToast} = useToast();
     const apiUrl = import.meta.env.VITE_API_URL;
     const meUrl = `${apiUrl}/auth/me`;
@@ -70,7 +73,7 @@ export default function Perfil(){
                 country: data.country
             })
             setEditable(false);
-            showToast("Tus datos han sido cambiados correctamente","success");
+            showToast("Tus datos han sido actualizados correctamente","success");
             
             console.log(data);
             
@@ -88,72 +91,91 @@ export default function Perfil(){
     return(
         <>
             <h1>DATOS PERSONALES</h1>
-            <h2>Correo electrónico</h2>
-            <input
-            type="text"
-            placeholder=""
-            value={copiaUser.email}
-            onChange={(e) => setCopiaUser({...copiaUser,email:e.target.value})}
-            readOnly
-            className="campos-input"
-            />
-            <h2>Usuario</h2>
-            <input
-            type="text"
-            placeholder=""
-            value={copiaUser.username ?? ""}
-            onChange={(e) => setCopiaUser({...copiaUser,username:e.target.value})}
-            readOnly={!editable}
-            className="campos-input"
-            />
-            <h2>Nombre</h2>
-            <input
-            type="text"
-            placeholder=""
-            value={copiaUser.first_name ?? ""}
-            onChange={(e) => setCopiaUser({...copiaUser,first_name:e.target.value})}
-            readOnly={!editable}
-            className="campos-input"
-            />
-            <h2>Apellidos</h2>
-            <input
-            type="text"
-            placeholder=""
-            value={copiaUser.last_name ?? ""}
-            onChange={(e) => setCopiaUser({...copiaUser,last_name:e.target.value})}
-            readOnly={!editable}
-            className="campos-input"
-            />
-            <h2>Fecha de nacimiento</h2>
-            <input
-            type="date"
-            placeholder=""
-            value={copiaUser.birth_date ?? ""}
-            onChange={(e) => setCopiaUser({...copiaUser,birth_date:e.target.value})}
-            disabled={!editable}
-            className="campos-input"
-            />
-            <h2>País</h2>
-            <input
-            type="text"
-            placeholder=""
-            value={copiaUser.country ?? ""}
-            onChange={(e) => setCopiaUser({...copiaUser,country:e.target.value})}
-            readOnly={!editable}
-            className="campos-input"
-            />
-
-            <button className="boton-dashboard" onClick={()=>{
-                if (!editable) {
-                    setEditable(true);
-                    return;
-                    //Si no estaba editable SOLO se pone editable
-                }
-                //Si estaba editable SE LLAMA A LA FUNCION ACTUALIZAR
-                handleUpdate()
-                }}>
-                {!editable ? "Editar":"Guardar cambios"}
-            </button>
+            <div className="perfil-contenido">
+                <div className="perfil-columna1">
+                    <h2>Correo electrónico</h2>
+                    <input
+                    type="text"
+                    placeholder=""
+                    value={copiaUser.email}
+                    onChange={(e) => setCopiaUser({...copiaUser,email:e.target.value})}
+                    readOnly
+                    className="perfil-input"
+                    />
+                    <h2>Usuario</h2>
+                    <input
+                    type="text"
+                    placeholder=""
+                    value={copiaUser.username ?? ""}
+                    onChange={(e) => setCopiaUser({...copiaUser,username:e.target.value})}
+                    readOnly={!editable}
+                    className="perfil-input"
+                    />
+                    <h2>Nombre</h2>
+                    <input
+                    type="text"
+                    placeholder=""
+                    value={copiaUser.first_name ?? ""}
+                    onChange={(e) => setCopiaUser({...copiaUser,first_name:e.target.value})}
+                    readOnly={!editable}
+                    className="perfil-input"
+                    />
+                </div>
+                <div className="perfil-columna2">
+                    <h2>Apellidos</h2>
+                    <input
+                    type="text"
+                    placeholder=""
+                    value={copiaUser.last_name ?? ""}
+                    onChange={(e) => setCopiaUser({...copiaUser,last_name:e.target.value})}
+                    readOnly={!editable}
+                    className="perfil-input"
+                    />
+                    <h2>Fecha de nacimiento</h2>
+                    <input
+                    type="date"
+                    placeholder=""
+                    value={copiaUser.birth_date ?? ""}
+                    onChange={(e) => setCopiaUser({...copiaUser,birth_date:e.target.value})}
+                    disabled={!editable}
+                    className="perfil-input date"
+                    />
+                    <h2>País</h2>
+                    <input
+                    type="text"
+                    placeholder=""
+                    value={copiaUser.country ?? ""}
+                    onChange={(e) => setCopiaUser({...copiaUser,country:e.target.value})}
+                    readOnly={!editable}
+                    className="perfil-input"
+                    />
+                    
+                </div>
+            </div>
+            <div className="perfil-box-row">
+                <button className="boton-dashboard" onClick={()=>{
+                    if (!editable) {
+                        setEditable(true);
+                        return;
+                        //Si no estaba editable SOLO se pone editable
+                    }
+                    //Si estaba editable SE LLAMA A LA FUNCION ACTUALIZAR
+                    
+                    showModal({
+                        title: "Editar datos",
+                        message: `¿Estás seguro de que deseas guardar tus datos actualizados?`,
+                        onConfirm: () => handleUpdate()
+                    })
+                    
+                    }}>
+                    {!editable ? "Editar":"Guardar cambios"}
+                </button>
+                {editable && (
+                    <button className="boton-dashboard cancelar" onClick={() => setEditable(false)}>
+                        Cancelar
+                    </button>
+                )}
+            </div>
                         
         </>
     )

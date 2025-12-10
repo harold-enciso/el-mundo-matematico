@@ -26,7 +26,6 @@ export default function HeaderPrincipal() {
                                 EL MUNDO
                             </span>
                             <span>{" "}</span>
-                            <br className="salto-linea"/>
                             <span className="texto-pagina-inicial">
                                 MATEMÁTICO
                             </span>
