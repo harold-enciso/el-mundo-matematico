@@ -38,11 +38,21 @@ import GestionRankings from "./pages/admin/dashboard/sections/GestionRankings";
 import GestionSuscripciones from "./pages/admin/dashboard/sections/GestionSuscripciones";
 import Analitica from "./pages/admin/dashboard/sections/Analitica";
 import Configuracion from "./pages/admin/dashboard/sections/Configuracion";
+import { useContext } from "react";
+import { UserContext } from "./context/UserContext";
+import LoadingScreen from "./pages/LoadingScreen";
 
 
 
 
 export default function App() {
+
+  const {cargando} = useContext(UserContext);
+
+  if (cargando) {
+    return <LoadingScreen/>
+  }
+
   return (
     <BrowserRouter>
       <HeaderPrincipal/>

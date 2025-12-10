@@ -1,0 +1,56 @@
+
+.drag-file-zone {
+    border: 2px dashed #ccc;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+    width: 50em;
+    max-width: 100%;
+}
+
+.drag-file-zone.drag-over {
+    border: 2px dashed green;
+}
+
+.drag-file-input {
+    display: none;
+}
+
+.drag-file-label {
+    cursor: pointer;
+    color: blue;
+}
+
+.drag-image-preview {
+    max-width: 100%;
+    max-height: 25em;
+    margin-top: 10px;
+    border-radius: 4px;
+}
+
+.drag-pdf-preview {
+    max-width: 100%;
+    max-height: 30em;
+    width: 60em;
+    margin-top: 10px;
+    
+
+    border-radius: 4px;
+}
+
+@media (max-width: 1024px) {
+    
+}
+
+@media (max-width: 768px) {
+    .drag-file-zone {
+        padding: 0;
+    }
+}
+@media (max-width: 480px) {
+    
+}
+@media (max-width: 360px) {
+    
+}

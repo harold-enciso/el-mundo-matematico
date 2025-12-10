@@ -3,8 +3,12 @@ import { UserContext } from "../../../../context/UserContext";
 import { useNavigate } from "react-router-dom";
 import NotificacionItem from "./NotificacionItem";
 import tacho from "../../../../assets/tacho.svg";
+import { useToast } from "../../../../context/useToast";
+import { useModal } from "../../../../context/useModal";
 
 export default function Notificaciones(){
+    const { showModal } = useModal();
+    const { showToast } = useToast();
     const apiUrl = import.meta.env.VITE_API_URL;
     const notiUrl = `${apiUrl}/noti/me`;
     const [notiSeleccionada, setNotiSeleccionada] = useState(null);
@@ -19,6 +23,9 @@ export default function Notificaciones(){
             navigate("/login");
         }
     }, [user, cargando, navigate]);
+
+    
+
     const deleteNoti = () => {
         const notiDeleteUrl = `${apiUrl}/noti/delete/${id}`;
         return fetch(notiDeleteUrl, {
@@ -30,8 +37,10 @@ export default function Notificaciones(){
         })
         .then(res => {
             if (!res.ok) throw new Error("Error al borrar");
-            console.log("Eliminado correctamente");
+            
             //Flujo correcto
+            console.log("Eliminado correctamente");
+            showToast("Notificación eliminada","info");
             setNotiSeleccionada(false);
         })
         .catch(err => {
@@ -55,6 +64,7 @@ export default function Notificaciones(){
             console.log(err.detail);
             if (err.detail === "No se pudieron validar las credenciales"){
                 //Aqui debo meter el modal
+                showToast("No se pudo validar tu usuario. Inicia Sesión","warning");
                 navigate("/login");
             } 
         });
@@ -76,13 +86,30 @@ export default function Notificaciones(){
         <>                
                 {notiSeleccionada ? (
                     <>
-                    <button onClick={() => setNotiSeleccionada(false)}>Volver</button>
+                    <div className="barra-notificaciones">
+                        <button 
+                        onClick={() => setNotiSeleccionada(false)}
+                        className="barra-notificaciones-boton"
+                        >
+                            Volver
+                        </button>
+                        <button
+                        onClick={ () => showModal({
+                            title: "Eliminar registro",
+                            message: `¿Estás seguro de eliminar la notificación?`,
+                            onConfirm: () => deleteNoti()
+                        })
+                        }
+                        className="barra-notificaciones-boton delete"
+                        >
+                            <img src={tacho} width="30px"></img>
+                        </button>
+                    </div>
+                    
                     <h2>{notiSeleccionada.title}</h2>
-                    <p>{notiSeleccionada.message}</p>
-                    <small>{notiSeleccionada.created_at}</small>
-                    <button onClick={deleteNoti}>
-                        <img src={tacho} width="500px"></img>
-                    </button>
+                    <p className="parrafo-dashboard">{notiSeleccionada.message}</p>
+                    <small>{new Date(notiSeleccionada.created_at).toLocaleDateString()}</small>
+                    
                     </>
                 ) : (
                     notificaciones.length > 0 ? (notificaciones.map(noti =>(
@@ -93,10 +120,10 @@ export default function Notificaciones(){
                             setId(noti.id);
                         }}
                     >
-                        <div className="notification-content">
+                        <div className="parrafo-dashboard">
                             <strong>{noti.title}</strong>
                             <p>{noti.message}</p>
-                            <span>Fecha de envio: {noti.created_at}</span>
+                            <span>Fecha de envio: {new Date(noti.created_at).toLocaleDateString()}</span>
                         </div>
                     </NotificacionItem>))) : (
                         <>

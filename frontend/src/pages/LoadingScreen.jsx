@@ -1,56 +1,14 @@
 import "./LoadingScreen.css";
-import "./Home.css";
-import { Link } from "react-router-dom";
-import { useEffect,useState } from "react";
-//PAGINA INICIAL
-  const apiUrl = import.meta.env.VITE_API_URL;
-  const fullUrl = `${apiUrl}/`;
-  console.log('API URL COMPLETA EN PRODUCCIÓN:', fullUrl); // <-- ¡Importante!
+import logo from "/elmundomatematico.png";
+
 export default function LoadingScreen() {
-  //Aquí van los estados
-  const [mensajeBienvenida,setMensajeBienvenida] = useState([]);
-  //Debo usar un UseEffect no una funcion cuando es asi
-  useEffect(() => {
-    fetch(fullUrl)
-    .then(res => {
-      return res.json();
-    })
-    .then(data => {
-      setMensajeBienvenida(data.status);
-    })
-  },[])
-  
-
-  
-  
-  
-  
-  //Aquí va el código de la página principal
   return (
-    <>
-      <div className="fondo">
-        <h1>Bienvenido al mundo Matemático</h1>
-        <p>La página aún está en construcción. Gracias por acceder, pronto todo estará {mensajeBienvenida}</p>
-      <div className="contenedor-tarjetas">
-        <Link to="/juegos/sudoku" className="tarjeta azul">
-          <h1>SUDOKU</h1>
-          <img src="/sudoku.png" className="imagen" alt="Sudoku"></img>
-        </Link>
-        <Link to="/juegos/domino-fracciones" className="tarjeta roja">
-          <div className="ajuste-linea">
-            <h1>DOMINÓ DE</h1>
-            <br className="salto-linea"/>
-            <h1>FRACCIONES</h1>
-          </div>
-          <img src="/domino-fracciones.png" className="imagen" alt="Domino Fracciones"></img>
-        </Link>
-        <Link to="/juegos/pentomino" className="tarjeta verde">
-            <h1>PENTOMINÓ</h1>
-            <img src="/pentomino.png" className="imagen" alt="Pentomino"></img>
-        </Link>
-      </div>
+    <div className="loading-container">
+      <img src={logo} alt="El Mundo Matemático" className="loading-logo" />
 
+      <h2 className="loading-title">El Mundo Matemático</h2>
+
+      <div className="simbolo-carga"></div>
     </div>
-    </>
-  )
+  );
 }
