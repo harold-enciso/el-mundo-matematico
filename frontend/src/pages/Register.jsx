@@ -1,16 +1,17 @@
 import "./Login.css";
 import {Link, useNavigate} from "react-router-dom";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useToast } from "../context/useToast";
+import { ModalContext } from "../context/ModalContext";
 
 export default function Register() {
+    const {showLoading,hideLoading} = useContext(ModalContext);
     const navigate = useNavigate();
     const {showToast} = useToast();
     const [contrasena,setContrasena] = useState("");
     const [contrasenaTocada,setContrasenaTocada] = useState(false);
     const [correo,setCorreo] = useState("");
     const [correoTocado,setCorreoTocado] = useState(false);
-    const [procesando,setProcesando] = useState(false);
     const apiUrl = import.meta.env.VITE_API_URL;
     const registerUrl = `${apiUrl}/auth/register`
     //POST
@@ -19,7 +20,7 @@ export default function Register() {
             showToast("Completa todos los campos","warning");
             return;
         }
-        setProcesando(true);
+        showLoading("Registrando tu correo...");
         fetch(registerUrl, {
             method: "POST",
             headers: {
@@ -40,18 +41,19 @@ export default function Register() {
         })
         .then(data => {
             console.log("Registro exitoso:", data);
-            
+            hideLoading();
             showToast("Se registró tu correo, ahora inicia sesión","success");
             navigate("/login");
         })
         .catch(err =>{
             console.log(err.detail)
+            hideLoading();
             showToast("Error, email incorrecto o repetido","error");
+            
             setCorreo("");
             setCorreoTocado(false);
             setContrasena("");
             setContrasenaTocada(false);
-            setProcesando(false);
         })
     };
         
@@ -81,8 +83,8 @@ export default function Register() {
                 />
                 <span className={contrasenaTocada && contrasena.length===0 ? "error-visible":"error-oculto"}>
                     Ingrese su contraseña</span>
-                <button className="boton-login" onClick={handleRegister} disabled={procesando}>
-                    {procesando ? "Procesando..." : "Regístrate"}
+                <button className="boton-login" onClick={handleRegister}>
+                    Regístrate
                 </button>
                 <span>¿Ya tienes una cuenta?
                 {" "}
