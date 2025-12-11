@@ -5,8 +5,9 @@ import { useNavigate } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 import { useModal } from "../context/useModal";
 import { useToast } from "../context/useToast";
+import { ModalContext } from "../context/ModalContext";
 export default function Login() {
-    const { showModal } = useModal();
+    const {showLoading,hideLoading} = useContext(ModalContext);
     const { showToast } = useToast();
     const navigate = useNavigate();
     const {setUser} = useContext(UserContext);
@@ -24,7 +25,7 @@ export default function Login() {
             
             return;
         }
-        setProcesando(true);
+        showLoading("Iniciando sesión...");
         fetch(loginUrl, {
             method: "POST",
             headers: {
@@ -48,7 +49,6 @@ export default function Login() {
         })
         .then(data => {
             //Aquí va el flujo correcto
-            setProcesando(false);
             console.log("Login exitoso");
             //Guardamos el token de la data
             localStorage.setItem("token",data.token)
@@ -65,7 +65,7 @@ export default function Login() {
                 country: data.country,
                 verified: data.verified
             });
-            
+            hideLoading();
             showToast("Login exitoso","success");
             if (data.role === "admin") {
                 navigate("/admin/dashboard")
@@ -78,8 +78,9 @@ export default function Login() {
             
         })
         .catch(err =>{
-            setProcesando(false);
-            console.log(err.detail)
+            
+            console.log(err.detail);
+            hideLoading();
             showToast("Error al iniciar sesión","error");
             
             setCorreo("");
@@ -114,8 +115,8 @@ export default function Login() {
                 />
                 <span className={contrasenaTocada && contrasena.length===0 ? "error-visible":"error-oculto"}>
                     Ingrese su contraseña</span>
-                <button className="boton-login" onClick={handleLogin} disabled={procesando}>
-                    {procesando ? "Procesando..." : "Inicia Sesión"}
+                <button className="boton-login" onClick={handleLogin}>
+                    Inicia Sesión
                 </button>
                 <span>¿No tienes cuenta?
                 {" "}
