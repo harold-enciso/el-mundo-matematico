@@ -1,5 +1,6 @@
 import boto3.session
 import os
+from botocore.config import Config
 from fastapi import HTTPException
 from requests import exceptions as request_exceptions
 from settings import (WASABI_BUCKET_NAME,WASABI_ENDPOINT_URL,WASABI_KEY_ID,WASABI_SECRET_KEY)
@@ -17,7 +18,9 @@ try:
         service_name="s3",
         endpoint_url=os.getenv("WASABI_ENDPOINT_URL"),
         aws_access_key_id=os.getenv("WASABI_KEY_ID"),
-        aws_secret_access_key=os.getenv("WASABI_SECRET_KEY")
+        aws_secret_access_key=os.getenv("WASABI_SECRET_KEY"),
+        config=Config(signature_version="s3v4"),  # <--- OBLIGATORIO PARA CLOUDFLARE R2
+        region_name="auto"                        # <--- RECOMENDADO PARA R2
     )
 except Exception as e:
     print(f"ERROR: No se pudo inicializar el cliente S3/Wasabi: {e}")

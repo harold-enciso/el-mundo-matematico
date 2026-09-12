@@ -15,7 +15,6 @@ export default function Login() {
     const [correoTocado,setCorreoTocado] = useState(false);
     const [contrasena,setContrasena] = useState("");
     const [contrasenaTocada,setContrasenaTocada] = useState(false);
-    const [procesando,setProcesando] = useState(false);
     const apiUrl = import.meta.env.VITE_API_URL;
     const loginUrl = `${apiUrl}/auth/login`
     //POST
@@ -23,6 +22,22 @@ export default function Login() {
         if (!correo || !contrasena) {
             showToast("Completa todos los campos","warning");
             
+            return;
+        }
+        if (!correo.includes("@")) {
+            showToast("Ingresa un correo válido","warning");
+            return;
+        }
+        if (!correo.includes(".")) {
+            showToast("Ingresa un correo válido","warning");
+            return;
+        }
+        if (correo.split("@").length !==  2) {
+            showToast("Ingresa un correo válido","warning");
+            return;
+        }
+        if (correo.endsWith(".")) {
+            showToast("Ingresa un correo válido","warning");
             return;
         }
         showLoading("Iniciando sesión...");
@@ -81,6 +96,14 @@ export default function Login() {
             
             console.log(err.detail);
             hideLoading();
+            if (err.detail === "Correo no encontrado") {
+                showToast("No se encontró tu correo, por favor regístrate","warning");
+                setCorreo("");
+                setCorreoTocado(false);
+                setContrasena("");
+                setContrasenaTocada(false);
+                return;
+            }
             showToast("Error al iniciar sesión","error");
             
             setCorreo("");
