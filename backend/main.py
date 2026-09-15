@@ -3,7 +3,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from settings import CORS_Origins
 from routers import pdf_router,auth_router,noti_router,file_router,folder_router
 from fastapi.responses import JSONResponse
-
+from slowapi.errors import RateLimitExceeded
+from core.rate_limit import limiter
 from fastapi.exceptions import RequestValidationError
 
 
@@ -12,6 +13,8 @@ app = FastAPI(
     description="Contenido educativo de matemática",
     version="1.0.0"
 )
+# Vinculación del limiter al estado de la aplicación
+app.state.limiter = limiter
 
 #AÑADIR EL MIDDLEWARE CORS para permitir origenes
 app.add_middleware(
@@ -22,7 +25,17 @@ app.add_middleware(
     allow_headers=["*"],           # Permite todas las cabeceras
 )
 
-#Manejador de errores 422
+
+# Manejador de errores personalizado para Rate Limit (429)
+@app.exception_handler(RateLimitExceeded)
+async def rate_limit_handler(request: Request, exc: RateLimitExceeded):
+    return JSONResponse(
+        status_code=429,
+        content={"detail": "Has superado el límite de peticiones. Inténtalo más tarde."}
+    )
+
+
+# Manejador de errores de validación (422)
 @app.exception_handler(RequestValidationError)
 async def validation_exception_handler(request: Request, exc:RequestValidationError):
     return JSONResponse(

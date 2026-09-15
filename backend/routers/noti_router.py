@@ -23,4 +23,3 @@ def my_notifications(current_user = Depends(get_current_user),db: Session = Depe
 @router.delete("/delete/{noti_id}",status_code=204)
 def delete_notification(noti_id:int,db: Session = Depends(get_db)):
     delete_notification_service(noti_id,db)
-    return 

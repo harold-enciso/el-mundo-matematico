@@ -1,69 +1,66 @@
 import "./Login.css";
-import {Link} from "react-router-dom";
+import {useNavigate, useSearchParams} from "react-router-dom";
 import { useState, useContext } from "react";
 import { useToast } from "../context/useToast";
 import { ModalContext } from "../context/ModalContext";
-import { Turnstile } from '@marsidev/react-turnstile';
 import visible from "../assets/visible.svg";
 import invisible from "../assets/invisible.svg";
 
-export default function Register() {
+export default function ResetPassword() {
+    //Capturamos valor de token
+    const [searchParams] = useSearchParams();
+    const token = searchParams.get("token"); // Captura el token de la URL (?token=...)
+
     const {showLoading,hideLoading} = useContext(ModalContext);
+    const navigate = useNavigate();
     const {showToast} = useToast();
-
-    const [captchaToken,setCaptchaToken] = useState('');
-
+    
+    
+    
     const [contrasena,setContrasena] = useState("");
     const [contrasenaTocada,setContrasenaTocada] = useState(false);
     const [contrasena2,setContrasena2] = useState("");
     const [contrasena2Tocada,setContrasena2Tocada] = useState(false);
-    const [correo,setCorreo] = useState("");
-    const [correoTocado,setCorreoTocado] = useState(false);
-    const [verificadorEnviado,setVerificadorEnviado] = useState(false);
+
     const apiUrl = import.meta.env.VITE_API_URL;
-    const registerUrl = `${apiUrl}/auth/register`
+    const resetPasswordUrl = `${apiUrl}/auth/reset-password`
     
     const [mostrarContrasena,setMostrarContrasena] = useState(false);
     const [mostrarContrasena2,setMostrarContrasena2] = useState(false);
-    const emailRegex = /^[^\s@]+@[^\s@.]+\.[^\s@.]+$/;
+
 
     //POST
-    const handleRegister = (e) => {
+    const handleResetPassword = (e) => {
 
         if (e) e.preventDefault();
         
+        
+        if (!token) {
+            showToast("Token de recuperación no encontrado o inválido", "error");
+            return;
+        }
         // Valida contenido en los campos
-        if (!correo.trim() || !contrasena.trim() || !contrasena2.trim()) {
+        if (!contrasena.trim() || !contrasena2.trim()) {
             showToast("Completa todos los campos", "warning");
             return;
         }
-        
 
-        // Validación limpia con Regex del formato del correo
-        if (!emailRegex.test(correo)) {
-            showToast("Ingresa un correo electrónico válido", "warning");
-            return;
-        }
         // Validar que ambas contraseñas coincidan
         if (contrasena !== contrasena2) {
             showToast("Las contraseñas no coinciden", "warning");
             return;
         }
-        // Validar que el captcha esté completado
-        if (!captchaToken) {
-            showToast("Por favor, espera a que se valide el CAPTCHA", "warning");
-            return;
-        }
-        showLoading("Enviando código de verificación a tu correo...");
-        fetch(registerUrl, {
+
+
+        showLoading("Cambiando tu contraseña...");
+        fetch(resetPasswordUrl, {
             method: "POST",
             headers: {
                 "Content-type": "application/json"
             },
             body: JSON.stringify({
-                email: correo,
-                password: contrasena,
-                captcha_token: captchaToken
+                token: token,
+                new_password: contrasena
             })
         })
         .then(res => {
@@ -75,69 +72,34 @@ export default function Register() {
             })
         })
         .then(data => {
-            console.log(data);
+            console.log("Cambio de contraseña exitoso:", data);
             hideLoading();
-            setVerificadorEnviado(true);
-            showToast("Código de verificación enviado, revisa tu correo","success");
-            //navigate("/login");
+            showToast("Se cambió tu contraseña, ahora inicia sesión","success");
+            navigate("/login");
         })
         .catch(err =>{
             console.log("Err.detail: " + err.detail)
             hideLoading();
-            if(err.detail === "Email ya registrado") {
-                showToast("Email ya registrado","error");
-                return;
-            }
-            showToast("Error, email incorrecto o repetido","error");
-            // Si falló, limpiamos el token para que resuelva el captcha nuevamente
-            setCaptchaToken("");
-            setCorreo("");
-            setCorreoTocado(false);
+            const mensajeError = err?.detail || "Error al enviar el código. Inténtalo más tarde.";
+            showToast(mensajeError, "error");
+            
+
             setContrasena("");
             setContrasenaTocada(false);
             setContrasena2("");
             setContrasena2Tocada(false);
         })
     };
-    // PANTALLA TIPO LIFEPOINTS (Se activa al terminar el registro)
-    if (verificadorEnviado) {
-        return (
-        <div className="fondo-login">
-            <div className="recuadro-login">
-            <h2>Revisa tu correo electrónico</h2>
-            <p>Hemos enviado un enlace de verificación de cuenta a:</p>
-            <strong>{correo}</strong>
-
-            <div>
-                <p>1. Si no lo encuentras, revisa tu carpeta de Spam.</p>
-                <p>2. Haz clic en el enlace de verificación dentro del mensaje.</p>
-                <p>3. ¡Comienza a aprender en El Mundo Matemático!</p>
-            </div>
-            </div>
-        </div>
-        );
-    }    
+        
     return (
         <div className="fondo-login">
-            <form className="recuadro-login" onSubmit={handleRegister} autoComplete="off">
-                <h1>Registrarse</h1>
-                <div className="grupo-input">
-                <label htmlFor="email">Correo electrónico</label>
-                <input
-                id="email"
-                type="text"
-                placeholder=""
-                value={correo}
-                onChange={(e) => setCorreo(e.target.value)}
-                onBlur={() => setCorreoTocado(true)}
-                />
-                <span className={correoTocado && correo.length===0 ? "error-visible":"error-oculto"}>
-                    Ingrese su correo electrónico</span>
-                </div>
+            <form className="recuadro-login" onSubmit={handleResetPassword} autoComplete="off">
+                <h1>Recuperación de contraseña</h1>
+                
                 
                 <div className="grupo-input">
                     <div className="label-wrapper">
-                        <label htmlFor="password">Contraseña</label>
+                        <label htmlFor="password">Ingrese su nueva Contraseña</label>
                     </div>
                     <div className="password-wrapper">
                         <input
@@ -159,9 +121,9 @@ export default function Register() {
                         </button>
                     </div>
                      <span className={contrasenaTocada && contrasena.length===0 ? "error-visible":"error-oculto"}>
-                            Ingrese su contraseña</span>
+                            Ingrese una contraseña</span>
                     <div className="label-wrapper">
-                        <label htmlFor="password2">Confirme su contraseña</label>
+                        <label htmlFor="password">Confirme su nueva contraseña</label>
                     </div>
                     <div className="password-wrapper">
                         <input
@@ -185,17 +147,11 @@ export default function Register() {
                     <span className={contrasena2Tocada && contrasena2.length===0 ? "error-visible":"error-oculto"}>
                             Ingrese nuevamente su contraseña</span>
                 </div>
-                <Turnstile siteKey={import.meta.env.VITE_TURNSTILE_SITE_KEY} onSuccess= {(token) => setCaptchaToken(token)}>
-                </Turnstile>
-                <button type="submit" className="boton-login" disabled={!captchaToken}>
-                    Regístrate
+
+                <button type="submit" className="boton-login">
+                    Cambia tu contraseña
                 </button>
-                <span>¿Ya tienes una cuenta?
-                {" "}
-                <Link to="/login" className="link-login">
-                    Ingresa ahora
-                </Link>
-                </span>
+                
             </form>
         </div>
     )

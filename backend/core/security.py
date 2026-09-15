@@ -9,6 +9,7 @@ load_dotenv()
 JWT_SECRET_KEY = os.getenv("JWT_SECRET_KEY")
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 60
+RESET_TOKEN_EXPIRE_MINUTES = 15
 
 #Para hashear
 #pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
@@ -27,3 +28,4 @@ def create_access_token(data: dict, expires_delta: timedelta | None=None):
 
     encoded_jwt = jwt.encode(to_encode,str(JWT_SECRET_KEY),algorithm=ALGORITHM)
     return encoded_jwt
+

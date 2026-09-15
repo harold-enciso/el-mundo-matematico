@@ -67,9 +67,9 @@ async def file_proxy(file_name: str, folder: str = ""):
             }
         )
 
-    except requests.exceptions.HTTPError as e:
+    except requests.exceptions.HTTPError:
         raise HTTPException(status_code=404, detail="Archivo no encontrado")
-    except Exception as e:
+    except Exception:
         raise HTTPException(status_code=500, detail="Error interno")
 
 @router.delete("/")

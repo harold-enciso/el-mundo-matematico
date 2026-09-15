@@ -6,6 +6,7 @@ from datetime import date
 class RegisterUser(BaseModel):
     email: EmailStr
     password: str
+    captcha_token: str
 
 class LoginUser(BaseModel):
     email: EmailStr
@@ -18,8 +19,13 @@ class UserUpdate(BaseModel):
     birth_date: date | None = None
     country: str | None = None
 
+class ForgotPasswordRequest(BaseModel):
+    email: EmailStr
+    captcha_token: str
 
-
+class ResetPasswordRequest(BaseModel):
+    token: str
+    new_password: str
 
 #Responses: BACK->FRONT
 class UserResponse(BaseModel):

@@ -1,11 +1,14 @@
 import "./Login.css";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import { useContext,useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
-import { useModal } from "../context/useModal";
 import { useToast } from "../context/useToast";
 import { ModalContext } from "../context/ModalContext";
+
+import visible from "../assets/visible.svg";
+import invisible from "../assets/invisible.svg";
+
+
 export default function Login() {
     const {showLoading,hideLoading} = useContext(ModalContext);
     const { showToast } = useToast();
@@ -15,29 +18,30 @@ export default function Login() {
     const [correoTocado,setCorreoTocado] = useState(false);
     const [contrasena,setContrasena] = useState("");
     const [contrasenaTocada,setContrasenaTocada] = useState(false);
+    const [mostrarContrasena,setMostrarContrasena] = useState(false);
+
+
+
+
     const apiUrl = import.meta.env.VITE_API_URL;
     const loginUrl = `${apiUrl}/auth/login`
+
+    const emailRegex = /^[^\s@]+@[^\s@.]+\.[^\s@.]+$/;
+
     //POST
-    const handleLogin = () => {
-        if (!correo || !contrasena) {
-            showToast("Completa todos los campos","warning");
-            
+    const handleLogin = (e) => {
+
+        if (e) e.preventDefault();
+
+        // Valida contenido en los campos
+        if (!correo.trim() || !contrasena.trim()) {
+            showToast("Completa todos los campos", "warning");
             return;
         }
-        if (!correo.includes("@")) {
-            showToast("Ingresa un correo válido","warning");
-            return;
-        }
-        if (!correo.includes(".")) {
-            showToast("Ingresa un correo válido","warning");
-            return;
-        }
-        if (correo.split("@").length !==  2) {
-            showToast("Ingresa un correo válido","warning");
-            return;
-        }
-        if (correo.endsWith(".")) {
-            showToast("Ingresa un correo válido","warning");
+
+        // Validación limpia con Regex del formato del correo
+        if (!emailRegex.test(correo)) {
+            showToast("Ingresa un correo electrónico válido", "warning");
             return;
         }
         showLoading("Iniciando sesión...");
@@ -65,6 +69,7 @@ export default function Login() {
         .then(data => {
             //Aquí va el flujo correcto
             console.log("Login exitoso");
+            
             //Guardamos el token de la data
             localStorage.setItem("token",data.token)
             //Guardamos la data en el user global
@@ -96,8 +101,16 @@ export default function Login() {
             
             console.log(err.detail);
             hideLoading();
-            if (err.detail === "Correo no encontrado") {
-                showToast("No se encontró tu correo, por favor regístrate","warning");
+            if (err.status_code === 401) {
+                showToast("Credenciales incorrectas. Por favor, verifica tus datos.","warning");
+                setCorreo("");
+                setCorreoTocado(false);
+                setContrasena("");
+                setContrasenaTocada(false);
+                return;
+            }
+            if (err.status_code === 403) {
+                showToast("Cuenta no verificada. Por favor, revisa tu correo.","warning");
                 setCorreo("");
                 setCorreoTocado(false);
                 setContrasena("");
@@ -114,41 +127,68 @@ export default function Login() {
     };
     
     return (
-        <>
         <div className="fondo-login">
-            <div className="recuadro-login">
+            <form className="recuadro-login" onSubmit={handleLogin} autoComplete="off">
                 <h1>Iniciar Sesión</h1>
-                <h2>Correo electrónico</h2>
-                <input
-                type="text"
-                placeholder=""
-                value={correo}
-                onChange={(e) => setCorreo(e.target.value)}
-                onBlur={() => setCorreoTocado(true)}
-                />
-                <span className={correoTocado && correo.length===0 ? "error-visible":"error-oculto"}>
-                    Ingrese su correo electrónico</span>
-                <h2>Contraseña</h2>
-                <input
-                type="password"
-                placeholder=""
-                value={contrasena}
-                onChange={(e) => setContrasena(e.target.value)}
-                onBlur={() => setContrasenaTocada(true)}
-                />
-                <span className={contrasenaTocada && contrasena.length===0 ? "error-visible":"error-oculto"}>
-                    Ingrese su contraseña</span>
-                <button className="boton-login" onClick={handleLogin}>
+                <div className="grupo-input">
+                    <label htmlFor="email">Correo electrónico</label>
+                    <input
+                    id="email"
+                    type="text"
+                    placeholder=""
+                    value={correo}
+                    onChange={(e) => setCorreo(e.target.value)}
+                    onBlur={() => setCorreoTocado(true)}
+                    //se puede agregar un classname dinamico
+                    />
+                    <span className={correoTocado && correo.length===0 ? "error-visible":"error-oculto"}>
+                        Ingrese su correo electrónico</span>
+                </div>
+                
+                
+                <div className="grupo-input">
+                    <div className="label-wrapper">
+                        <label htmlFor="password">Contraseña</label>
+                        <Link to="/forgot-password" className="link-login">
+                            ¿Olvidaste tu contraseña?
+                        </Link>
+                    </div>
+                    <div className="password-wrapper">
+                        <input
+                        id="password"
+                        type={mostrarContrasena ? "text" : "password"}
+                        placeholder=""
+                        value={contrasena}
+                        onChange={(e) => setContrasena(e.target.value)}
+                        onBlur={() => setContrasenaTocada(true)}
+                        />
+                        {/*boton de ojo, el tabindex evita que se detecte con el tab*/}
+                        <button
+                        type="button"
+                        className="btn-toggle-password"
+                        onClick={() => setMostrarContrasena(!mostrarContrasena)}
+                        tabIndex="-1"
+                        >
+                        {mostrarContrasena ? <img src={visible} alt="mostrar" width="40px" ></img> : <img src={invisible} alt="no mostrar" width="40px"></img>}
+                        </button>
+
+                    </div>
+                
+                    <span className={contrasenaTocada && contrasena.length===0 ? "error-visible":"error-oculto"}>
+                        Ingrese su contraseña</span>
+                </div>
+                
+                <button type="submit" className="boton-login">
                     Inicia Sesión
                 </button>
+                
                 <span>¿No tienes cuenta?
                 {" "}
                 <Link to="/register" className="link-login">
                     Regístrate ahora
                 </Link>
                 </span>
-            </div>
+            </form>
         </div>
-        </>
     )
 }
