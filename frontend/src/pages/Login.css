@@ -206,6 +206,137 @@ input:-webkit-autofill:active {
   transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: #4b5563;
+  margin: 12px 0;
+}
+
+/* Anula los estilos heredados de los inputs del formulario */
+.checkbox-container input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  padding: 0;
+  margin: 0;
+  box-shadow: none;
+  accent-color: #6c5ce7; /* Cambia al morado de tu marca si deseas */
+  cursor: pointer;
+}
+
+.checkbox-container label {
+  cursor: pointer;
+  user-select: none;
+}
+
+.checkbox-container a {
+  color: #6c5ce7;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.checkbox-container a:hover {
+  text-decoration: underline;
+}
+
+/* Contenedor principal ajustado */
+.recuadro-login.recuadro-legales {
+  width: 90% !important;
+  max-width: 650px !important;
+  height: 70vh !important;
+  max-height: 70vh !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important; /* Evita desbordamiento horizontal */
+  display: block !important;
+  text-align: left;
+  padding: 2.5rem 2rem;
+  box-sizing: border-box;
+  border-radius: 20px; /* Asegura el redondeado */
+}
+
+/* 1. Ancho de la barra */
+.recuadro-login.recuadro-legales::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* 2. Canal de fondo (respetando los bordes redondeados arriba y abajo) */
+.recuadro-login.recuadro-legales::-webkit-scrollbar-track {
+  background: transparent;
+  margin-top: 15px;    /* Separa la barra de la esquina superior */
+  margin-bottom: 15px; /* Separa la barra de la esquina inferior */
+}
+
+/* 3. La barra de desplazamiento en Morado Oscuro */
+.recuadro-login.recuadro-legales::-webkit-scrollbar-thumb {
+  background-color: #2a085c; /* Morado oscuro tipo header */
+  border-radius: 10px;        /* Bordes redondeados en la propia barra */
+}
+
+/* Hover más vivo */
+.recuadro-login.recuadro-legales::-webkit-scrollbar-thumb:hover {
+  background-color: #4c1d95;
+}
+
+/* Formato para el texto interno */
+.contenido-legal h2 {
+  font-size: 1.1rem;
+  color: #333;
+  margin-top: 1.2rem;
+  margin-bottom: 0.4rem;
+}
+
+.contenido-legal p, .contenido-legal li {
+  font-size: 0.9rem;
+  color: #555;
+  line-height: 1.5;
+  margin-bottom: 0.6rem;
+}
+
+.contenido-legal ul {
+  padding-left: 1.2rem;
+  margin-bottom: 0.8rem;
+}
+
+.enlace-volver {
+  display: inline-block;
+  color: #6c5ce7; /* Cambia al color de tu marca si usas otro */
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.enlace-volver:hover {
+  text-decoration: underline;
+}
+
+
+.recuadro-legales {
+  max-height: 75vh;     /* Ocupa hasta el 75% de la altura de la pantalla */
+  overflow-y: auto;     /* Activa la barra de scroll cuando el texto supera la altura */
+  padding-right: 1.5rem; /* Da un respiro al texto para que no pegue con la barra */
+}
+
+/* Scrollbar personalizado fino */
+.recuadro-legales::-webkit-scrollbar {
+  width: 6px;
+}
+
+.recuadro-legales::-webkit-scrollbar-thumb {
+  background-color: #cbd5e1;
+  border-radius: 4px;
+}
+
+.recuadro-legales::-webkit-scrollbar-thumb:hover {
+  background-color: #94a3b8;
+}
+
+
+
+
 
 @media (max-width: 1024px) {
   .recuadro-login{

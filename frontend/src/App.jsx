@@ -8,7 +8,7 @@ import Login from "./pages/Login";
 import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
 import VerifyEmail from "./pages/VerifyEmail";
-
+import PoliticaPrivacidad from "./pages/PoliticaPrivacidad";
 
 import Dashboard  from "./pages/user/dashboard/Dashboard";
 import Progreso from "./pages/user/dashboard/sections/Progreso";
@@ -66,6 +66,7 @@ export default function App() {
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/reset-password" element={<ResetPassword />} />
         <Route path="/verify-email" element={<VerifyEmail />} />
+        <Route path="/privacy-policy" element={<PoliticaPrivacidad />} />
         <Route path="/dashboard" element={<Dashboard />}>
           <Route index element={<Navigate to="/dashboard/progreso" />} />
           <Route path="progreso" element={<Progreso />} />

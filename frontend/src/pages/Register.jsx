@@ -26,7 +26,9 @@ export default function Register() {
     const [mostrarContrasena,setMostrarContrasena] = useState(false);
     const [mostrarContrasena2,setMostrarContrasena2] = useState(false);
     const emailRegex = /^[^\s@]+@[^\s@.]+\.[^\s@.]+$/;
-
+    // Exige al menos 8 caracteres, 1 mayúscula, 1 minúscula, 1 número y 1 carácter especial
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&.#_-])[A-Za-z\d@$!%*?&.#_-]{8,}$/;
+    const [aceptaPoliticas, setAceptaPoliticas] = useState(false);
     //POST
     const handleRegister = (e) => {
 
@@ -47,6 +49,13 @@ export default function Register() {
         // Validar que ambas contraseñas coincidan
         if (contrasena !== contrasena2) {
             showToast("Las contraseñas no coinciden", "warning");
+            return;
+        }
+        // 4. Validación de fortaleza de la contraseña
+        if (!passwordRegex.test(contrasena)) {
+            showToast("La contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula, un número y un carácter especial",
+                "warning"
+            );
             return;
         }
         // Validar que el captcha esté completado
@@ -187,7 +196,18 @@ export default function Register() {
                 </div>
                 <Turnstile siteKey={import.meta.env.VITE_TURNSTILE_SITE_KEY} onSuccess= {(token) => setCaptchaToken(token)}>
                 </Turnstile>
-                <button type="submit" className="boton-login" disabled={!captchaToken}>
+                <div className="checkbox-container">
+                    <input 
+                        type="checkbox" 
+                        id="politicas" 
+                        checked={aceptaPoliticas} 
+                        onChange={(e) => setAceptaPoliticas(e.target.checked)} 
+                    />
+                    <label htmlFor="politicas">
+                        He leído y declaro que acepto la <a href="/privacy-policy" target="_blank" rel="noreferrer">Política de Privacidad</a>
+                    </label>
+                </div>
+                <button type="submit" className="boton-login" disabled={!captchaToken || !aceptaPoliticas}>
                     Regístrate
                 </button>
                 <span>¿Ya tienes una cuenta?
