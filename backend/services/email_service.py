@@ -2,38 +2,58 @@ import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.utils import formataddr
+import requests
 import logging
 import os
 
 logger = logging.getLogger("email_logger")
 
+#Funcion general de envio de correos
+def send_email_api_service(email_to: str, subject: str, html_content: str):
+    email_api_key= os.getenv("EMAIL_API_KEY")
+    email_from = os.getenv("EMAIL_FROM")
+    sender_name = os.getenv("SENDER_NAME")
+
+    if not email_api_key:
+        raise ValueError("La variable de entorno EMAIL_API_KEY no está bien configurada")
+
+    if not email_from:
+        raise ValueError("La variable de entorno EMAIL_FROM no está bien configurada")
+
+    payload = {
+        "sender": {"name": sender_name, "email": email_from},
+        "to": [{"email": email_to}],
+        "subject": subject,
+        "htmlContent": html_content,
+    }
+
+    headers = {
+        "accept": "application/json",
+        "api-key": email_api_key,
+        "content-type": "application/json",
+    }
+
+    try:
+        logger.info("Enviando correo vía API HTTP de Brevo a: %s", email_to)
+        response = requests.post(email_api_key, json=payload, headers=headers, timeout=10)
+
+        if response.status_code not in [200, 201]:
+            logger.error("Error en API Brevo [%s]: %s", response.status_code, response.text)
+            raise RuntimeError(f"Brevo API error: {response.text}")
+
+        logger.info("Correo enviado exitosamente a %s", email_to)
+        return True
+
+    except Exception as e:
+        logger.exception("Error al enviar correo vía API de Brevo:")
+        raise e
+
 def send_verification_email_service(email_to: str, token: str):
     frontend_url = os.getenv("FRONTEND_URL")
+    if not frontend_url:
+        raise ValueError("La variable de entorno FRONTEND_URL no está configurada")
     #Usare un link con el token, asi puedo meter tokens mas seguros
     verification_link = f"{frontend_url}/verify-email?token={token}"
-
-    smtp_host = os.getenv("SMTP_HOST")
-    smtp_port = int(os.getenv("SMTP_PORT",587))
-    smtp_user = os.getenv("SMTP_USER")
-    smtp_password = os.getenv("SMTP_PASSWORD")
-    email_from = os.getenv("EMAIL_FROM")
-    sender_name = os.getenv("SENDER_NAME", "El Mundo Matemático")
-    if not smtp_host:
-        raise ValueError("La variable de entorno SMTP_HOST no está configurada")
-    if not smtp_user:
-        raise ValueError("La variable de entorno SMTP_USER no está configurada")
-    if not smtp_password:
-        raise ValueError("La variable de entorno SMTP_PASSWORD no está configurada")
-    if not email_from:
-        raise ValueError("La variable de entorno EMAIL_FROM no está configurada")
-    if not sender_name:
-        raise ValueError("La variable de entorno SENDER_NAME no está configurada")
-
-
-    msg = MIMEMultipart()
-    msg['From'] = formataddr((sender_name, email_from))
-    msg['To'] = email_to
-    msg['Subject'] = "Verificar correo electrónico - El Mundo Matemático"
 
     html_content = f"""
     <div style="font-family: Arial, sans-serif; max-width: 500px; margin: 0 auto; padding: 20px; border: 1px solid #e2e8f0; border-radius: 8px;">
@@ -52,21 +72,12 @@ def send_verification_email_service(email_to: str, token: str):
         </p>
     </div>
     """
-    msg.attach(MIMEText(html_content,'html'))
 
-    try:
-        logger.info("Conectando al servidor SMTP: %s:%s", smtp_host, smtp_port)
-        with smtplib.SMTP(smtp_host,smtp_port,timeout=10) as server:
-            server.starttls()
-            logger.info("Iniciando sesión en SMTP Brevo...")
-            server.login(smtp_user,smtp_password)
-            logger.info("Enviando mensaje...")
-            server.send_message(msg)
-
-        return True
-    except Exception as e:
-        logger.exception("Error dentro de send_verification_email_service:")
-        raise e
+    return send_email_api_service(
+        email_to=email_to,
+        subject="Verificar correo electrónico - El Mundo Matemático",
+        html_content=html_content,
+    )
 
 
 
@@ -76,32 +87,10 @@ def send_verification_email_service(email_to: str, token: str):
 
 def send_reset_password_email_service(email_to: str, token: str):
     frontend_url = os.getenv("FRONTEND_URL")
+    if not frontend_url:
+        raise ValueError("La variable de entorno FRONTEND_URL no está configurada")
     #Usare un link con el token, asi puedo meter tokens mas seguros
     reset_link = f"{frontend_url}/reset-password?token={token}"
-
-    smtp_host = os.getenv("SMTP_HOST")
-    smtp_port = int(os.getenv("SMTP_PORT",587))
-    smtp_user = os.getenv("SMTP_USER")
-    smtp_password = os.getenv("SMTP_PASSWORD")
-    email_from = os.getenv("EMAIL_FROM")
-    sender_name = os.getenv("SENDER_NAME", "El Mundo Matemático")
-
-    if not smtp_host:
-        raise ValueError("La variable de entorno SMTP_HOST no está configurada")
-    if not smtp_user:
-        raise ValueError("La variable de entorno SMTP_USER no está configurada")
-    if not smtp_password:
-        raise ValueError("La variable de entorno SMTP_PASSWORD no está configurada")
-    if not email_from:
-        raise ValueError("La variable de entorno EMAIL_FROM no está configurada")
-    if not sender_name:
-        raise ValueError("La variable de entorno SENDER_NAME no está configurada")
-    
-
-    msg = MIMEMultipart()
-    msg['From'] = formataddr((sender_name, email_from))
-    msg['To'] = email_to
-    msg['Subject'] = "Restablecer contraseña - El Mundo Matemático"
 
     html_content = f"""
     <div style="font-family: Arial, sans-serif; max-width: 500px; margin: 0 auto; padding: 20px; border: 1px solid #e2e8f0; border-radius: 8px;">
@@ -120,21 +109,12 @@ def send_reset_password_email_service(email_to: str, token: str):
         </p>
     </div>
     """
-    msg.attach(MIMEText(html_content,'html'))
 
-    try:
-        logger.info("Conectando al servidor SMTP: %s:%s", smtp_host, smtp_port)
-        with smtplib.SMTP(smtp_host,smtp_port,timeout=10) as server:
-            server.starttls()
-            logger.info("Iniciando sesión en SMTP Brevo...")
-            server.login(smtp_user,smtp_password)
-            logger.info("Enviando mensaje...")
-            server.send_message(msg)
-
-        return True
-    except Exception as e:
-        logger.exception("Error dentro de send_reset_password_email_service:")
-        raise e
+    return send_email_api_service(
+            email_to=email_to,
+            subject="Restablecer contraseña - El Mundo Matemático",
+            html_content=html_content,
+        )
 
 
 
