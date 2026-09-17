@@ -9,6 +9,18 @@ import secrets
 #Manejo de errores
 from fastapi import HTTPException
 from core.security import create_access_token
+import logging
+#Configuracion
+logger = logging.getLogger("auth_logger")
+logger.setLevel(logging.INFO)
+ch = logging.StreamHandler()
+ch.setLevel(logging.INFO)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+ch.setFormatter(formatter)
+if not logger.handlers:
+    logger.addHandler(ch)
+
+
 
 pwd_context = CryptContext(schemes=["bcrypt"],deprecated="auto")
 
@@ -25,6 +37,7 @@ def register_user_service(data: RegisterUser, db: Session):
     hashed_password = pwd_context.hash(data.password)
 
     if existing_user:
+        logger.info("--> 1. Iniciando proceso de registro para: %s", data.email)
         # SI YA ESTÁ VERIFICADO, bloqueamos el registro.
         if existing_user.verified: # type: ignore
             raise HTTPException(status_code=400, detail="Email ya registrado")
@@ -59,12 +72,15 @@ def register_user_service(data: RegisterUser, db: Session):
 
     try:
         # Enviamos el correo 
-        send_verification_email_service(data.email, token)
         
+        logger.info("--> 2. Intentando enviar correo mediante email_service...")
+        send_verification_email_service(data.email, token)
+        logger.info("--> 3. Correo enviado exitosamente.")
         db.commit()
         return {"message": "Código de verificación enviado, revisa tu correo"}
 
     except Exception:
+        logger.exception("!!! ERROR CRÍTICO EN REGISTRO !!!")
         db.rollback()
         raise HTTPException(status_code=500, detail="Error al enviar el correo de verificación. Inténtalo más tarde.")
 
