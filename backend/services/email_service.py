@@ -7,6 +7,8 @@ import logging
 import os
 
 logger = logging.getLogger("email_logger")
+# 1. La URL fija del endpoint de Brevo
+BREVO_API_URL = "https://api.brevo.com/v3/smtp/email"
 
 #Funcion general de envio de correos
 def send_email_api_service(email_to: str, subject: str, html_content: str):
@@ -35,7 +37,7 @@ def send_email_api_service(email_to: str, subject: str, html_content: str):
 
     try:
         logger.info("Enviando correo vía API HTTP de Brevo a: %s", email_to)
-        response = requests.post(email_api_key, json=payload, headers=headers, timeout=10)
+        response = requests.post(BREVO_API_URL, json=payload, headers=headers, timeout=10)
 
         if response.status_code not in [200, 201]:
             logger.error("Error en API Brevo [%s]: %s", response.status_code, response.text)
