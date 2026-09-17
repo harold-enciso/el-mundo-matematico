@@ -4,6 +4,8 @@ import { useState, useContext } from "react";
 import { useToast } from "../context/useToast";
 import { ModalContext } from "../context/ModalContext";
 import { Turnstile } from '@marsidev/react-turnstile';
+import Seo from "../components/Seo";
+
 import visible from "../assets/visible.svg";
 import invisible from "../assets/invisible.svg";
 
@@ -112,6 +114,7 @@ export default function Register() {
     if (verificadorEnviado) {
         return (
         <div className="fondo-login">
+            <Seo title="Registrarse | El Mundo Matemático" noindex />
             <div className="recuadro-login">
             <h2>Revisa tu correo electrónico</h2>
             <p>Hemos enviado un enlace de verificación de cuenta a:</p>
@@ -128,6 +131,7 @@ export default function Register() {
     }    
     return (
         <div className="fondo-login">
+            <Seo title="Registrarse | El Mundo Matemático" noindex />
             <form className="recuadro-login" onSubmit={handleRegister} autoComplete="off">
                 <h1>Registrarse</h1>
                 <div className="grupo-input">

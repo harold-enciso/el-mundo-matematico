@@ -4,6 +4,8 @@ import { useContext,useState } from "react";
 import { UserContext } from "../context/UserContext";
 import { useToast } from "../context/useToast";
 import { ModalContext } from "../context/ModalContext";
+import Seo from "../components/Seo";
+
 
 import visible from "../assets/visible.svg";
 import invisible from "../assets/invisible.svg";
@@ -128,6 +130,7 @@ export default function Login() {
     
     return (
         <div className="fondo-login">
+            <Seo title="Iniciar Sesión | El Mundo Matemático" noindex />
             <form className="recuadro-login" onSubmit={handleLogin} autoComplete="off">
                 <h1>Iniciar Sesión</h1>
                 <div className="grupo-input">
