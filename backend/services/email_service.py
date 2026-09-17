@@ -2,8 +2,10 @@ import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.utils import formataddr
+import logging
 import os
 
+logger = logging.getLogger("email_logger")
 
 def send_verification_email_service(email_to: str, token: str):
     frontend_url = os.getenv("FRONTEND_URL")
@@ -17,15 +19,15 @@ def send_verification_email_service(email_to: str, token: str):
     email_from = os.getenv("EMAIL_FROM")
     sender_name = os.getenv("SENDER_NAME", "El Mundo Matemático")
     if not smtp_host:
-            raise ValueError("La variable de entorno SMTP_HOST no está configurada")
+        raise ValueError("La variable de entorno SMTP_HOST no está configurada")
     if not smtp_user:
-                raise ValueError("La variable de entorno SMTP_USER no está configurada")
+        raise ValueError("La variable de entorno SMTP_USER no está configurada")
     if not smtp_password:
-                    raise ValueError("La variable de entorno SMTP_PASSWORD no está configurada")
+        raise ValueError("La variable de entorno SMTP_PASSWORD no está configurada")
     if not email_from:
         raise ValueError("La variable de entorno EMAIL_FROM no está configurada")
     if not sender_name:
-            raise ValueError("La variable de entorno SENDER_NAME no está configurada")
+        raise ValueError("La variable de entorno SENDER_NAME no está configurada")
 
 
     msg = MIMEMultipart()
@@ -53,14 +55,17 @@ def send_verification_email_service(email_to: str, token: str):
     msg.attach(MIMEText(html_content,'html'))
 
     try:
-        with smtplib.SMTP(smtp_host,smtp_port) as server:
+        logger.info("Conectando al servidor SMTP: %s:%s", smtp_host, smtp_port)
+        with smtplib.SMTP(smtp_host,smtp_port,timeout=10) as server:
             server.starttls()
+            logger.info("Iniciando sesión en SMTP Brevo...")
             server.login(smtp_user,smtp_password)
+            logger.info("Enviando mensaje...")
             server.send_message(msg)
 
         return True
     except Exception as e:
-        print(f"Error enviando correo: {e}")
+        logger.exception("Error dentro de send_verification_email_service:")
         raise e
 
 
@@ -82,15 +87,15 @@ def send_reset_password_email_service(email_to: str, token: str):
     sender_name = os.getenv("SENDER_NAME", "El Mundo Matemático")
 
     if not smtp_host:
-            raise ValueError("La variable de entorno SMTP_HOST no está configurada")
+        raise ValueError("La variable de entorno SMTP_HOST no está configurada")
     if not smtp_user:
-                raise ValueError("La variable de entorno SMTP_USER no está configurada")
+        raise ValueError("La variable de entorno SMTP_USER no está configurada")
     if not smtp_password:
-                    raise ValueError("La variable de entorno SMTP_PASSWORD no está configurada")
+        raise ValueError("La variable de entorno SMTP_PASSWORD no está configurada")
     if not email_from:
         raise ValueError("La variable de entorno EMAIL_FROM no está configurada")
     if not sender_name:
-                raise ValueError("La variable de entorno SENDER_NAME no está configurada")
+        raise ValueError("La variable de entorno SENDER_NAME no está configurada")
     
 
     msg = MIMEMultipart()
@@ -118,14 +123,17 @@ def send_reset_password_email_service(email_to: str, token: str):
     msg.attach(MIMEText(html_content,'html'))
 
     try:
-        with smtplib.SMTP(smtp_host,smtp_port) as server:
+        logger.info("Conectando al servidor SMTP: %s:%s", smtp_host, smtp_port)
+        with smtplib.SMTP(smtp_host,smtp_port,timeout=10) as server:
             server.starttls()
+            logger.info("Iniciando sesión en SMTP Brevo...")
             server.login(smtp_user,smtp_password)
+            logger.info("Enviando mensaje...")
             server.send_message(msg)
 
         return True
     except Exception as e:
-        print(f"Error enviando correo: {e}")
+        logger.exception("Error dentro de send_reset_password_email_service:")
         raise e
 
 
