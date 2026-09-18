@@ -1,13 +1,10 @@
 import "./Juegos.css";
 import "../Home.css";
 import { Link } from "react-router-dom";
-import { useEffect,useState } from "react";
   
   
 export default function Juegos() {
   //Aquí van los estados
-  const apiUrl = import.meta.env.VITE_API_URL;
-  const juegosUrl = `${apiUrl}/juegos`;
   
 
   
@@ -16,7 +13,6 @@ export default function Juegos() {
   
   //Aquí va el código de la página principal
   return (
-    <>
       <div className="fondo">
         <h1>Bienvenido a la sección de JUEGOS</h1>
         <p>Selecciona un juego</p>
@@ -40,6 +36,5 @@ export default function Juegos() {
       </div>
 
     </div>
-    </>
   )
 }

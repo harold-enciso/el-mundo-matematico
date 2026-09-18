@@ -1,145 +1,111 @@
-.fondo-header-principal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    box-sizing: border-box;
-    z-index: 200;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-direction: row;
-    /*QUIERO SEPARAR HORIZONTALMENTE LOS ELEMENTOS*/
-    gap: 0;
-    background-color: #2e0455ff;
-    height: 50px;
-    padding: 0 10px;
+.header-principal {
+  /* STICKY ACTIVO */
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.9rem 2.5rem;
+  
+  /* CONTRASTE REAL: Fondo más claro que #12072b + Sombra de separación */
+  background-color: rgba(28, 12, 60, 0.90); 
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
 }
 
-.link {
-    display: flex;
-    /*LE ASIGNO UN PESO*/
-    align-items: center;
-    gap: 1em;
+.header-bloque {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
 }
 
-.bloque {
-    display: flex;
-    flex-direction: row;
-    width: 33.33%;
-    align-items: center;
-    gap: 1em;
-    padding: 0;
-    transition: width 0.3s;
+/* LOGO */
+.header-logo-link {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: #ffffff;
+  text-decoration: none;
 }
 
-.bloque.izquierdo {
-    width: 40%;
-    justify-content: flex-start;
+.header-logo-img {
+  width: 38px;
+  height: auto;
 }
 
-.bloque.central {
-    width: 40%;
-    justify-content: center;
-    font-size: 1em;/*1 em ES IGUAL A 16 PX Y ES LA FUENTE POR DEFECTO EN SPAN Y P*/
-    font-style: italic;
+.header-logo-texto {
+  font-size: 1.1rem;
+  letter-spacing: 0.5px;
+  font-weight: 500;
 }
 
-.bloque.derecho {
-    width: 20%;
-    justify-content: flex-end;
-    font-size: 1em;
-    font-weight: bold;
+.header-logo-texto strong {
+  color: #4ade80;
 }
 
-
-.texto-logo {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    
+/* NAVEGACIÓN CENTRAL */
+.header-centro {
+  gap: 2.2rem;
 }
 
-.texto-pagina-inicial {
-    color: white;
-    font-size: 1.2em;
-    font-weight: bold;
-    font-family: 'Comic Sans MS', cursive;
-    line-height: 1.1;
+.nav-link {
+  color: #cbd5e1;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: color 0.2s ease;
 }
 
-.salto-linea {
+.nav-link:hover {
+  color: #ffffff;
+}
+
+/* USUARIO Y BOTONES DERECHA */
+.user-saludo {
+  font-size: 0.95rem;
+  color: #cbd5e1;
+}
+
+.btn-link-secundario {
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.55rem 0.9rem;
+  transition: opacity 0.2s ease;
+}
+
+.btn-link-secundario:hover {
+  opacity: 0.8;
+}
+
+.btn-header-primario {
+  background-color: #22c55e;
+  color: #052e16;
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 0.6rem 1.3rem;
+  border-radius: 8px;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.btn-header-primario:hover {
+  background-color: #16a34a;
+  transform: translateY(-1px);
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .header-principal {
+    padding: 0.8rem 1rem;
+  }
+
+  .header-centro,
+  .user-saludo {
     display: none;
-}
-
-.boton-header {
-    /* QUIERO CENTRAR EL TEXTO VERTICALMENTE */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    /*NO QUIERO QUE SEAN BLOCK LOS BOTONES*/
-    border-radius: 5px;
-    cursor: pointer;
-    padding: 0 20px;
-    height: 36px;
-    line-height: 20px;
-    font-size: 1em;
-    color: white;
-    font-weight: bold;
-    font-style: normal;
-    background-color: #6d07ccff;
-    border: 1px solid white;
-}
-
-.texto-boton {
-    cursor: pointer;
-    text-decoration: underline;
-    color: white;
-}
-
-.icon{
-    fill: red;
-}
-
-
-
-@media (max-width: 1024px) {
-    .bloque.central {
-        display: none;
-    }
-
-    .bloque.izquierdo {
-        width: 80%;
-    }
-    .bloque.derecho {
-        width: 25%;
-    }
-
-
-    .salto-linea {
-        display: block
-    }
-}
-@media (max-width: 480px) {
-    .texto-logo {
-        display: none;
-    }
-}
-
-@media (max-width: 360px) {
-    .bloque.central,
-    .bloque.izquierdo {
-        display: none;
-    }
-
-    .bloque.derecho {
-        width: 100%;
-    }
-
-
-    .salto-linea {
-        display: block
-    }
-
-    
+  }
 }

@@ -1,0 +1,86 @@
+.pie-pagina {
+  background-color: #0f172a;
+  color: #94a3b8;
+  padding-top: 2.5rem;
+  padding-bottom: 1.5rem;
+  width: 100%;
+  border-top: 1px solid #1e293b;
+}
+
+.pie-contenedor {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.pie-columna {
+  flex: 1;
+  min-width: 200px;
+}
+
+.pie-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.pie-logo {
+  width: 28px;
+  height: auto;
+}
+
+.pie-titulo {
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: 0.5px;
+}
+
+.pie-descripcion {
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.pie-subtitulo {
+  color: #f8fafc;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.pie-lista {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.pie-lista li {
+  margin-bottom: 0.5rem;
+}
+
+.pie-enlace {
+  color: #94a3b8;
+  text-decoration: none;
+  font-size: 0.875rem;
+  transition: color 0.2s ease;
+}
+
+.pie-enlace:hover {
+  color: #2563eb;
+}
+
+.pie-derechos {
+  max-width: 1200px;
+  margin: 2rem auto 0 auto;
+  padding-top: 1.5rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  border-top: 1px solid #1e293b;
+  text-align: center;
+  font-size: 0.8rem;
+}
