@@ -6,10 +6,11 @@ export default function DominoFracciones(){
     const pdfFileName = 'Domino-fracciones.pdf';
     const pdfUrl = `${apiUrl}/pdf/${pdfFileName}`;
     useEffect(() => {
-            const handleMessage = (event) => {
-                if (event.data === 'PDF_READY') {
+            const handleMessage = (e) => {
+                if (e.data === 'PDF_READY') {
                     setCargando(false);
                 }
+                if (e.origin !== apiUrl) return;
             };
             window.addEventListener('message', handleMessage);
             return () => {
@@ -17,7 +18,6 @@ export default function DominoFracciones(){
             };
         }, []);
     return(
-        <>
         <div className="fondo-juegos">
             
             <div className="area-juego">
@@ -54,6 +54,5 @@ export default function DominoFracciones(){
                 <h1>Puntaje</h1>
             </div>
         </div>
-        </>
     )
 }

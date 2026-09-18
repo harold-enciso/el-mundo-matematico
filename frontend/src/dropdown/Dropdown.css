@@ -3,59 +3,63 @@
     display: inline-block;
 }
 
-.icon {
-    display: flex;
-    padding: 2px;
-    justify-content: flex-end;
-    border-radius: 25px;
-    background: none;     /* fondo normal */
-    border: none;         /* sin borde que cambie tamaño */
+.icon,
+.icon.menu {
+    background: transparent !important;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    color: #ffffff;
     cursor: pointer;
+    padding: 6px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 .icon.perfil {
     padding: 0;
 }
 
-.icon.menu {
-    border-radius: 10px;
-}
+
 
 .icon:hover {
-    background: none;     /* fondo normal */
-    border: none;         /* sin borde que cambie tamaño */
-    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    color: #4ade80;
 }
 
 .icon:active {
-    transform: scale(0.90);
+    transform: scale(0.92);
 }
 
-.icon:focus {
-    outline: 3px solid rgb(255, 255, 255);  /* borde/foco que quieres */
-    outline-offset: 0;              /* pegado al icono, sin espacio extra */
-    background: none;               /* nada de fondo extra */
-    box-shadow: none;               /* nada de sombra */
+.icon:focus,
+.icon:focus-visible,
+.icon:active {
+    outline: none !important;
+    box-shadow: none !important;
+    border: none !important;
 }
 
 .dropdown-menu {
     position: absolute;
-    background-color: white;
-    border: 1px solid black;
-    border-radius: 6px;
-    min-width: 160px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    background-color: rgba(32, 15, 76, 0.95);  /* Fondo oscuro alineado a la app */
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 10px;
+    min-width: 210px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     display: flex;
     flex-direction: column;
     z-index: 999999;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    animation: fadeIn 0.25s ease-out;
+    padding: 8px 0;
+    animation: fadeIn 0.2s ease-out;
 }
 
 .dropdown-menu.left {
     left: 0;
-    top:140%;
+    top:130%;
 }
 
 .dropdown-menu.right {
@@ -64,22 +68,25 @@
 }
 
 .dropdown-menu a {
-    padding: 10px 16px;
+    padding: 10px 18px;
     display: block;
-    color: #333;
-    border-radius: 6px;
-    transition: background-color 0.3s, padding-left 0.3s;
+    color: #cbd5e1;
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background-color 0.2s, color 0.2s, padding-left 0.2s;
 }
+
 .dropdown-menu a:hover {
-    background: #f3f4f6c5;
-    padding-left: 20px;
-    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.08);
+    color: #4ade80;                            
+    padding-left: 22px;
 }
 
 
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-5px); }
+  from { opacity: 0; transform: translateY(-6px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
@@ -88,8 +95,4 @@
         display: none;
     }
     
-}
-
-@media (max-width: 360px) {
-
 }

@@ -1,5 +1,4 @@
 import "./Dropdown.css";
-import { Link } from "react-router-dom";
 import { useState, useEffect, useRef, useContext } from "react";
 import { UserContext } from "../context/UserContext";
 import { useNavigate } from "react-router-dom";

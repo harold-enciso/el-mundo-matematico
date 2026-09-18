@@ -1,14 +1,14 @@
 .fondo-juegos {
-  /*QUIERO CENTRARLO*/
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: calc(100vh - 50px);/*ESTO ERA LA SOLUCION*/
-  margin-top: 50px;
-  gap: 4em;
-  width: 100vw;
-  background-color: #6206b8ff;
+  text-align: center;
+  gap: 1.5rem; /* Separación limpia sin usar margins externos */
+  width: 100%;
+  flex: 1; /* Ocupa todo el espacio vertical disponible que deja el main-content */
+  padding: 2rem 1rem; /* Da respiración arriba y abajo si la pantalla es muy pequeña */
+  box-sizing: border-box;
 }
 
 .area-juego {
@@ -17,22 +17,25 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  height: 50em;
+  min-height: 500px; /* Usa min-height en px o rem en lugar de em */
   width: 70%;
+  max-width: 100%; /* No deja que sobrepase la pantalla */
   border-radius: 20px;
-  background-color: #ffffffff;
-  color: #000000ff;
+  background-color: #ffffff;
+  color: #000000;
   border: 2px solid black;
+  box-sizing: border-box;
 }
-.area-pdf{
-  position: relative;/*Necesario para superponer un loading*/
+
+.area-pdf {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
   width: 100%;
-  height: 40em;
+  min-height: 400px;
 }
 .area-puntaje {
   display: flex;
@@ -40,25 +43,28 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  height: 50em;
-  width: 20%;
+  min-height: 500px;
+  width: 25%;
+  max-width: 100%;
   border-radius: 20px;
-  background-color: #ffffffff;
-  color: #000000ff;
+  background-color: #ffffff;
+  color: #000000;
   border: 2px solid black;
+  box-sizing: border-box;
 }
-.fondo-carga{
+.fondo-carga {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #242428ff; 
+  background-color: #242428; 
   display: flex; 
   justify-content: center;
   align-items: center;
   z-index: 10;
   color: white;
+  border-radius: 18px; /* Hace juego con los bordes del contenedor */
 }
 .fondo-carga p {
     margin-left: 15px;
@@ -78,9 +84,15 @@
 }
 
 
-@media (max-width: 1600px) {
-  .fondo-juegos{
-    flex-direction: column;
-    padding: 1em 0;
+@media (max-width: 1024px) {
+  .fondo-juegos {
+    flex-direction: column; /* Apila los elementos verticalmente en laptops o tablets */
+    align-items: center;
+    padding: 1.5rem 1rem; /* Mantiene la protección lateral de 1rem */
+  }
+
+  .area-juego,
+  .area-puntaje {
+    width: 100%; /* Pasan a ocupar el ancho completo del contenedor seguro */
   }
 }

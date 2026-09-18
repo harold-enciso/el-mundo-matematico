@@ -1,73 +1,62 @@
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+  /* Fondo principal profundo (no cansa la vista) */
+  --bg-primary: #12072b;
+  
+  /* Elevaciones y Tarjetas (Contraste claro) */
+  --bg-card: #200f4c;
+  --bg-card-hover: #2a1563;
+  --border-card: #3b1d7d;
+  
+  /* Botones de Acción (Máxima conversión) */
+  --btn-primary: #22c55e;
+  --btn-primary-hover: #16a34a;
+  
+  /* Textos */
+  --text-main: #ffffff;
+  --text-muted: #cbd5e1;
+  --text-accent: #4ade80;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: system-ui, -apple-system, sans-serif;
 }
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
+* {
+  box-sizing: border-box;
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
+  padding: 0;
+}
+
+
+
+/* Lienzo principal de la aplicación */
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-primary);
+  color: var(--text-main);
+}
+
+#root,
+#root > div,
+.App {
+  width: 100%;
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+/* El elemento contenedor de tus rutas/páginas absorberá todo el alto libre */
+main,
+.main-content,
+.page-container {
+  flex: 1;
 }
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
+footer, 
+.footer, 
+.footer-principal {
+  margin-top: auto;
 }
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+/* Resets limpios para elementos interactivos */
+a {
+  color: inherit;
+  text-decoration: none;
 }

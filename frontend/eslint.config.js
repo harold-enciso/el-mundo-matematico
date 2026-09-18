@@ -22,7 +22,8 @@ export default [
     rules: {
       ...pluginReact.configs.flat.recommended.rules,
       ...pluginReact.configs.flat["jsx-runtime"].rules,
-      "react/jsx-uses-vars": "error", // Le enseña a ESLint que <Link /> marca 'Link' como usada
+      "react/jsx-uses-vars": "error",
+      "react/prop-types": "off",
     },
   },
 ];
