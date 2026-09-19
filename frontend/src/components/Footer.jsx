@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import logo from "../assets/elmundomatematico.png";
+import logo from "../assets/elmundomatematico.webp";
 import "./Footer.css";
 
 export default function Footer() {

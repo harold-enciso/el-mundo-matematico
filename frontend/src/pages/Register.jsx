@@ -72,7 +72,7 @@ export default function Register() {
                 "Content-type": "application/json"
             },
             body: JSON.stringify({
-                email: correo,
+                email: correo.trim().toLowerCase(),
                 password: contrasena,
                 captcha_token: captchaToken
             })
@@ -140,6 +140,7 @@ export default function Register() {
                 id="email"
                 type="text"
                 placeholder=""
+                
                 value={correo}
                 onChange={(e) => setCorreo(e.target.value)}
                 onBlur={() => setCorreoTocado(true)}

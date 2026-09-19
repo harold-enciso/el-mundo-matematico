@@ -1,5 +1,5 @@
 import "./LoadingScreen.css";
-import logo from "../assets/elmundomatematico.png";
+import logo from "../assets/elmundomatematico.webp";
 
 export default function LoadingScreen() {
   return (

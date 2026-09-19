@@ -1,8 +1,18 @@
+.toast-container {
+  position: fixed;
+  top: 1.2rem;
+  right: 1.2rem;
+  z-index: 9999;
+  background: transparent !important;
+  pointer-events: none; /* No bloquea los toques en la pantalla */
+}
+
 .toast {
     position: fixed;
     top: 60px;
     right: 20px;
     width: 260px;
+    pointer-events: auto;
 
     background: white;
     border-radius: 10px;
@@ -105,4 +115,24 @@
     to {
         opacity: 0;
     }
+}
+
+
+
+/* MÓVILES: Delimitado entre márgenes exactos */
+@media (max-width: 768px) {
+  .toast-container {
+    top: 1rem;
+    left: 1rem;
+    right: 1rem;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .toast {
+    right: auto;
+    width: 100%;
+    max-width: 320px;
+  }
 }

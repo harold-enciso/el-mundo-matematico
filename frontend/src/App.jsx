@@ -45,6 +45,7 @@ import Configuracion from "./pages/admin/dashboard/sections/Configuracion";
 import { useContext } from "react";
 import { UserContext } from "./context/UserContext";
 import LoadingScreen from "./pages/LoadingScreen";
+import ScrollToTop from "./components/ScrollToTop";
 
 
 
@@ -59,6 +60,7 @@ export default function App() {
 
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <div className="app-layout">
         <HeaderPrincipal/>
         <main className="main-content">
