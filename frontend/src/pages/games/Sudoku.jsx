@@ -1,25 +1,41 @@
 import "./Juegos.css";
-
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 export default function Sudoku(){
     const [cargando,setCargando] = useState(true);
     const apiUrl = import.meta.env.VITE_API_URL;
-    //Cuando se necesite la url completa se usara: const fullUrl = `${apiUrl}/juegos/sudoku`;
+    const [pdfViewerUrl, setPdfViewerUrl] = useState("");
+    const fetchIniciado = useRef(false);
     const pdfFileName = 'Sudoku.pdf';
     const pdfUrl = `${apiUrl}/pdf/${pdfFileName}`;
 
     useEffect(() => {
-        const handleMessage = (e) => {
-            if (e.data === 'PDF_READY') {
+        if (fetchIniciado.current) return;
+        fetchIniciado.current = true;
+        let objectUrl = null;
+
+        // 1. Descargamos el PDF mediante una petición estándar para evitar el bloqueo del servidor
+        fetch(pdfUrl)
+            .then(response => response.blob())
+            .then(blob => {
+                // 2. Creamos un archivo temporal local en la memoria del navegador (blob:http...)
+                objectUrl = URL.createObjectURL(blob);
+                
+                // 3. Pasamos esta ruta temporal al visor nativo. 
+                // Al no tener "https://" en el parámetro, el servidor de producción no lo bloqueará.
+                setPdfViewerUrl(`/pdfjs/web/viewer.html?file=${encodeURIComponent(objectUrl)}`);
                 setCargando(false);
-            }
-            if (e.origin !== apiUrl) return;
-        };
-        window.addEventListener('message', handleMessage);
+            })
+            .catch(error => {
+                console.error("Error obteniendo el PDF:", error);
+                setCargando(false);
+            });
+
         return () => {
-            window.removeEventListener('message', handleMessage);
+            if (objectUrl) {
+                URL.revokeObjectURL(objectUrl);
+            }
         };
-    }, []);
+    }, [pdfUrl]);
 
     return(
         <div className="fondo-juegos">
@@ -34,15 +50,18 @@ export default function Sudoku(){
                             <p>Cargando PDF...</p>
                         </div>
                     )}
-                    <iframe
-                        src={`${window.location.origin}/pdfjs/web/viewer.html?file=${encodeURIComponent(pdfUrl)}`}
-                        width="100%"
-                        height="900px" 
-                        title="PDF"
-                    />
+                    {pdfViewerUrl && (
+                        <iframe
+                            src={pdfViewerUrl}
+                            width="100%"
+                            height="100%" 
+                            title="PDF"
+                            style={{ border: "none" }}
+                        />
+                    )}
                 </div>
                 <a 
-                    href={`/pdfjs/web/viewer.html?file=${encodeURIComponent(pdfUrl)}`} 
+                    href={pdfViewerUrl} 
                     target="_blank" 
                     rel="noopener noreferrer"
                 >
