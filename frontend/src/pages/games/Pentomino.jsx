@@ -32,7 +32,7 @@ export default function Pentomino(){
                         </div>
                     )}
                     <iframe
-                        src={`/pdfjs/web/viewer.html?file=${encodeURIComponent(pdfUrl)}`}
+                        src={`${window.location.origin}/pdfjs/web/viewer.html?file=${encodeURIComponent(pdfUrl)}`}
                         width="100%"
                         height="900px" 
                         title="PDF"
