@@ -58,7 +58,7 @@ export default function DominoFracciones(){
                     )}
                 </div>
                 <a 
-                    href={pdfViewerUrl} 
+                    href={pdfUrl} 
                     target="_blank" 
                     rel="noopener noreferrer"
                 >
