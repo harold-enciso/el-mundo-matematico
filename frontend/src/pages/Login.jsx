@@ -53,7 +53,7 @@ export default function Login() {
                 "Content-type": "application/json"
             },
             body: JSON.stringify({
-                email: correo,
+                email: correo.trim().toLowerCase(),
                 password: contrasena
             })
         })
@@ -139,6 +139,8 @@ export default function Login() {
                     id="email"
                     type="text"
                     placeholder=""
+                    autoCapitalize="none"
+                    autoCorrect="off"
                     value={correo}
                     onChange={(e) => setCorreo(e.target.value)}
                     onBlur={() => setCorreoTocado(true)}

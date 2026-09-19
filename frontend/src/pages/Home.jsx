@@ -84,6 +84,7 @@ export default function Home() {
         {/* BARRERA FREEMIUM */}
         <section className="seccion-freemium">
           <h2>Todo el conocimiento es libre. El registro potencia tu aprendizaje.</h2>
+          <br/>
           <div className="tabla-comparativa">
             <div className="columna-comparativa">
               <h3>🌐 SIN REGISTRO (Visitante)</h3>
@@ -113,6 +114,7 @@ export default function Home() {
         {/* CARACTERÍSTICAS */}
         <section className="seccion-caracteristicas">
           <h2>¿Por qué aprender con El Mundo Matemático?</h2>
+          <br/>
           <div className="grid-caracteristicas">
             <div className="card-caracteristica">
               <h3>📘 TEORÍA PASO A PASO</h3>
@@ -131,6 +133,7 @@ export default function Home() {
         {/* PREGUNTAS FRECUENTES (RICH SNIPPETS READY) */}
         <section className="seccion-faq">
           <h2>Preguntas Frecuentes</h2>
+          <br/>
           <div className="faq-lista">
             <details className="faq-item">
               <summary>¿El contenido de El Mundo Matemático es completamente gratuito?</summary>

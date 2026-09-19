@@ -5,6 +5,7 @@
   z-index: 1000;
   
   width: 100%;
+  box-sizing: border-box;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -98,14 +99,31 @@
   transform: translateY(-1px);
 }
 
-/* RESPONSIVE */
+/* RESPONSIVE MÓVIL */
 @media (max-width: 768px) {
   .header-principal {
-    padding: 0.8rem 1rem;
+    padding: 0.8rem 0.75rem; /* Padding lateral más ajustado */
+  }
+
+  .header-bloque {
+    gap: 0.5rem; /* Reduce los espacios entre íconos y textos */
   }
 
   .header-centro,
   .user-saludo {
     display: none;
   }
+
+  /* Compactamos los botones para ganar espacio */
+  .btn-link-secundario {
+    padding: 0.4rem 0.3rem;
+    font-size: 0.85rem;
+  }
+
+  .btn-header-primario {
+    padding: 0.45rem 0.75rem;
+    font-size: 0.85rem;
+  }
 }
+
+
