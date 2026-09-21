@@ -1,5 +1,5 @@
 import "./Home.css";
-import Seo from "../components/Seo";
+import Seo from "../components/common/Seo";
 import { Link } from "react-router-dom";
 import { Rocket } from "lucide-react";
 //PAGINA INICIAL

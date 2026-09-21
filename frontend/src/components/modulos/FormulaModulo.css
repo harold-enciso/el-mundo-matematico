@@ -1,0 +1,33 @@
+.modulo-formula {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 18px;
+  text-align: center;
+  margin-bottom: 1.25rem;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.formula-expresion {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #4ade80;
+  margin-bottom: 6px;
+  
+  /* Permite scroll horizontal si la fórmula sobrepasa el ancho del cuadro */
+  overflow-x: auto;
+  overflow-y: hidden;
+  max-width: 100%;
+  padding: 8px 0;
+}
+
+/* Barra de scroll delgada y discreta en modo oscuro */
+.formula-expresion::-webkit-scrollbar {
+  height: 4px;
+}
+
+.formula-expresion::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+}

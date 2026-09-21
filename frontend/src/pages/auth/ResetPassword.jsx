@@ -1,10 +1,10 @@
 import "./Login.css";
 import {useNavigate, useSearchParams} from "react-router-dom";
 import { useState, useContext } from "react";
-import { useToast } from "../context/useToast";
-import { ModalContext } from "../context/ModalContext";
-import visible from "../assets/visible.svg";
-import invisible from "../assets/invisible.svg";
+import { useToast } from "../../context/useToast";
+import { ModalContext } from "../../context/ModalContext";
+import visible from "../../assets/visible.svg";
+import invisible from "../../assets/invisible.svg";
 
 export default function ResetPassword() {
     //Capturamos valor de token

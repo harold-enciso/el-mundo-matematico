@@ -1,15 +1,15 @@
 import { Navigate, BrowserRouter, Route, Routes } from "react-router-dom";
 
-import HeaderPrincipal from "./components/HeaderPrincipal";
-import Footer from "./components/Footer";
+import HeaderPrincipal from "./components/layout/HeaderPrincipal";
+import Footer from "./components/layout/Footer";
 
 import Home from "./pages/Home";
-import Register from "./pages/Register";
-import Login from "./pages/Login";
-import ForgotPassword from "./pages/ForgotPassword";
-import ResetPassword from "./pages/ResetPassword";
-import VerifyEmail from "./pages/VerifyEmail";
-import PoliticaPrivacidad from "./pages/PoliticaPrivacidad";
+import Register from "./pages/auth/Register";
+import Login from "./pages/auth/Login";
+import ForgotPassword from "./pages/auth/ForgotPassword";
+import ResetPassword from "./pages/auth/ResetPassword";
+import VerifyEmail from "./pages/auth/VerifyEmail";
+import PoliticaPrivacidad from "./pages/auth/PoliticaPrivacidad";
 
 import Dashboard  from "./pages/user/dashboard/Dashboard";
 import Progreso from "./pages/user/dashboard/sections/Progreso";
@@ -44,11 +44,12 @@ import Analitica from "./pages/admin/dashboard/sections/Analitica";
 import Configuracion from "./pages/admin/dashboard/sections/Configuracion";
 import { useContext } from "react";
 import { UserContext } from "./context/UserContext";
-import LoadingScreen from "./pages/LoadingScreen";
-import ScrollToTop from "./components/ScrollToTop";
+import LoadingScreen from "./components/common/LoadingScreen";
+import ScrollToTop from "./components/common/ScrollToTop";
 
-
-
+import CatalogoCursos from "./pages/cursos/CatalogoCursos";
+import CursoTemas from "./pages/cursos/CursoTemas";
+import TemaContenido from "./pages/cursos/TemaContenido";
 
 export default function App() {
 
@@ -72,6 +73,14 @@ export default function App() {
             <Route path="/reset-password" element={<ResetPassword />} />
             <Route path="/verify-email" element={<VerifyEmail />} />
             <Route path="/privacy-policy" element={<PoliticaPrivacidad />} />
+            {/* Nivel 1: Lista todos los cursos */}
+            <Route path="/cursos" element={<CatalogoCursos />} />
+
+            {/* Nivel 2: Lista los temas de un curso (ej: /cursos/alg) */}
+            <Route path="/cursos/:cursoId" element={<CursoTemas />} />
+
+            {/* Nivel 3: Muestra la lección con los módulos dinámicos */}
+            <Route path="/cursos/:cursoId/:temaSlug" element={<TemaContenido />} />
             <Route path="/dashboard" element={<Dashboard />}>
               <Route index element={<Navigate to="/dashboard/progreso" />} />
               <Route path="progreso" element={<Progreso />} />

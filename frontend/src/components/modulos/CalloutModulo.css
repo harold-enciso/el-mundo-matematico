@@ -1,0 +1,30 @@
+.modulo-callout {
+  padding: 14px 18px;
+  border-radius: 8px;
+  border-left: 5px solid #3b82f6;
+  background: rgba(59, 130, 246, 0.1);
+  margin-bottom: 1.25rem;
+}
+
+.modulo-callout.consejo {
+  border-left-color: #4ade80;
+  background: rgba(74, 222, 128, 0.1);
+}
+
+.modulo-callout.advertencia {
+  border-left-color: #f59e0b;
+  background: rgba(245, 158, 11, 0.1);
+}
+
+.callout-titulo {
+  margin: 0 0 6px 0;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.callout-texto {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #cbd5e1;
+}

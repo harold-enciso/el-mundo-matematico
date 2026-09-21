@@ -1,8 +1,7 @@
 import "./Dashboard.css";
-import { Outlet } from "react-router-dom";
-import SidebarUser from "../../../components/SidebarUser";
-import { useState, useEffect, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
+import SidebarUser from "../../../components/layout/SidebarUser";
+import { useEffect, useContext } from "react";
 import { UserContext } from "../../../context/UserContext";
 
 
@@ -21,13 +20,11 @@ export default function Dashboard(){
     if (cargando || !user) return null;
     
     return(
-        <>
         <div>
             <SidebarUser/>
             <div className="fondo-dashboard">
                 <Outlet/>
             </div>    
         </div>
-        </>
     )
 }

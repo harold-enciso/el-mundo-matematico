@@ -1,0 +1,60 @@
+.tema-pagina-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 30px 20px;
+}
+
+.tema-header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 16px;
+  margin-bottom: 24px;
+  
+}
+
+.tema-titulo {
+  font-size: 2rem;
+  color: #ffffff;
+  margin: 0 0 8px 0;
+}
+
+.tema-descripcion {
+  font-size: 1rem;
+  color: #94a3b8;
+  margin: 0;
+}
+
+.tema-bloques-lista {
+  display: flex;
+  flex-direction: column;
+}
+
+.tema-no-encontrado {
+  color: #f87171;
+  text-align: center;
+  padding: 40px;
+}
+
+.breadcrumb-leccion {
+  margin-bottom: 20px;
+}
+
+.btn-volver-curso {
+  display: inline-flex;
+  align-items: center;
+  color: #a855f7;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.btn-volver-curso:hover {
+  color: #c084fc;
+  text-decoration: underline;
+}
+
+@media (max-width: 480px) {
+.tema-header{
+    text-align: center;
+}
+}

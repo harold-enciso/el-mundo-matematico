@@ -1,13 +1,13 @@
 import "./Login.css";
 import {Link} from "react-router-dom";
 import { useState, useContext } from "react";
-import { useToast } from "../context/useToast";
-import { ModalContext } from "../context/ModalContext";
+import { useToast } from "../../context/useToast";
+import { ModalContext } from "../../context/ModalContext";
 import { Turnstile } from '@marsidev/react-turnstile';
-import Seo from "../components/Seo";
+import Seo from "../../components/common/Seo";
 
-import visible from "../assets/visible.svg";
-import invisible from "../assets/invisible.svg";
+import visible from "../../assets/visible.svg";
+import invisible from "../../assets/invisible.svg";
 
 export default function Register() {
     const {showLoading,hideLoading} = useContext(ModalContext);

@@ -2,9 +2,8 @@ import "../DashboardAdmin.css";
 import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../../../context/UserContext";
-import construccion from "../../../../assets/construccion.svg"
 import { useToast } from "../../../../context/useToast";
-import DragAndDropUpload from "../../../../components/DragAndDropUpload";
+import DragAndDropUpload from "../../../../components/common/DragAndDropUpload";
 import { ModalContext } from "../../../../context/ModalContext";
 
 

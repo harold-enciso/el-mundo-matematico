@@ -1,8 +1,8 @@
 import "./Login.css";
 import { useContext,useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useToast } from "../context/useToast";
-import { ModalContext } from "../context/ModalContext";
+import { useToast } from "../../context/useToast";
+import { ModalContext } from "../../context/ModalContext";
 import { Turnstile } from '@marsidev/react-turnstile';
 
 

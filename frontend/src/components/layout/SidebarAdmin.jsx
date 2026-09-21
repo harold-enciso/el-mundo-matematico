@@ -1,23 +1,22 @@
 import "./Sidebar.css";
 import SidebarItem from "./SidebarItem.jsx";
-import usuarios from "../assets/usuarios.svg";
-import notificaciones from "../assets/notificaciones.svg";
-import cursos from "../assets/cursos.svg";
-import ejercicios from "../assets/ejercicios.svg";
-import documentos from "../assets/documentos.svg";
-import presentaciones from "../assets/presentaciones.svg";
-import videos from "../assets/videos.svg";
-import puntos from "../assets/puntos.svg";
-import juegos from "../assets/juegos.svg";
-import rankings from "../assets/rankings.svg";
-import suscripciones from "../assets/suscripciones.svg";
-import analitica from "../assets/analitica.svg";
-import configuracion from "../assets/configuracion.svg";
+import usuarios from "../../assets/usuarios.svg";
+import notificaciones from "../../assets/notificaciones.svg";
+import cursos from "../../assets/cursos.svg";
+import ejercicios from "../../assets/ejercicios.svg";
+import documentos from "../../assets/documentos.svg";
+import presentaciones from "../../assets/presentaciones.svg";
+import videos from "../../assets/videos.svg";
+import puntos from "../../assets/puntos.svg";
+import juegos from "../../assets/juegos.svg";
+import rankings from "../../assets/rankings.svg";
+import suscripciones from "../../assets/suscripciones.svg";
+import analitica from "../../assets/analitica.svg";
+import configuracion from "../../assets/configuracion.svg";
 
 export default function SidebarAdmin(){
 
     return(
-        <>
         <div className="fondo-sidebar-admin">
             <div className="sidebar-titulo">
                 GESTIÓN
@@ -43,6 +42,5 @@ export default function SidebarAdmin(){
             <SidebarItem to={"/admin/dashboard/configuracion"} source ={configuracion} text={"Configuración"}></SidebarItem>
 
         </div>
-        </>
     )
 }
