@@ -55,3 +55,40 @@ CREATE TABLE notifications (
 GRANT SELECT, INSERT, UPDATE, DELETE ON TABLE tabla TO usuario;
 
 GRANT USAGE, SELECT, UPDATE ON SEQUENCE tabla_id_seq TO usuario;
+
+
+
+
+
+-- 1. Tabla Cursos (Con soporte para URL de SVG/Imagen)
+CREATE TABLE cursos (
+    id VARCHAR(50) PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    icono_url TEXT,
+    descripcion TEXT,
+    orden INT DEFAULT 0,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+
+-- 2. Tabla Temas
+CREATE TABLE temas (
+    id VARCHAR(50) PRIMARY KEY,
+    curso_id VARCHAR(50) NOT NULL REFERENCES cursos(id) ON DELETE CASCADE,
+    slug VARCHAR(120) NOT NULL,
+    titulo VARCHAR(150) NOT NULL,
+    descripcion TEXT,
+    duracion_estimada VARCHAR(20),
+    orden INT DEFAULT 0,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT unique_slug_per_course UNIQUE (curso_id, slug)
+);
+
+-- 3. Tabla Bloques
+CREATE TABLE bloques (
+    id VARCHAR(50) PRIMARY KEY,
+    tema_id VARCHAR(50) NOT NULL REFERENCES temas(id) ON DELETE CASCADE,
+    tipo VARCHAR(50) NOT NULL,
+    orden INT NOT NULL,
+    contenido JSONB NOT NULL,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);

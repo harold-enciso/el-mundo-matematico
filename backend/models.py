@@ -1,4 +1,4 @@
-from sqlalchemy import Column,BigInteger, Integer, String, Boolean, DateTime,Date,ForeignKey
+from sqlalchemy import Column,BigInteger, Integer, String, Boolean, DateTime,Date,ForeignKey, Text, JSON
 from sqlalchemy.sql import func
 from database import Base
 
@@ -44,3 +44,34 @@ class Notifications(Base):
     read_at = Column(DateTime,nullable=True)
     is_archived = Column(Boolean,default=False)
     created_at = Column(DateTime,server_default=func.now())
+
+
+
+class Curso(Base):
+    __tablename__ = "cursos"
+
+    id = Column(String(50), primary_key=True)
+    nombre = Column(String(100), nullable=False)
+    icono_url = Column(Text, nullable=True)
+    descripcion = Column(Text, nullable=True)
+    orden = Column(Integer, default=0)
+
+class Tema(Base):
+    __tablename__ = "temas"
+
+    id = Column(String(50), primary_key=True)
+    curso_id = Column(String(50), ForeignKey("cursos.id", ondelete="CASCADE"), nullable=False)
+    slug = Column(String(120), nullable=False)
+    titulo = Column(String(150), nullable=False)
+    descripcion = Column(Text, nullable=True)
+    duracion_estimada = Column(String(20), nullable=True)
+    orden = Column(Integer, default=0)
+
+class Bloque(Base):
+    __tablename__ = "bloques"
+
+    id = Column(String(50), primary_key=True)
+    tema_id = Column(String(50), ForeignKey("temas.id", ondelete="CASCADE"), nullable=False)
+    tipo = Column(String(50), nullable=False)
+    orden = Column(Integer, nullable=False)
+    contenido = Column(JSON, nullable=False)

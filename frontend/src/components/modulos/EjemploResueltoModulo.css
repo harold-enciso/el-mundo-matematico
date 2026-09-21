@@ -1,0 +1,60 @@
+.modulo-ejemplo {
+  background: rgba(23, 11, 48, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 1.25rem;
+}
+
+.ejemplo-tag {
+  display: inline-block;
+  background: #a855f7;
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.ejemplo-enunciado {
+  color: #f8fafc;
+  font-weight: 600;
+  margin: 0 0 12px 0;
+  text-align: justify;
+}
+
+.ejemplo-toggle-btn {
+  background: transparent;
+  border: 1px solid #4ade80;
+  color: #4ade80;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.ejemplo-toggle-btn:hover {
+  background: rgba(74, 222, 128, 0.15);
+}
+
+.ejemplo-pasos {
+  margin: 14px 0 0 20px;
+  padding: 0;
+  color: #cbd5e1;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.ejemplo-respuesta-final {
+  margin-top: 12px;
+  padding: 10px 14px;
+  background: rgba(74, 222, 128, 0.1);
+  border: 1px solid rgba(74, 222, 128, 0.3);
+  border-radius: 6px;
+  color: #4ade80;
+  font-size: 0.9rem;
+}

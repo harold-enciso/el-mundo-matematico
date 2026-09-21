@@ -1,12 +1,11 @@
 import { Link } from "react-router-dom";
-import logo from "../assets/elmundomatematico.webp";
+import logo from "../../assets/elmundomatematico.webp";
 import "./Header.css";
 import DropdownMenu from "../dropdown/DropdownMenu";
 import DropdownPerfil from "../dropdown/DropdownPerfil";
-import DropdownNotificaciones from "../dropdown/DropdownNotificaciones";
 
 import { useContext } from "react";
-import { UserContext } from "../context/UserContext";
+import { UserContext } from "../../context/UserContext";
 
 export default function HeaderPrincipal() {
     //Cargamos el usuario validado en UserContext
@@ -35,7 +34,6 @@ export default function HeaderPrincipal() {
                         <span className="user-saludo">
                         Hola, {user.username || user.email.split("@")[0]}
                         </span>
-                        <DropdownNotificaciones />
                         <DropdownPerfil />
                     </>
                     ) : (

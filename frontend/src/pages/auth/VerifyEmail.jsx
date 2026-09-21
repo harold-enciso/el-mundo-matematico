@@ -1,7 +1,7 @@
 import "./Login.css";
 import {useSearchParams, Link} from "react-router-dom";
 import { useEffect, useState} from "react";
-import { useToast } from "../context/useToast";
+import { useToast } from "../../context/useToast";
 
 export default function VerifyEmail() {
     //Capturamos valor de token

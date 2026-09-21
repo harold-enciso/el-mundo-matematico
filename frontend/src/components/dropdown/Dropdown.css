@@ -1,0 +1,271 @@
+.dropdown-button {
+    position: relative;
+    display: inline-block;
+}
+
+.text-dropdown {
+    background: transparent !important;
+    border: none !important;
+    outline: none !important;
+    cursor: pointer;
+    padding: 8px 12px;
+    border-radius: 8px;
+    color: #cbd5e1;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: background-color 0.2s ease, color 0.2s ease, transform 0.15s ease;
+    
+}
+
+.text-dropdown:hover {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    color: #4ade80;
+}
+
+.text-dropdown:active {
+    transform: scale(0.95);
+}
+
+
+.icon-dropdown {
+    background: transparent !important;
+    border: none !important;
+    outline: none !important;
+    color: #ffffff;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 8px;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease, color 0.2s ease, transform 0.15s ease;
+
+    display: none;
+}
+
+
+
+
+.icon-dropdown:hover {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    color: #4ade80;
+}
+
+.icon-dropdown:active {
+    transform: scale(0.95);
+}
+
+/* --- FIX 1: Hover totalmente circular para el botón de perfil --- */
+.icon-dropdown.perfil {
+    display: flex !important;
+    padding: 2px;                  /* Espacio para que el halo circular sobresalga suavemente */
+    border-radius: 50% !important; /* Convierte el fondo del hover en un círculo perfecto */
+    transition: background-color 0.2s ease, transform 0.15s ease;
+}
+
+.icon-dropdown.perfil img {
+    border-radius: 50%;
+    display: block;
+}
+
+
+/* Alineación a la derecha para menús desplegables en el extremo derecho del navbar */
+.dropdown-menu.right {
+    left: auto;
+    right: 0;
+}
+
+.linea {
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin: 6px 0;
+}
+
+
+/* Menú desplegable para Cursos y Temas */
+.dropdown-menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0;
+  width: 300px;
+  max-height: 80vh; /* Controla la altura máxima en celulares y pantallas chicas */
+  overflow-y: auto;  /* Habilita scroll propio si se despliegan varios cursos */
+  
+  background-color: rgba(23, 11, 48, 0.98);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 14px;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6);
+  padding: 12px;
+  z-index: 99999;
+
+  /* Animación suave a 250ms */
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+/* Transiciones de entrada y salida */
+.dropdown-menu.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.dropdown-menu.closing {
+  opacity: 0;
+  transform: translateY(-8px);
+}
+
+/* Encabezado del menú */
+.cursos-header {
+  padding: 4px 8px 12px 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #4ade80;
+  letter-spacing: 0.8px;
+}
+
+.cursos-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+/* Botón interactivo de cada curso */
+.curso-btn {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 12px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid transparent;
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.curso-btn:hover,
+.curso-btn.activo {
+  background: rgba(255, 255, 255, 0.1);
+  color: #4ade80;
+}
+
+/* Sublista de Temas con guía visual vertical */
+.temas-sublista {
+  display: flex;
+  flex-direction: column;
+  padding-left: 12px;
+  margin-top: 4px;
+  gap: 2px;
+  border-left: 2px solid rgba(74, 222, 128, 0.3);
+}
+
+.tema-link {
+  padding: 8px 12px;
+  color: #cbd5e1;
+  font-size: 0.88rem;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.tema-link:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+  padding-left: 16px;
+}
+
+
+/* Header con nombre del usuario */
+.perfil-header {
+    padding: 6px 12px 10px 12px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #94a3b8;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 6px;
+}
+
+.perfil-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+/* Enlaces y botones directos dentro del perfil */
+.perfil-link,
+.perfil-btn {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 10px 12px;
+    color: #cbd5e1;
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-decoration: none;
+    background: transparent;
+    border: none;
+    border-radius: 8px; /* Redondeado idéntico al menú de cursos */
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    box-sizing: border-box;
+}
+
+.perfil-link:hover,
+.perfil-btn:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: #4ade80;
+}
+
+/* Opción de Cerrar Sesión */
+.perfil-btn.rojo {
+    color: #f87171;
+}
+
+.perfil-btn.rojo:hover {
+    background: rgba(239, 68, 68, 0.15);
+    color: #f87171;
+}
+.ver-todos-btn {
+  display: block;
+  text-align: center;
+  padding: 10px 14px;
+  margin: 8px 12px;
+  background-color: #2563eb; /* O el color primario de tu paleta */
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 0.9rem;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.ver-todos-btn:hover {
+  background-color: #1d4ed8;
+  color: #ffffff;
+}
+/* Adaptación para pantallas */
+@media (max-width: 770px) {
+
+  .icon-dropdown {
+    display: flex;
+  }
+  .text-dropdown {
+    display: none;
+  }
+}
+
+
+/* Adaptación para pantallas de celular */
+@media (max-width: 480px) {
+  .dropdown-menu {
+    width: 88vw;
+  }
+}

@@ -1,14 +1,14 @@
 import "./Login.css";
 import {Link, useNavigate} from "react-router-dom";
 import { useContext,useState } from "react";
-import { UserContext } from "../context/UserContext";
-import { useToast } from "../context/useToast";
-import { ModalContext } from "../context/ModalContext";
-import Seo from "../components/Seo";
+import { UserContext } from "../../context/UserContext";
+import { useToast } from "../../context/useToast";
+import { ModalContext } from "../../context/ModalContext";
+import Seo from "../../components/common/Seo";
 
 
-import visible from "../assets/visible.svg";
-import invisible from "../assets/invisible.svg";
+import visible from "../../assets/visible.svg";
+import invisible from "../../assets/invisible.svg";
 
 
 export default function Login() {

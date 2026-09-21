@@ -1,8 +1,7 @@
 import "./DashboardAdmin.css";
-import { Outlet } from "react-router-dom";
-import SidebarAdmin from "../../../components/SidebarAdmin";
-import { useState, useEffect, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
+import SidebarAdmin from "../../../components/layout/SidebarAdmin";
+import { useEffect, useContext } from "react";
 import { UserContext } from "../../../context/UserContext";
 
 
@@ -24,13 +23,11 @@ export default function DashboardAdmin(){
     if (cargando || !user) return null;
     
     return(
-        <>
         <div>
             <SidebarAdmin/>
             <div className="fondo-dashboard-admin">
                 <Outlet/>
             </div>    
         </div>
-        </>
     )
 }

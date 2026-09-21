@@ -1,7 +1,7 @@
 from fastapi import FastAPI,Request
 from fastapi.middleware.cors import CORSMiddleware
 from settings import CORS_Origins
-from routers import pdf_router,auth_router,noti_router,file_router,folder_router
+from routers import pdf_router,auth_router,noti_router,file_router,folder_router, cursos_router
 from fastapi.responses import JSONResponse
 from slowapi.errors import RateLimitExceeded
 from core.rate_limit import limiter
@@ -61,6 +61,7 @@ app.include_router(auth_router.router)
 app.include_router(noti_router.router)
 app.include_router(file_router.router)
 app.include_router(folder_router.router)
+app.include_router(cursos_router.router)
 
 #Funcion de prueba
 @app.get("/")
