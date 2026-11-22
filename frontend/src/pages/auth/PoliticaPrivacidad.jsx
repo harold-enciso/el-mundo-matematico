@@ -1,8 +1,10 @@
 import "./Login.css";
+import Seo from "../../components/common/Seo";
 
 export default function PoliticaPrivacidad() {
   return (
     <div className="fondo-login">
+      <Seo title="Política de Privacidad | El Mundo Matemático" noindex />
       <div className="recuadro-login recuadro-legales">
         
         <h1>Política de Privacidad</h1>
