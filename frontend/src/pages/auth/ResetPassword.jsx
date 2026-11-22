@@ -5,6 +5,7 @@ import { useToast } from "../../context/useToast";
 import { ModalContext } from "../../context/ModalContext";
 import visible from "../../assets/visible.svg";
 import invisible from "../../assets/invisible.svg";
+import Seo from "../../components/common/Seo";
 
 export default function ResetPassword() {
     //Capturamos valor de token
@@ -15,7 +16,8 @@ export default function ResetPassword() {
     const navigate = useNavigate();
     const {showToast} = useToast();
     
-    
+    // Exige al menos 8 caracteres, 1 mayúscula, 1 minúscula, 1 número y 1 carácter especial
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&.#_-])[A-Za-z\d@$!%*?&.#_-]{8,}$/;
     
     const [contrasena,setContrasena] = useState("");
     const [contrasenaTocada,setContrasenaTocada] = useState(false);
@@ -44,7 +46,10 @@ export default function ResetPassword() {
             showToast("Completa todos los campos", "warning");
             return;
         }
-
+        if (!passwordRegex.test(contrasena)) {
+            showToast("La contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula, un número y un carácter especial", "warning");
+            return;
+        }
         // Validar que ambas contraseñas coincidan
         if (contrasena !== contrasena2) {
             showToast("Las contraseñas no coinciden", "warning");
@@ -93,6 +98,7 @@ export default function ResetPassword() {
         
     return (
         <div className="fondo-login">
+            <Seo title="Recuperar Contraseña | El Mundo Matemático" noindex />
             <form className="recuadro-login" onSubmit={handleResetPassword} autoComplete="off">
                 <h1>Recuperación de contraseña</h1>
                 
@@ -115,9 +121,10 @@ export default function ResetPassword() {
                         type="button"
                         className="btn-toggle-password"
                         onClick={() => setMostrarContrasena(!mostrarContrasena)}
+                        aria-label={mostrarContrasena ? "Ocultar contraseña" : "Mostrar contraseña"}
                         tabIndex="-1"
                         >
-                        {mostrarContrasena ? <img src={visible} alt="mostrar" width="40px" ></img> : <img src={invisible} alt="no mostrar" width="40px"></img>}
+                        <img src={mostrarContrasena ? visible : invisible} alt="" />
                         </button>
                     </div>
                      <span className={contrasenaTocada && contrasena.length===0 ? "error-visible":"error-oculto"}>
