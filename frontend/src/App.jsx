@@ -11,37 +11,22 @@ import ResetPassword from "./pages/auth/ResetPassword";
 import VerifyEmail from "./pages/auth/VerifyEmail";
 import PoliticaPrivacidad from "./pages/auth/PoliticaPrivacidad";
 
-import Dashboard  from "./pages/user/dashboard/Dashboard";
-import Progreso from "./pages/user/dashboard/sections/Progreso";
-import Cursos from "./pages/user/dashboard/sections/Cursos";
-import Metas from "./pages/user/dashboard/sections/Metas";
-import Logros from "./pages/user/dashboard/sections/Logros";
-import Puntos from "./pages/user/dashboard/sections/Puntos";
-import Rankings from "./pages/user/dashboard/sections/Rankings";
-import Suscripcion from "./pages/user/dashboard/sections/Suscripcion";
-import Perfil from "./pages/user/dashboard/sections/Perfil";
-import Notificaciones from "./pages/user/dashboard/sections/Notificaciones";
 
+import DashboardUserLayout from "./pages/user/dashboard/DashboardUserLayout";
+import MiProgreso from "./pages/user/dashboard/sections/MiProgreso";
+import MiPerfil from "./pages/user/dashboard/sections/MiPerfil";
 
 import Juegos from "./pages/games/Juegos";
 import Pentomino  from "./pages/games/Pentomino";
 import DominoFracciones from "./pages/games/DominoFracciones";
 import Sudoku from "./pages/games/Sudoku";
 
-import DashboardAdmin from "./pages/admin/dashboard/DashboardAdmin";
+import DashboardAdminLayout from "./pages/admin/dashboard/DashboardAdminLayout";
 import GestionUsuarios from "./pages/admin/dashboard/sections/GestionUsuarios";
-import GestionNotificaciones from "./pages/admin/dashboard/sections/GestionNotificaciones";
 import GestionCursos from "./pages/admin/dashboard/sections/GestionCursos";
-import GestionEjercicios from "./pages/admin/dashboard/sections/GestionEjercicios";
-import GestionDocumentos from "./pages/admin/dashboard/sections/GestionDocumentos";
-import GestionPresentaciones from "./pages/admin/dashboard/sections/GestionPresentaciones";
-import GestionVideos from "./pages/admin/dashboard/sections/GestionVideos";
-import GestionPuntos from "./pages/admin/dashboard/sections/GestionPuntos";
-import GestionJuegos from "./pages/admin/dashboard/sections/GestionJuegos";
-import GestionRankings from "./pages/admin/dashboard/sections/GestionRankings";
-import GestionSuscripciones from "./pages/admin/dashboard/sections/GestionSuscripciones";
-import Analitica from "./pages/admin/dashboard/sections/Analitica";
-import Configuracion from "./pages/admin/dashboard/sections/Configuracion";
+
+
+
 import { useContext } from "react";
 import { UserContext } from "./context/UserContext";
 import LoadingScreen from "./components/common/LoadingScreen";
@@ -50,6 +35,8 @@ import ScrollToTop from "./components/common/ScrollToTop";
 import CatalogoCursos from "./pages/cursos/CatalogoCursos";
 import CursoTemas from "./pages/cursos/CursoTemas";
 import TemaContenido from "./pages/cursos/TemaContenido";
+import EditarCursoTemas from "./pages/admin/dashboard/sections/EditarCursoTemas";
+import EditarTemaBloques from "./pages/admin/dashboard/sections/EditarTemaBloques";
 
 export default function App() {
 
@@ -81,39 +68,25 @@ export default function App() {
 
             {/* Nivel 3: Muestra la lección con los módulos dinámicos */}
             <Route path="/cursos/:cursoId/:temaSlug" element={<TemaContenido />} />
-            <Route path="/dashboard" element={<Dashboard />}>
-              <Route index element={<Navigate to="/dashboard/progreso" />} />
-              <Route path="progreso" element={<Progreso />} />
-              <Route path="cursos" element={<Cursos />} />
-              <Route path="metas" element={<Metas />} />
-              <Route path="logros" element={<Logros />} />
-              <Route path="puntos" element={<Puntos />} />
-              <Route path="rankings" element={<Rankings />} />
-              <Route path="suscripcion" element={<Suscripcion />} />
-              <Route path="perfil" element={<Perfil />} />
-              <Route path="notificaciones" element={<Notificaciones />}/>
+            <Route path="/dashboard" element={<DashboardUserLayout />}>
+              <Route index element={<Navigate to="/dashboard/progreso" replace />} />
+              <Route path="progreso" element={<MiProgreso />} />
+              <Route path="perfil" element={<MiPerfil />} />
+            </Route>
+
+            <Route path="/admin/dashboard" element={<DashboardAdminLayout />}>
+              <Route index element={<Navigate to="/admin/dashboard/cursos" replace />} />
+              <Route path="cursos" element={<GestionCursos />} />
+              <Route path="cursos/:cursoId/temas" element={<EditarCursoTemas />} />
+              <Route path="cursos/:cursoId/temas/:temaId/bloques" element={<EditarTemaBloques />} />
+              <Route path="usuarios" element={<GestionUsuarios />} />
             </Route>
 
             <Route path="/juegos" element={<Juegos />} />
             <Route path="/juegos/pentomino" element={<Pentomino />} />
             <Route path="/juegos/domino-fracciones" element={<DominoFracciones />} />
             <Route path="/juegos/sudoku" element={<Sudoku />} />
-            <Route path="/admin/dashboard" element={<DashboardAdmin />}>
-              <Route index element={<Navigate to="/admin/dashboard/usuarios" />} />
-              <Route path="usuarios" element={<GestionUsuarios />} />
-              <Route path="notificaciones" element={<GestionNotificaciones />} />
-              <Route path="cursos" element={<GestionCursos />} />
-              <Route path="ejercicios" element={<GestionEjercicios />} />
-              <Route path="documentos" element={<GestionDocumentos />} />
-              <Route path="presentaciones" element={<GestionPresentaciones />} />
-              <Route path="videos" element={<GestionVideos />} />
-              <Route path="puntos" element={<GestionPuntos />} />
-              <Route path="juegos" element={<GestionJuegos />} />
-              <Route path="rankings" element={<GestionRankings />} />
-              <Route path="suscripciones" element={<GestionSuscripciones />} />
-              <Route path="analitica" element={<Analitica />} />
-              <Route path="configuracion" element={<Configuracion />} />
-            </Route>
+            
           </Routes>
         </main>
         <Footer/>

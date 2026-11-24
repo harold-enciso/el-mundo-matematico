@@ -1,0 +1,12 @@
+.contenedor-dashboard-usuario {
+  min-height: 100vh;
+  background-color: #f8fafc;
+  width: 100%;
+}
+
+.contenido-dashboard-usuario {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem;
+  box-sizing: border-box;
+}

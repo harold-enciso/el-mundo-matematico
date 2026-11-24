@@ -1,13 +1,13 @@
+import { TextoMatematico } from "./TextoMatematico";
 import "./CalloutModulo.css";
 
 export function CalloutModulo({ tipo_callout, variante = "info", titulo, texto, contenido }) {
   const tipoOriginal = tipo_callout || variante;
-  
-  // Mapeo del SQL a las clases exactas de tu CalloutModulo.css
+
   const mapaClases = {
     tip: "consejo",
     warning: "advertencia",
-    info: "info"
+    info: "info",
   };
 
   const claseTipo = mapaClases[tipoOriginal] || tipoOriginal;
@@ -15,8 +15,16 @@ export function CalloutModulo({ tipo_callout, variante = "info", titulo, texto, 
 
   return (
     <div className={`modulo-callout ${claseTipo}`}>
-      {titulo && <h4 className="callout-titulo">{titulo}</h4>}
-      {textoMostrar && <p className="callout-texto">{textoMostrar}</p>}
+      {titulo && (
+        <h4 className="callout-titulo">
+          <TextoMatematico contenido={titulo} inline />
+        </h4>
+      )}
+      {textoMostrar && (
+        <div className="callout-texto">
+          <TextoMatematico contenido={textoMostrar} />
+        </div>
+      )}
     </div>
   );
 }

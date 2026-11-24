@@ -63,7 +63,9 @@ export default function Login() {
                 .catch(() => ({}))
                 .then(data =>{
                     if (!res.ok){
-                        throw data;
+                        const error = new Error(data.detail || data.message || "Error en la solicitud");
+                        Object.assign(error, data, { status_code: res.status });
+                        throw error;
                     }
                     return data;
             })
@@ -172,9 +174,10 @@ export default function Login() {
                         type="button"
                         className="btn-toggle-password"
                         onClick={() => setMostrarContrasena(!mostrarContrasena)}
+                        aria-label={mostrarContrasena ? "Ocultar contraseña" : "Mostrar contraseña"}
                         tabIndex="-1"
                         >
-                        {mostrarContrasena ? <img src={visible} alt="mostrar" width="40px" ></img> : <img src={invisible} alt="no mostrar" width="40px"></img>}
+                        <img src={mostrarContrasena ? visible : invisible} alt="" />
                         </button>
 
                     </div>

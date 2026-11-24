@@ -1,85 +1,60 @@
-
-
+/* SidebarItem.css */
 .sidebar-item {
-    padding: 6px 6px;
     display: flex;
-    text-align: left;
-    justify-content: left;
     align-items: center;
-    
-    background-color: #6206b8ff;
-    color: #ffffff;
-    border: 2px solid transparent;
-    border-left: 10px solid transparent;
-    border-radius: 0;
-    transition: background-color 0.1s, padding-left 0.1s;
-    cursor: pointer;
-    gap: 10px;
+    gap: 12px;
     width: 100%;
-}
-.sidebar-item p {
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    line-clamp: 1;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-}
-.sidebar-item:disabled {
-    cursor: default;
+    padding: 10px 14px;
+    background: transparent;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    color: #64748b;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.2s ease-in-out;
+    text-align: left;
+    box-sizing: border-box;
 }
 
+/* Hover suave en ítems inactivos */
 .sidebar-item:not(:disabled):hover {
-    background: #ffffff1c;
-    border: 2px solid transparent;
-    border-left: 10px solid transparent;
-}
-.sidebar-item:not(:disabled):focus {
-    background: #ffffff00;
-    border: 2px solid transparent;
-    border-left: 10px solid transparent;
-    border-bottom: 2px solid transparent;
-    outline: none;
-}
-.sidebar-item:not(:disabled):active {
-    background: #ffffff17;
-    padding-left: 25px;
-    border: 2px solid transparent;
-    border-left: 10px solid transparent;
-    border-bottom: 2px solid transparent;
-    outline: none;
-    box-shadow: none;
+    background-color: #f1f5f9;
+    color: #0f172a;
 }
 
-
+/* Estado activo: Fondo violeta claro con texto morado institucional */
 .sidebar-item.active {
-    background: #ffffff17;
-    font-weight: 900;
-    border: 2px solid transparent;
-    border-left: 10px solid #2e0455ff;
-    border-bottom: 2px solid #2e0455ff;
-    outline: none;
-    box-shadow: none;
+    background-color: #f3e8ff;
+    color: #6d07cc;
+    font-weight: 600;
 }
 
 .sidebar-item.active:hover {
-    background: #ffffff17;
-    font-weight: 900;
-    border: 2px solid transparent;
-    border-left: 10px solid #2e0455ff;
-    border-bottom: 2px solid #2e0455ff;
-    outline: none;
-    box-shadow: none;
+    background-color: #ebd5ff;
 }
 
-.sidebar-item.active:focus {
-    background: #ffffff0e;
-    font-weight: 900;
-    border: 2px solid transparent;
-    border-left: 10px solid #2e0455ff;
-    border-bottom: 2px solid #2e0455ff;
-    outline: none;
-}
-
+/* Manejo del ícono */
 .sidebar-imagen {
-    width: 30px;
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    opacity: 0.65;
+    transition: opacity 0.2s ease, filter 0.2s ease;
+}
+
+.sidebar-item:hover .sidebar-imagen {
+    opacity: 1;
+}
+
+/* Aplicar color morado institucional al SVG activo */
+.sidebar-item.active .sidebar-imagen {
+    opacity: 1;
+    filter: invert(16%) sepia(89%) saturate(6054%) hue-rotate(272deg) brightness(88%) contrast(105%);
+}
+
+.sidebar-texto {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }

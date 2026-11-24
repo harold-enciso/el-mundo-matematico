@@ -167,9 +167,10 @@ export default function Register() {
                         type="button"
                         className="btn-toggle-password"
                         onClick={() => setMostrarContrasena(!mostrarContrasena)}
+                        aria-label={mostrarContrasena ? "Ocultar contraseña" : "Mostrar contraseña"}
                         tabIndex="-1"
                         >
-                        {mostrarContrasena ? <img src={visible} alt="mostrar" width="40px" ></img> : <img src={invisible} alt="no mostrar" width="40px"></img>}
+                        <img src={mostrarContrasena ? visible : invisible} alt="" />
                         </button>
                     </div>
                      <span className={contrasenaTocada && contrasena.length===0 ? "error-visible":"error-oculto"}>
@@ -191,9 +192,10 @@ export default function Register() {
                         type="button"
                         className="btn-toggle-password"
                         onClick={() => setMostrarContrasena2(!mostrarContrasena2)}
+                        aria-label={mostrarContrasena2 ? "Ocultar contraseña" : "Mostrar contraseña"}
                         tabIndex="-1"
                         >
-                        {mostrarContrasena2 ? <img src={visible} alt="mostrar" width="40px" ></img> : <img src={invisible} alt="no mostrar" width="40px"></img>}
+                        <img src={mostrarContrasena2 ? visible : invisible} alt="" />
                         </button>
                     </div>
                     <span className={contrasena2Tocada && contrasena2.length===0 ? "error-visible":"error-oculto"}>
