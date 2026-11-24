@@ -1,28 +1,22 @@
 import { useState } from "react";
+import { TextoMatematico } from "./TextoMatematico";
 import "./EjemploResueltoModulo.css";
-import 'katex/dist/katex.min.css';
-import { InlineMath } from 'react-katex';
 
-export function EjemploResueltoModulo({ enunciado, pasos = [], respuesta }) {
+export function EjemploResueltoModulo({ enunciado, problema, pasos = [], respuesta, resultado }) {
   const [abierto, setAbierto] = useState(false);
-
-  // Función auxiliar para renderizar KaTeX si detecta símbolos de fórmulas (\cdot, ^, \frac, etc.)
-  const renderizarTextoOMath = (texto) => {
-    if (!texto) return null;
-    const contieneMath = /[\\^_{}]/.test(texto);
-    return contieneMath ? <InlineMath math={texto} /> : texto;
-  };
+  const textoEnunciado = enunciado || problema || "";
+  const textoRespuesta = respuesta || resultado || "";
 
   return (
     <div className="modulo-ejemplo">
       <div className="ejemplo-header">
         <span className="ejemplo-tag">Ejemplo Resuelto</span>
         <div className="ejemplo-enunciado">
-          {renderizarTextoOMath(enunciado)}
+          <TextoMatematico contenido={textoEnunciado} />
         </div>
       </div>
 
-      <button className="ejemplo-toggle-btn" onClick={() => setAbierto(!abierto)}>
+      <button type="button" className="ejemplo-toggle-btn" onClick={() => setAbierto(!abierto)}>
         {abierto ? "Ocultar Solución" : "Ver Solución Paso a Paso"}
       </button>
 
@@ -30,12 +24,15 @@ export function EjemploResueltoModulo({ enunciado, pasos = [], respuesta }) {
         <div className="ejemplo-solucion-box">
           <ol className="ejemplo-pasos">
             {pasos.map((paso, idx) => (
-              <li key={idx}>{renderizarTextoOMath(paso)}</li>
+              <li key={`paso-${idx}-${String(paso).slice(0, 10)}`}>
+                <TextoMatematico contenido={paso} inline />
+              </li>
             ))}
           </ol>
-          {respuesta && (
+          {textoRespuesta && (
             <div className="ejemplo-respuesta-final">
-              <strong>Resultado:</strong> {renderizarTextoOMath(respuesta)}
+              <strong>Resultado:</strong>{" "}
+              <TextoMatematico contenido={textoRespuesta} inline />
             </div>
           )}
         </div>

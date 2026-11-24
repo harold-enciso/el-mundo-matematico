@@ -1,0 +1,119 @@
+.campo-hibrido-wrapper {
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  background-color: #ffffff;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  overflow: hidden;
+}
+
+.campo-hibrido-wrapper.enfocado {
+  border-color: #6d28d9;
+  box-shadow: 0 0 0 3px rgba(109, 40, 217, 0.12);
+}
+
+/* Barra superior compacta del campo */
+.barra-campo-hibrido {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  padding: 5px 10px;
+  background-color: #f8fafc;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.grupo-botones-math-inline {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+}
+
+.btn-insertar-math-inline {
+  background-color: #ede9fe;
+  color: #5b21b6;
+  border: 1px solid #c4b5fd;
+  border-radius: 5px;
+  padding: 3px 9px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-insertar-math-inline:hover {
+  background-color: #ddd6fe;
+  border-color: #7c3aed;
+}
+
+.btn-mini-simbolo {
+  background-color: #ffffff;
+  color: #1e293b;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  padding: 2px 7px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.12s ease;
+}
+
+.btn-mini-simbolo:hover {
+  background-color: #ede9fe;
+  border-color: #7c3aed;
+  color: #5b21b6;
+}
+
+
+/* Área editable que mezcla texto normal y cajitas MathLive */
+.area-editable-hibrida {
+  padding: 10px 12px;
+  min-height: 42px;
+  font-size: 0.96rem;
+  line-height: 1.7;
+  color: #0f172a;
+  background-color: #ffffff;
+  outline: none;
+  cursor: text;
+  word-break: break-word;
+}
+
+.area-editable-hibrida.multilinea {
+  min-height: 84px;
+}
+
+.area-editable-hibrida:empty::before {
+  content: attr(data-placeholder);
+  color: #94a3b8;
+  pointer-events: none;
+}
+
+/* Cajita visual de ecuación incrustada dentro de la oración */
+.area-editable-hibrida math-field.math-inline-embed {
+  display: inline-block;
+  vertical-align: middle;
+  min-width: 28px;
+  padding: 2px 6px;
+  margin: 1px 3px;
+  font-size: 1.08rem;
+  color: #0f172a;
+  background-color: #f5f3ff;
+  border: 1px solid #c4b5fd;
+  border-radius: 6px;
+  cursor: text;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.area-editable-hibrida math-field.math-inline-embed:focus-within {
+  background-color: #ffffff;
+  border-color: #7c3aed;
+  box-shadow: 0 0 0 2px rgba(124, 58, 237, 0.18);
+  outline: none;
+}
+
+/* Ocultar botones internos redundantes de MathLive para que luzca limpio como Word */
+.area-editable-hibrida math-field.math-inline-embed::part(virtual-keyboard-toggle),
+.area-editable-hibrida math-field.math-inline-embed::part(menu-toggle) {
+  display: none;
+}

@@ -1,7 +1,8 @@
 import "./FormulaModulo.css";
-import 'katex/dist/katex.min.css';
-import { BlockMath } from 'react-katex';
-import { useRef, useEffect } from 'react';
+import "katex/dist/katex.min.css";
+import { BlockMath } from "react-katex";
+import { useRef, useEffect } from "react";
+import { TextoMatematico } from "./TextoMatematico";
 
 export function FormulaModulo({ formula, explicacion }) {
   const containerRef = useRef(null);
@@ -11,14 +12,12 @@ export function FormulaModulo({ formula, explicacion }) {
     if (!el) return;
 
     const handleWheel = (e) => {
-      // Solo interviene si la fórmula sobrepasa el ancho del contenedor
       if (el.scrollWidth > el.clientWidth) {
-        e.preventDefault(); // Evita que la página suba o baje
+        e.preventDefault();
         el.scrollLeft += e.deltaY;
       }
     };
 
-    // passive: false permite usar e.preventDefault() sin advertencias del navegador
     el.addEventListener("wheel", handleWheel, { passive: false });
     return () => el.removeEventListener("wheel", handleWheel);
   }, [formula]);
@@ -27,11 +26,14 @@ export function FormulaModulo({ formula, explicacion }) {
 
   return (
     <div className="modulo-formula">
-      {/* Se agrega ref={containerRef} para conectar el nodo con React */}
       <div className="formula-expresion" ref={containerRef}>
         <BlockMath math={formula} />
       </div>
-      {explicacion && <p className="formula-explicacion">{explicacion}</p>}
+      {explicacion && (
+        <div className="formula-explicacion">
+          <TextoMatematico contenido={explicacion} inline />
+        </div>
+      )}
     </div>
   );
 }

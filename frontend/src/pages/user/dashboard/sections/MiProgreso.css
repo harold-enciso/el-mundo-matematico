@@ -1,0 +1,48 @@
+.tarjeta-progreso {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e2e8f0;
+}
+
+.titulo-seccion {
+  font-size: 1.75rem;
+  color: #0f172a;
+  margin: 0 0 0.5rem 0;
+  font-weight: 700;
+}
+
+.descripcion-seccion {
+  color: #64748b;
+  font-size: 0.95rem;
+  margin: 0 0 1.5rem 0;
+}
+
+.bloque-vacio {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1.5rem;
+  border: 2px dashed #cbd5e1;
+  border-radius: 8px;
+  text-align: center;
+  background-color: #f8fafc;
+}
+
+.icono-estado {
+  font-size: 2.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.bloque-vacio h3 {
+  margin: 0 0 0.25rem 0;
+  color: #1e293b;
+}
+
+.bloque-vacio p {
+  margin: 0;
+  color: #64748b;
+  font-size: 0.875rem;
+}

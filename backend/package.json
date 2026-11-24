@@ -2,6 +2,6 @@
   "name": "fastapi-proxy-backend",
   "version": "1.0.0",
   "scripts": {
-    "dev": "uvicorn main:app --host localhost --port 8000 --reload"
+    "dev": "..\\venv\\Scripts\\activate.bat && uvicorn main:app --host localhost --port 8000 --reload"
   }
 }

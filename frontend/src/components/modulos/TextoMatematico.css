@@ -1,0 +1,23 @@
+.texto-matematico-contenedor {
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.65;
+  word-spacing: normal;
+  letter-spacing: normal;
+  overflow-wrap: break-word;
+}
+
+.texto-matematico-inline {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 2px;
+  font-size: 1.04em;
+}
+
+.texto-matematico-bloque {
+  display: block;
+  margin: 12px 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 6px 0;
+}

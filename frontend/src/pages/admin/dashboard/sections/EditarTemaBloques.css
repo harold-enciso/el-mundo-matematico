@@ -1,0 +1,184 @@
+/* Barra superior para agregar nuevos bloques */
+.barra-agregar-bloques {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 24px;
+  padding: 14px 16px;
+  background-color: #f8fafc;
+  border: 1px solid #cbd5e1;
+  border-radius: 12px;
+}
+
+.barra-agregar-bloques .boton-tabla.secundario {
+  background-color: #ffffff;
+  color: #1e293b;
+  border: 1px solid #cbd5e1;
+  font-weight: 600;
+  transition: all 0.15s ease;
+}
+
+.barra-agregar-bloques .boton-tabla.secundario:hover {
+  background-color: #ede9fe;
+  border-color: #7c3aed;
+  color: #5b21b6;
+}
+
+/* Contenedor de tarjetas apiladas */
+.lista-bloques-admin {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Tarjeta individual de cada bloque */
+.tarjeta-bloque-admin {
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.05);
+  color: #0f172a;
+}
+
+.tarjeta-bloque-admin:hover {
+  border-color: #94a3b8;
+}
+
+/* Cabecera de la tarjeta (Orden + Tipo + Botones) */
+.cabecera-bloque-admin {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 14px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.info-bloque-admin {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.titulo-tipo-bloque {
+  display: inline-block;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #0f172a;
+  background-color: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  padding: 4px 10px;
+  border-radius: 6px;
+}
+
+.id-bloque-texto {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #475569;
+}
+
+.acciones-bloque-admin {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Campos e inputs a ancho completo y con alto contraste */
+.tarjeta-bloque-admin .campo-form {
+  width: 100%;
+  margin-bottom: 14px;
+}
+
+.tarjeta-bloque-admin .campo-form:last-child {
+  margin-bottom: 0;
+}
+
+.tarjeta-bloque-admin .campo-form label,
+.subtitulo-campo-bloque {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 6px;
+}
+
+.tarjeta-bloque-admin .input-admin {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  color: #0f172a;
+  border: 1px solid #cbd5e1;
+}
+
+.tarjeta-bloque-admin .input-admin::placeholder {
+  color: #64748b;
+}
+
+.tarjeta-bloque-admin .input-admin:focus {
+  outline: none;
+  border-color: #6d28d9;
+  box-shadow: 0 0 0 3px rgba(109, 40, 217, 0.12);
+}
+
+/* Filas dinámicas de pasos (Ejemplo Resuelto) y opciones (Cuestionario) */
+.fila-paso-ejemplo {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.contenedor-input-paso {
+  flex: 1;
+  min-width: 0;
+}
+
+.fila-paso-ejemplo .boton-tabla {
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+
+.input-opcion-cuestionario {
+  margin-bottom: 10px;
+}
+
+/* Caja de Vista Previa IRL (estilo plataforma estudiante) */
+.vista-previa-irl-box {
+  margin-top: 16px;
+  padding: 14px 18px;
+  background-color: #130929;
+  border: 1px solid #3b2667;
+  border-radius: 10px;
+  color: #f8fafc;
+}
+
+.etiqueta-vista-previa {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #4ade80;
+  margin-bottom: 8px;
+}
+
+.contenido-vista-previa {
+  font-size: 0.98rem;
+  color: #f1f5f9;
+  line-height: 1.6;
+}
+
+.vista-previa-formula-centro {
+  text-align: center;
+  color: #4ade80;
+  font-size: 1.15rem;
+  overflow-x: auto;
+  padding: 4px 0;
+}

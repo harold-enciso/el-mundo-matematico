@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { TextoMatematico } from "./TextoMatematico";
 import "./CuestionarioModulo.css";
 
 export function CuestionarioModulo({ pregunta, opciones = [], respuesta_correcta, explicacion }) {
@@ -11,19 +12,19 @@ export function CuestionarioModulo({ pregunta, opciones = [], respuesta_correcta
     setRespondido(true);
   };
 
+  const indiceCorrecto = respuesta_correcta ?? 0;
+
   return (
     <div className="modulo-cuestionario">
-      <h4 className="cuestionario-pregunta">{pregunta}</h4>
-      
+      <h4 className="cuestionario-pregunta">
+        <TextoMatematico contenido={pregunta} inline />
+      </h4>
+
       <div className="cuestionario-opciones">
         {opciones.map((opcion, index) => {
-          // Extrae el texto si la opción es un string directo o un objeto
           const textoOpcion = typeof opcion === "string" ? opcion : opcion.texto;
-          
-          // Evalúa si es correcta según el índice de la BD o la propiedad del objeto
-          const esCorrecta = typeof opcion === "string" 
-            ? index === respuesta_correcta 
-            : opcion.esCorrecta;
+          const esCorrecta =
+            typeof opcion === "string" ? index === indiceCorrecto : opcion.esCorrecta;
 
           let claseBoton = "opcion-btn";
           if (respondido) {
@@ -33,11 +34,12 @@ export function CuestionarioModulo({ pregunta, opciones = [], respuesta_correcta
 
           return (
             <button
-              key={index}
+              key={`opcion-${index}-${String(textoOpcion).slice(0, 12)}`}
+              type="button"
               className={claseBoton}
               onClick={() => manejarSeleccion(index)}
             >
-              {textoOpcion}
+              <TextoMatematico contenido={textoOpcion} inline />
             </button>
           );
         })}
@@ -45,7 +47,9 @@ export function CuestionarioModulo({ pregunta, opciones = [], respuesta_correcta
 
       {respondido && explicacion && (
         <div className="cuestionario-feedback">
-          <p className="feedback-texto">{explicacion}</p>
+          <div className="feedback-texto">
+            <TextoMatematico contenido={explicacion} />
+          </div>
         </div>
       )}
     </div>

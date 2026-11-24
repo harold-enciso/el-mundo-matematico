@@ -1,0 +1,80 @@
+/* EditarCursoTemas.css */
+.boton-volver {
+  background: transparent;
+  border: none;
+  color: #64748b;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.2s ease;
+  padding: 0;
+}
+
+.boton-volver:hover {
+  color: #6d07cc;
+}
+
+.lista-temas-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 1.5rem;
+}
+
+.tarjeta-tema-admin {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tarjeta-tema-admin:hover {
+  border-color: #cbd5e1;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.info-tema {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.numero-orden {
+  background-color: #f3e8ff;
+  color: #6d07cc;
+  font-weight: 700;
+  font-size: 0.95rem;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.info-tema h3 {
+  margin: 0 0 4px 0;
+  font-size: 1.05rem;
+  color: #0f172a;
+}
+
+.info-tema p {
+  margin: 0;
+  font-size: 0.875rem;
+  color: #64748b;
+}
+
+.acciones-tema {
+  display: flex;
+  gap: 8px;
+}

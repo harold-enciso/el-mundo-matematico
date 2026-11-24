@@ -2,8 +2,9 @@
   background: rgba(23, 11, 48, 0.6);
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 10px;
-  padding: 16px;
+  padding: 18px 20px;
   margin-bottom: 1.25rem;
+  font-style: normal;
 }
 
 .ejemplo-tag {
@@ -12,17 +13,21 @@
   color: #ffffff;
   font-size: 0.75rem;
   font-weight: 700;
-  padding: 2px 8px;
+  padding: 3px 9px;
   border-radius: 4px;
   text-transform: uppercase;
-  margin-bottom: 8px;
+  letter-spacing: 0.04em;
+  margin-bottom: 10px;
 }
 
 .ejemplo-enunciado {
   color: #f8fafc;
-  font-weight: 600;
-  margin: 0 0 12px 0;
-  text-align: justify;
+  font-size: 1rem;
+  font-weight: 500;
+  font-style: normal;
+  margin: 0 0 14px 0;
+  text-align: left;
+  line-height: 1.65;
 }
 
 .ejemplo-toggle-btn {
@@ -41,20 +46,31 @@
   background: rgba(74, 222, 128, 0.15);
 }
 
+.ejemplo-solucion-box {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
 .ejemplo-pasos {
-  margin: 14px 0 0 20px;
+  margin: 0 0 0 20px;
   padding: 0;
-  color: #cbd5e1;
-  font-size: 0.9rem;
-  line-height: 1.6;
+  color: #e2e8f0;
+  font-size: 0.95rem;
+  font-style: normal;
+  line-height: 1.7;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .ejemplo-respuesta-final {
-  margin-top: 12px;
+  margin-top: 14px;
   padding: 10px 14px;
   background: rgba(74, 222, 128, 0.1);
   border: 1px solid rgba(74, 222, 128, 0.3);
   border-radius: 6px;
   color: #4ade80;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
+  font-style: normal;
 }

@@ -1,6 +1,6 @@
 import "./Login.css";
 import {useSearchParams, Link} from "react-router-dom";
-import { useEffect, useState} from "react";
+import { useEffect, useState, useRef} from "react";
 import { useToast } from "../../context/useToast";
 
 export default function VerifyEmail() {
@@ -15,7 +15,7 @@ export default function VerifyEmail() {
 
     const apiUrl = import.meta.env.VITE_API_URL;
     const verificationEmailUrl = `${apiUrl}/auth/verify-email?token=${token}`
-    
+    const executedRef = useRef(false);
 
 
 
@@ -28,7 +28,9 @@ export default function VerifyEmail() {
             showToast(msg, "error");
             return;
         }
-
+        // Evita doble llamada en StrictMode
+        if (executedRef.current) return;
+        executedRef.current = true;
 
         //GET, es directo, sin method o body
         fetch(verificationEmailUrl)

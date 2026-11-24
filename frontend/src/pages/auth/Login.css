@@ -1,68 +1,73 @@
-
+/* ==========================================================================
+   Autofill & System Defaults
+   ========================================================================== */
 input:-webkit-autofill,
 input:-webkit-autofill:hover, 
 input:-webkit-autofill:focus, 
 input:-webkit-autofill:active {
-  -webkit-box-shadow: 0 0 0 30px white inset !important;
-  -webkit-text-fill-color: #000000 !important;
+  -webkit-box-shadow: 0 0 0 30px #ffffff inset !important;
+  -webkit-text-fill-color: #1f2937 !important;
   transition: background-color 5000s ease-in-out 0s;
 }
 
+/* ==========================================================================
+   Layout Principal
+   ========================================================================== */
 .fondo-login {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  text-align: center;
-  
   width: 100%;
-  flex: 1; /* Ocupa todo el espacio vertical disponible que deja el main-content */
-  padding: 2rem 1rem; /* Da respiración arriba y abajo si la pantalla es muy pequeña */
+  flex: 1;
+  padding: 2rem 1rem;
   box-sizing: border-box;
 }
 
-.recuadro-login{
+/* ==========================================================================
+   Tarjeta / Contenedor del Formulario
+   ========================================================================== */
+.recuadro-login {
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
   align-items: center;
-  width: 30em;
-  color: #000000ff;
-  background-color: #ffffffff;
-  border-radius: 20px;
-  border: 2px solid black;
-  gap: 0.8em;
+  width: 100%;
+  max-width: 440px;
+  color: #1f2937;
+  background-color: #ffffff;
+  border-radius: 16px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+  gap: 1.25rem;
   padding: 2.5rem 2rem;
-  padding-bottom:2em;
-  transition: width 0.5s ease;
+  box-sizing: border-box;
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
+
 .recuadro-login h1,
-.recuadro-login h2{
-  margin-top: 0.5em;
-  margin-bottom: 0px;
-}
-.recuadro-login input {
-  background-color: #ffffffff;
-  color: #000000ff;
-  height: 3em;
-  width: 18em;
-  border: 3px solid black;
-  border-radius: 10px;
+.recuadro-login h2 {
+  margin: 0;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #111827;
 }
 
-.recuadro-login input:focus {
-  border-color: #6d07cc;
-  outline: none;
-  box-shadow: 0 0 10px #6d07cc;
+.recuadro-login p {
+  margin: 0;
+  font-size: 0.925rem;
+  color: #4b5563;
+  line-height: 1.5;
 }
 
-/*REVISAR*/
-
+/* ==========================================================================
+   Grupos de Input y Formulario
+   ========================================================================== */
 .grupo-input {
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin-bottom: 1rem;
+  text-align: left;
 }
 
 .grupo-input label {
@@ -70,18 +75,31 @@ input:-webkit-autofill:active {
   font-weight: 600;
   color: #374151;
   margin-bottom: 0.4rem;
-  text-align: left;
 }
+
+.label-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 0.4rem;
+}
+
+.label-wrapper label {
+  margin-bottom: 0;
+}
+
 .grupo-input input {
   width: 100%;
-  height: 2.8rem;
+  height: 2.75rem;
   padding: 0 1rem;
   border: 1.5px solid #d1d5db;
-  border-radius: 8px;
+  border-radius: 10px;
   font-size: 0.95rem;
   color: #1f2937;
+  background-color: #ffffff;
   outline: none;
-  transition: all 0.2s ease;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
   box-sizing: border-box;
 }
 
@@ -94,28 +112,20 @@ input:-webkit-autofill:active {
   border-color: #ef4444;
 }
 
-.label-wrapper {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  margin-bottom: 0.4rem;
-}
-
+/* ==========================================================================
+   Campo de Contraseña & Ojo Toggle
+   ========================================================================== */
 .password-wrapper {
-  position: relative; /* Indispensable para fijar el ojo dentro */
+  position: relative;
   width: 100%;
   display: flex;
   align-items: center;
 }
 
 .password-wrapper input {
-  width: 100%;
-  padding-right: 2.5rem; /* Espacio para no escribir sobre el ojo */
+  padding-right: 2.75rem;
 }
 
-
-/* Botón del ojo transparente dentro del input */
 .btn-toggle-password {
   position: absolute;
   right: 0.75rem;
@@ -124,14 +134,19 @@ input:-webkit-autofill:active {
   background: transparent;
   border: none;
   cursor: pointer;
-  font-size: 1.1rem;
-  line-height: 1;
   padding: 0;
   margin: 0;
   display: flex;
   align-items: center;
   justify-content: center;
+  opacity: 0.65;
+  transition: opacity 0.2s ease;
 }
+
+.btn-toggle-password:hover {
+  opacity: 1;
+}
+
 .btn-toggle-password:focus,
 .btn-toggle-password:active {
   outline: none;
@@ -139,101 +154,116 @@ input:-webkit-autofill:active {
   box-shadow: none;
 }
 
+.btn-toggle-password img {
+  width: 22px;
+  height: 22px;
+  display: block;
+}
 
-
-
-
-
-
-
+/* ==========================================================================
+   Botones Principales y Enlaces
+   ========================================================================== */
 .boton-login {
-    /* QUIERO CENTRAR EL TEXTO VERTICALMENTE */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    /*NO QUIERO QUE SEAN BLOCK LOS BOTONES*/
-    border-radius: 20px;
-    cursor: pointer;
-    padding: 0 20px;
-    height: 2.5em;
-    width:60%;
-    line-height: 20px;
-    font-size: 1em;
-    color: white;
-    font-weight: bold;
-    font-style: normal;
-    background-color: #6d07ccff;
-    border: 1px solid white;
-}
-.boton-login:hover{
-  outline: none;
-  border-color: #6d07ccff;
-  box-shadow: 0 0 10px #6d07ccff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 2.75rem;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ffffff;
+  background-color: #6d07cc;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+  box-sizing: border-box;
 }
 
-/* Estado deshabilitado del botón */
-.boton-login:disabled {
-  background-color: #9ca3af; /* Gris apagado */
-  border-color: #d1d5db;
-  color: #1f2937;
-  cursor: default;
-  opacity: 0.6;
+.boton-login:hover:not(:disabled) {
+  background-color: #5b06ad;
+  box-shadow: 0 4px 12px rgba(109, 7, 204, 0.25);
 }
-/* Evita que el hover/brillo se active cuando está deshabilitado */
-.boton-login:disabled:hover {
-  outline: none;
-  border-color: #d1d5db;
+
+.boton-login:disabled {
+  background-color: #9ca3af;
+  border-color: transparent;
+  color: #f3f4f6;
+  cursor: not-allowed;
+  opacity: 0.7;
   box-shadow: none;
 }
 
-.link-login{
-  color: #6d07ccff;
-  font-weight: bold;
+.link-login {
+  color: #6d07cc;
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-decoration: none;
+  transition: color 0.2s ease;
 }
 
+.link-login:hover {
+  text-decoration: underline;
+  color: #5b06ad;
+}
 
+/* ==========================================================================
+   Mensajes de Error Interactivos
+   ========================================================================== */
 .error-oculto {
   opacity: 0;
-  color: #ff0000ff;
-  transform: translateY(-10px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
+  visibility: hidden;
+  color: #ef4444;
+  font-size: 0.8rem;
+  margin-top: 0.35rem;
+  height: 0;
+  transform: translateY(-4px);
+  transition: all 0.2s ease;
 }
 
 .error-visible {
   opacity: 1;
-  color: #ff0000ff;
+  visibility: visible;
+  color: #ef4444;
+  font-size: 0.8rem;
+  margin-top: 0.35rem;
+  height: auto;
   transform: translateY(0);
-  transition: opacity 0.8s ease, transform 0.8s ease;
+  transition: all 0.2s ease;
 }
 
+/* ==========================================================================
+   Checkboxes
+   ========================================================================== */
 .checkbox-container {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  gap: 8px;
+  gap: 10px;
   font-size: 0.85rem;
   color: #4b5563;
-  margin: 12px 0;
+  margin: 0.25rem 0;
+  text-align: left;
 }
 
-/* Anula los estilos heredados de los inputs del formulario */
 .checkbox-container input[type="checkbox"] {
-  width: 16px;
-  height: 16px;
-  padding: 0;
-  margin: 0;
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
   box-shadow: none;
-  accent-color: #6c5ce7; /* Cambia al morado de tu marca si deseas */
+  accent-color: #6d07cc;
   cursor: pointer;
+  flex-shrink: 0;
 }
 
 .checkbox-container label {
   cursor: pointer;
   user-select: none;
+  line-height: 1.4;
 }
 
 .checkbox-container a {
-  color: #6c5ce7;
+  color: #6d07cc;
   font-weight: 600;
   text-decoration: none;
 }
@@ -242,87 +272,27 @@ input:-webkit-autofill:active {
   text-decoration: underline;
 }
 
-/* Contenedor principal ajustado */
+/* ==========================================================================
+   Vistas de Políticas / Legales
+   ========================================================================== */
 .recuadro-login.recuadro-legales {
-  width: 90% !important;
-  max-width: 650px !important;
-  height: 70vh !important;
-  max-height: 70vh !important;
-  overflow-y: auto !important;
-  overflow-x: hidden !important; /* Evita desbordamiento horizontal */
-  display: block !important;
+  max-width: 680px !important;
+  max-height: 75vh;
+  overflow-y: auto;
   text-align: left;
   padding: 2.5rem 2rem;
-  box-sizing: border-box;
-  border-radius: 20px; /* Asegura el redondeado */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
-/* 1. Ancho de la barra */
-.recuadro-login.recuadro-legales::-webkit-scrollbar {
-  width: 8px;
-}
-
-/* 2. Canal de fondo (respetando los bordes redondeados arriba y abajo) */
-.recuadro-login.recuadro-legales::-webkit-scrollbar-track {
-  background: transparent;
-  margin-top: 15px;    /* Separa la barra de la esquina superior */
-  margin-bottom: 15px; /* Separa la barra de la esquina inferior */
-}
-
-/* 3. La barra de desplazamiento en Morado Oscuro */
-.recuadro-login.recuadro-legales::-webkit-scrollbar-thumb {
-  background-color: #2a085c; /* Morado oscuro tipo header */
-  border-radius: 10px;        /* Bordes redondeados en la propia barra */
-}
-
-/* Hover más vivo */
-.recuadro-login.recuadro-legales::-webkit-scrollbar-thumb:hover {
-  background-color: #4c1d95;
-}
-
-/* Formato para el texto interno */
-.contenido-legal h2 {
-  font-size: 1.1rem;
-  color: #333;
-  margin-top: 1.2rem;
-  margin-bottom: 0.4rem;
-}
-
-.contenido-legal p, .contenido-legal li {
-  font-size: 0.9rem;
-  color: #555;
-  line-height: 1.5;
-  margin-bottom: 0.6rem;
-}
-
-.contenido-legal ul {
-  padding-left: 1.2rem;
-  margin-bottom: 0.8rem;
-}
-
-.enlace-volver {
-  display: inline-block;
-  color: #6c5ce7; /* Cambia al color de tu marca si usas otro */
-  text-decoration: none;
-  font-size: 0.85rem;
-  font-weight: 600;
-  margin-bottom: 1rem;
-}
-
-.enlace-volver:hover {
-  text-decoration: underline;
-}
-
-
-.recuadro-legales {
-  max-height: 75vh;     /* Ocupa hasta el 75% de la altura de la pantalla */
-  overflow-y: auto;     /* Activa la barra de scroll cuando el texto supera la altura */
-  padding-right: 1.5rem; /* Da un respiro al texto para que no pegue con la barra */
-}
-
-/* Scrollbar personalizado fino */
 .recuadro-legales::-webkit-scrollbar {
   width: 6px;
+}
+
+.recuadro-legales::-webkit-scrollbar-track {
+  background: transparent;
+  margin: 10px 0;
 }
 
 .recuadro-legales::-webkit-scrollbar-thumb {
@@ -334,30 +304,54 @@ input:-webkit-autofill:active {
   background-color: #94a3b8;
 }
 
-
-
-
-
-@media (max-width: 1024px) {
-  .recuadro-login{
-    width: 27.5em;
-  }
+.contenido-legal {
+  width: 100%;
 }
 
-@media (max-width: 768px) {
-  .recuadro-login{
-    width: 25em;
-  }
+.contenido-legal h2 {
+  font-size: 1.15rem;
+  color: #111827;
+  margin-top: 1.25rem;
+  margin-bottom: 0.5rem;
 }
 
+.contenido-legal p, 
+.contenido-legal li {
+  font-size: 0.9rem;
+  color: #4b5563;
+  line-height: 1.6;
+  margin-bottom: 0.6rem;
+}
+
+.contenido-legal ul {
+  padding-left: 1.25rem;
+  margin-bottom: 0.8rem;
+}
+
+.enlace-volver {
+  display: inline-block;
+  color: #6d07cc;
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.enlace-volver:hover {
+  text-decoration: underline;
+}
+
+/* ==========================================================================
+   Adaptabilidad Responsiva
+   ========================================================================== */
 @media (max-width: 480px) {
-  .recuadro-login{
-    width: 22.3em;
+  .recuadro-login {
+    padding: 2rem 1.25rem;
+    border-radius: 12px;
   }
-}
 
-@media (max-width: 360px) {
-  .recuadro-login{
-    width: 20em;
+  .recuadro-login h1,
+  .recuadro-login h2 {
+    font-size: 1.5rem;
   }
 }
